@@ -1,7 +1,24 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  /* config options here */
-};
+  images: {
+    formats: ['image/avif', 'image/webp'],
+    remotePatterns: [],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+  },
+  compress: true,
+  poweredByHeader: false,
+  headers: async () => [
+    {
+      source: '/(.*)',
+      headers: [
+        { key: 'X-Content-Type-Options', value: 'nosniff' },
+        { key: 'X-Frame-Options', value: 'DENY' },
+        { key: 'X-XSS-Protection', value: '1; mode=block' },
+        { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+      ],
+    },
+  ],
+}
 
-export default nextConfig;
+export default nextConfig
