@@ -1,20 +1,29 @@
-import type { Metadata } from 'next'
-import Hero from '@/components/sections/Hero'
-import ServicesHighlight from '@/components/sections/ServicesHighlight'
-import Testimonials from '@/components/sections/Testimonials'
-import CallToAction from '@/components/sections/CallToAction'
+"use client";
 
-export const metadata: Metadata = {
-  title: 'SETE TECH — Tecnologia que entrega resultados que duram',
-}
+import { useState } from "react";
+import LoadingScreen from "@/components/LoadingScreen";
+import HeroSETETECH from "@/components/HeroSETETECH";
 
-export default function HomePage() {
+// Importe aqui as suas outras seções normalmente
+// import Servicos from "@/components/Servicos";
+// import Depoimentos from "@/components/Depoimentos";
+// import CTA from "@/components/CTA";
+
+export default function Home() {
+  const [loading, setLoading] = useState(true);
+
   return (
     <>
-      <Hero />
-      <ServicesHighlight />
-      <Testimonials />
-      <CallToAction />
+      {/* Tela de loading — some automaticamente após ~3.6s */}
+      {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
+
+      {/* Site principal — já está no DOM, mas atrás do loading */}
+      <main style={{ opacity: loading ? 0 : 1, transition: "opacity 0.5s ease" }}>
+        <HeroSETETECH />
+        {/* <Servicos /> */}
+        {/* <Depoimentos /> */}
+        {/* <CTA /> */}
+      </main>
     </>
-  )
+  );
 }
