@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { MessageCircle } from 'lucide-react'
 
-const WHATSAPP_NUMBER = '5500000000000'
+const WHATSAPP_NUMBER = '5586999999999'
 const WHATSAPP_MESSAGE = 'Olá! Vim pelo site da SETE TECH e gostaria de saber mais sobre os serviços.'
 
 export default function WhatsAppButton() {

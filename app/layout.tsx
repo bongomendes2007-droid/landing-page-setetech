@@ -1,35 +1,39 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Syne, DM_Sans } from 'next/font/google'
 import './globals.css'
+import LenisProvider from '@/components/providers/LenisProvider'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import WhatsAppButton from '@/components/shared/WhatsAppButton'
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const syne = Syne({
+  variable: '--font-syne',
   subsets: ['latin'],
+  weight: ['400', '700', '800'],
+  display: 'swap',
 })
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const dmSans = DM_Sans({
+  variable: '--font-dm-sans',
   subsets: ['latin'],
+  weight: ['400', '500', '700'],
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
   title: {
     template: '%s | SETE TECH',
-    default: 'SETE TECH — Tecnologia que entrega resultados que duram',
+    default: 'SETE TECH — Tecnologia que move negócios para o futuro',
   },
   description:
-    'A SETE TECH é a parceira estratégica de tecnologia para empresas privadas e setor público. Web, IA, Infra, Design, Marketing, GovTech e Gestão.',
+    'SETE TECH é a parceira estratégica de tecnologia para empresas e órgãos públicos em Teresina, Piauí. Web, IA, Infraestrutura, Marketing Digital e GovTech.',
   keywords: [
-    'agência de tecnologia',
-    'desenvolvimento web',
+    'agência de tecnologia Teresina',
+    'desenvolvimento web Piauí',
     'inteligência artificial',
     'GovTech',
     'transformação digital',
-    'Next.js',
-    'cloud',
+    'SETE TECH',
     'B2B',
   ],
   authors: [{ name: 'SETE TECH', url: 'https://setetech.com.br' }],
@@ -38,32 +42,30 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'pt_BR',
     siteName: 'SETE TECH',
-    title: 'SETE TECH — Tecnologia que entrega resultados que duram',
-    description:
-      'Parceira estratégica de tecnologia para empresas privadas e setor público.',
+    title: 'SETE TECH — Tecnologia que move negócios para o futuro',
+    description: 'Soluções digitais completas para empresas e órgãos públicos em Teresina, PI.',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'SETE TECH',
-    description: 'Tecnologia que entrega resultados que duram.',
+    description: 'Tecnologia que move negócios para o futuro.',
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html
       lang="pt-BR"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${syne.variable} ${dmSans.variable} h-full`}
     >
-      <body className="min-h-full flex flex-col">
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <WhatsAppButton />
+      <body className="min-h-full flex flex-col antialiased">
+        <LenisProvider>
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
+          <WhatsAppButton />
+        </LenisProvider>
       </body>
     </html>
   )

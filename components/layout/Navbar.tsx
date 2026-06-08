@@ -1,135 +1,208 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { NavLink } from '@/types'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-const navLinks: NavLink[] = [
-  { label: 'Home', href: '/' },
-  { label: 'Serviços', href: '/servicos' },
-  { label: 'Nossa Equipe', href: '/equipe' },
-  { label: 'Sobre', href: '/sobre' },
-  { label: 'Contato', href: '/contato' },
+const NAV_LINKS = [
+  { label: 'Serviços', href: '#servicos' },
+  { label: 'Sobre',    href: '#sobre' },
+  { label: 'Cases',    href: '#cases' },
+  { label: 'Contato',  href: '#contato' },
 ]
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
-  const pathname = usePathname()
+  const navRef  = useRef<HTMLElement>(null)
+  const lineRef = useRef<HTMLDivElement>(null)
+  const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
+    gsap.registerPlugin(ScrollTrigger)
+
+    const ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        start: 'top -60',
+        onEnter: () => {
+          gsap.to(navRef.current, {
+            backdropFilter: 'blur(20px)',
+            backgroundColor: 'rgba(13,31,35,0.90)',
+            duration: 0.4,
+            ease: 'power2.out',
+          })
+          gsap.to(lineRef.current, { opacity: 1, duration: 0.4 })
+        },
+        onLeaveBack: () => {
+          gsap.to(navRef.current, {
+            backdropFilter: 'blur(0px)',
+            backgroundColor: 'rgba(13,31,35,0)',
+            duration: 0.4,
+          })
+          gsap.to(lineRef.current, { opacity: 0, duration: 0.4 })
+        },
+      })
+    })
+
+    return () => ctx.revert()
   }, [])
 
-  useEffect(() => {
-    setIsOpen(false)
-  }, [pathname])
-
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        scrolled
-          ? 'bg-white/95 backdrop-blur-sm shadow-sm border-b border-slate-200/80'
-          : 'bg-transparent'
-      }`}
-    >
+    <>
       <nav
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16"
-        aria-label="Navegação principal"
+        ref={navRef}
+        className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 lg:px-20 h-16"
+        style={{ backgroundColor: 'rgba(13,31,35,0)' }}
       >
-        <Link
-          href="/"
-          className="flex items-center gap-2 font-bold text-xl text-slate-900 hover:text-blue-700 transition-colors"
-          aria-label="SETE TECH - Página Inicial"
-        >
-          <span className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center text-white text-sm font-black">
-            7
-          </span>
-          <span>
-            SETE <span className="text-blue-700">TECH</span>
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2.5 select-none">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden>
+            <polygon
+              points="16,2 30,10 30,22 16,30 2,22 2,10"
+              stroke="var(--color-accent)"
+              strokeWidth="1.5"
+              fill="rgba(128,240,160,0.08)"
+            />
+            <text
+              x="16"
+              y="21"
+              textAnchor="middle"
+              fill="var(--color-accent)"
+              fontSize="13"
+              fontWeight="800"
+              fontFamily="var(--font-syne)"
+            >
+              S
+            </text>
+          </svg>
+          <span
+            className="text-lg font-bold tracking-wider"
+            style={{ fontFamily: 'var(--font-syne)', color: 'var(--color-text)' }}
+          >
+            SETE <span style={{ color: 'var(--color-accent)' }}>TECH</span>
           </span>
         </Link>
 
-        {/* Desktop nav */}
-        <ul className="hidden md:flex items-center gap-1" role="list">
-          {navLinks.map(({ label, href }) => (
-            <li key={href}>
-              <Link
-                href={href}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 ${
-                  pathname === href
-                    ? 'text-blue-700 bg-blue-50'
-                    : 'text-slate-700 hover:text-blue-700 hover:bg-slate-50'
-                }`}
-                aria-current={pathname === href ? 'page' : undefined}
-              >
-                {label}
-              </Link>
-            </li>
+        {/* Desktop links */}
+        <div className="hidden md:flex items-center gap-8">
+          {NAV_LINKS.map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              className="text-sm font-medium transition-colors hover:text-[var(--color-accent)]"
+              style={{ fontFamily: 'var(--font-dm-sans)', color: 'var(--color-muted)' }}
+            >
+              {l.label}
+            </Link>
           ))}
-        </ul>
+        </div>
 
-        <Link
-          href="/contato"
-          className="hidden md:inline-flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-colors duration-200"
-        >
-          Fale Conosco
-        </Link>
+        {/* CTA desktop */}
+        <div className="hidden md:flex">
+          <Link
+            href="#contato"
+            className="px-5 py-2 text-sm font-semibold rounded-full transition-opacity hover:opacity-90"
+            style={{
+              background: 'var(--gradient-accent)',
+              color: '#0D1F23',
+              fontFamily: 'var(--font-dm-sans)',
+            }}
+          >
+            Fale Conosco
+          </Link>
+        </div>
 
-        {/* Mobile toggle */}
+        {/* Mobile hamburger */}
         <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden p-2 rounded-lg text-slate-700 hover:bg-slate-100 transition-colors"
-          aria-label={isOpen ? 'Fechar menu' : 'Abrir menu'}
-          aria-expanded={isOpen}
+          className="md:hidden flex flex-col justify-center items-center gap-1.5 w-8 h-8"
+          onClick={() => setOpen(!open)}
+          aria-label={open ? 'Fechar menu' : 'Abrir menu'}
+          aria-expanded={open}
         >
-          {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          <span
+            className="block w-6 h-px rounded transition-all duration-300"
+            style={{
+              background: 'var(--color-text)',
+              transform: open ? 'rotate(45deg) translateY(4px)' : 'none',
+            }}
+          />
+          <span
+            className="block w-6 h-px rounded transition-all duration-300"
+            style={{ background: 'var(--color-text)', opacity: open ? 0 : 1 }}
+          />
+          <span
+            className="block w-6 h-px rounded transition-all duration-300"
+            style={{
+              background: 'var(--color-text)',
+              transform: open ? 'rotate(-45deg) translateY(-4px)' : 'none',
+            }}
+          />
         </button>
+
+        {/* Accent bottom line */}
+        <div
+          ref={lineRef}
+          className="absolute bottom-0 left-0 right-0 h-px opacity-0 pointer-events-none"
+          style={{ background: 'linear-gradient(to right, transparent, var(--color-accent2), transparent)' }}
+        />
       </nav>
 
-      {/* Mobile menu */}
+      {/* Mobile drawer */}
       <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
-            className="md:hidden bg-white border-b border-slate-200 overflow-hidden"
-          >
-            <ul className="px-4 py-3 space-y-1" role="list">
-              {navLinks.map(({ label, href }) => (
-                <li key={href}>
-                  <Link
-                    href={href}
-                    className={`block px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
-                      pathname === href
-                        ? 'text-blue-700 bg-blue-50'
-                        : 'text-slate-700 hover:bg-slate-50'
-                    }`}
-                    aria-current={pathname === href ? 'page' : undefined}
-                  >
-                    {label}
-                  </Link>
-                </li>
-              ))}
-              <li>
-                <Link
-                  href="/contato"
-                  className="block mt-2 bg-blue-700 text-white text-sm font-semibold px-4 py-3 rounded-xl text-center"
+        {open && (
+          <>
+            <motion.div
+              className="fixed inset-0 z-40 bg-black/60 md:hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setOpen(false)}
+            />
+            <motion.aside
+              className="fixed top-0 right-0 bottom-0 z-50 w-72 flex flex-col p-8 gap-6 md:hidden"
+              style={{ background: 'var(--color-surface)', borderLeft: '1px solid var(--color-border)' }}
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', stiffness: 260, damping: 28 }}
+            >
+              <button
+                className="self-end mb-2 text-2xl leading-none"
+                style={{ color: 'var(--color-muted)' }}
+                onClick={() => setOpen(false)}
+                aria-label="Fechar menu"
+              >
+                ×
+              </button>
+              {NAV_LINKS.map((l, i) => (
+                <motion.div
+                  key={l.href}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.06 }}
                 >
-                  Fale Conosco
-                </Link>
-              </li>
-            </ul>
-          </motion.div>
+                  <Link
+                    href={l.href}
+                    className="text-xl font-semibold block hover:text-[var(--color-accent)] transition-colors"
+                    style={{ fontFamily: 'var(--font-syne)', color: 'var(--color-text)' }}
+                    onClick={() => setOpen(false)}
+                  >
+                    {l.label}
+                  </Link>
+                </motion.div>
+              ))}
+              <Link
+                href="#contato"
+                className="mt-auto px-5 py-3 text-sm font-semibold rounded-full text-center transition-opacity hover:opacity-90"
+                style={{ background: 'var(--gradient-accent)', color: '#0D1F23', fontFamily: 'var(--font-dm-sans)' }}
+                onClick={() => setOpen(false)}
+              >
+                Fale Conosco
+              </Link>
+            </motion.aside>
+          </>
         )}
       </AnimatePresence>
-    </header>
+    </>
   )
 }
