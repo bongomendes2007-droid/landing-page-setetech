@@ -141,16 +141,17 @@ export default function HeroSection() {
           }}
         >
           {titleWords.map((word) => (
-            <span
-              key={word}
-              className="word inline-block mr-[0.3em]"
-              style={{ transformOrigin: 'center top' }}
-            >
-              {word}
+            <span key={word} style={{ display: 'inline' }}>
+              <span
+                className="word"
+                style={{ display: 'inline-block', transformOrigin: 'center top' }}
+              >
+                {word}
+              </span>
+              {' '}
             </span>
           ))}
-          {' '}
-          <span className="word inline-block gradient-text" style={{ transformOrigin: 'center top' }}>
+          <span className="word gradient-text" style={{ display: 'inline-block', transformOrigin: 'center top' }}>
             FUTURO.
           </span>
         </h1>

@@ -3,28 +3,27 @@
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import Image from 'next/image'
 
 const PROJECTS = [
   {
     tag: 'GovTech',
     title: 'Portal de Transparência Municipal',
     metric: '12 municípios conectados',
-    image: 'https://res.cloudinary.com/dd5f5j2ni/image/upload/v1/samples/landscapes/architecture-signs.jpg',
+    bg: 'linear-gradient(135deg, #0D1F23, #2D4A53)',
     large: true,
   },
   {
     tag: 'E-Commerce',
     title: 'Plataforma AGROSETE',
     metric: '+120% vendas em 6 meses',
-    image: 'https://res.cloudinary.com/dd5f5j2ni/image/upload/v1/samples/food/spices.jpg',
+    bg: 'linear-gradient(135deg, #132E35, #006B3D)',
     large: false,
   },
   {
     tag: 'Automação',
     title: 'Sistema de Gestão Esportiva',
     metric: '8.000 atletas cadastrados',
-    image: 'https://res.cloudinary.com/dd5f5j2ni/image/upload/v1/samples/people/smiling-man.jpg',
+    bg: 'linear-gradient(135deg, #0D1F23, #132E35)',
     large: false,
   },
 ]
@@ -89,20 +88,23 @@ export default function ProjectsSection() {
               key={p.title}
               className={`relative overflow-hidden rounded-2xl group cursor-pointer ${p.large ? 'md:col-span-2 h-80 md:h-96' : 'h-56 md:h-96'}`}
             >
-              {/* Background image */}
-              <Image
-                src={p.image}
-                alt={p.title}
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 50vw"
+              {/* Gradient background */}
+              <div
+                className="absolute inset-0 transition-transform duration-700 group-hover:scale-105"
+                style={{ background: p.bg }}
               />
 
-              {/* Overlay */}
+              {/* Decorative accent circle */}
               <div
-                className="absolute inset-0 transition-opacity duration-300"
+                className="absolute -top-16 -right-16 w-48 h-48 rounded-full opacity-20 pointer-events-none"
+                style={{ background: 'radial-gradient(circle, var(--color-accent) 0%, transparent 70%)' }}
+              />
+
+              {/* Bottom overlay for text legibility */}
+              <div
+                className="absolute inset-0 pointer-events-none"
                 style={{
-                  background: 'linear-gradient(to top, rgba(13,31,35,0.95) 0%, rgba(13,31,35,0.3) 60%, transparent 100%)',
+                  background: 'linear-gradient(to top, rgba(13,31,35,0.85) 0%, rgba(13,31,35,0.1) 60%, transparent 100%)',
                 }}
               />
 
