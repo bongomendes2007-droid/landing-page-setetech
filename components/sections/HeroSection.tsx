@@ -7,7 +7,7 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative overflow-hidden w-full min-h-screen flex items-center pt-20"
+      className="relative overflow-hidden w-full min-h-screen flex items-center pt-20 rounded-b-[40px]"
     >
       {/* CAMADA 1 — Animated Gradient Background (z-0) */}
       <AnimatedGradientBackground
