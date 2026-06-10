@@ -1,37 +1,59 @@
 'use client'
 import { SplineScene } from "@/components/ui/splite"
 import { Spotlight } from "@/components/ui/spotlight"
+import AnimatedGradientBackground from "@/components/ui/animated-gradient-background"
 
 export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative w-full min-h-screen overflow-hidden flex items-center"
-      style={{ background: '#0D1F23' }}
+      className="relative overflow-hidden w-full min-h-screen flex items-center"
     >
-      {/* Spotlight mouse-follow */}
-      <Spotlight size={500} />
-
-      {/* Linha accent topo */}
-      <div
-        className="absolute top-0 left-0 right-0 h-px z-10"
-        style={{ background: 'linear-gradient(90deg, transparent, #32C885, #80F0A0, transparent)' }}
+      {/* CAMADA 1 — Animated Gradient Background (z-0) */}
+      <AnimatedGradientBackground
+        Breathing={true}
+        breathingRange={6}
+        animationSpeed={0.012}
+        startingGap={115}
+        gradientColors={[
+          "#0D0D0D",
+          "#0D0D0D",
+          "#1A0033",
+          "#3D0099",
+          "#6A00FF",
+          "#A100FF",
+          "#D600FF",
+        ]}
+        gradientStops={[0, 25, 40, 55, 68, 82, 100]}
+        containerClassName="z-0"
       />
 
-      {/* Grid sutil de fundo */}
+      {/* CAMADA 2 — overlay escuro semitransparente (z-10) */}
+      <div className="absolute inset-0 z-10 bg-black/40" />
+
+      {/* Grid sutil de fundo (z-[15]) */}
       <div
-        className="absolute inset-0 opacity-[0.04]"
+        className="absolute inset-0 z-[15] opacity-[0.04]"
         style={{
           backgroundImage: 'linear-gradient(rgba(128,240,160,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(128,240,160,0.5) 1px, transparent 1px)',
-          backgroundSize: '60px 60px'
+          backgroundSize: '60px 60px',
         }}
       />
 
-      {/* Layout principal */}
-      <div className="relative z-10 w-full flex flex-col md:flex-row items-center min-h-screen">
+      {/* Spotlight mouse-follow (z-[16]) */}
+      <Spotlight size={500} className="z-[16]" />
 
-        {/* Lado esquerdo — conteúdo */}
-        <div className="flex-1 px-8 md:px-16 lg:px-24 py-32 flex flex-col justify-center">
+      {/* Linha accent topo */}
+      <div
+        className="absolute top-0 left-0 right-0 h-px z-40"
+        style={{ background: 'linear-gradient(90deg, transparent, #32C885, #80F0A0, transparent)' }}
+      />
+
+      {/* Layout principal — sem z-index para não criar stacking context isolado */}
+      <div className="relative w-full flex flex-col md:flex-row items-center min-h-screen">
+
+        {/* CAMADA 4 — conteúdo texto, CTAs, stats (z-30) */}
+        <div className="flex-1 relative z-30 px-8 md:px-16 lg:px-24 py-32 flex flex-col justify-center">
 
           {/* Tag pill */}
           <div
@@ -151,8 +173,8 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Lado direito — cena Spline 3D */}
-        <div className="flex-1 relative w-full md:w-auto" style={{ minHeight: '500px' }}>
+        {/* CAMADA 3 — robô 3D (z-20) */}
+        <div className="flex-1 relative z-20 w-full md:w-auto" style={{ minHeight: '500px' }}>
           <SplineScene
             scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
             className="w-full h-full absolute inset-0"
@@ -160,15 +182,15 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+      {/* Scroll indicator (z-30) */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-30">
         <span style={{ fontSize: '10px', letterSpacing: '0.12em', color: '#2D4A53', textTransform: 'uppercase' }}>
           Role para baixo
         </span>
         <div style={{
           width: '1px', height: '48px',
           background: 'linear-gradient(to bottom, #32C885, transparent)',
-          animation: 'scrollPulse 1.8s ease-in-out infinite'
+          animation: 'scrollPulse 1.8s ease-in-out infinite',
         }} />
       </div>
 
