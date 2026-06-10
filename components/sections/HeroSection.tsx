@@ -53,7 +53,7 @@ export default function HeroSection() {
       <div className="relative w-full flex flex-col md:flex-row items-center min-h-screen">
 
         {/* CAMADA 4 — conteúdo texto e CTAs (z-30) */}
-        <div className="flex-1 relative z-30 px-8 md:px-16 lg:px-24 py-32 flex flex-col justify-center">
+        <div className="flex-1 relative z-30 pl-8 pr-8 md:pl-16 lg:pl-24 py-32 flex flex-col justify-center">
 
           {/* Tag pill */}
           <div
