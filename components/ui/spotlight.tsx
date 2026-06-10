@@ -1,5 +1,5 @@
 'use client'
-import React, { useRef, useState, useCallback, useEffect } from 'react'
+import { useRef, useState, useCallback, useEffect } from 'react'
 import { motion, useSpring, useTransform } from 'framer-motion'
 import { cn } from '@/lib/utils'
 
@@ -56,7 +56,7 @@ export function Spotlight({ className, size = 300 }: SpotlightProps) {
       ref={containerRef}
       className={cn(
         'pointer-events-none absolute rounded-full blur-2xl transition-opacity duration-300',
-        'bg-[radial-gradient(circle_at_center,rgba(128,240,160,0.15),rgba(50,200,133,0.08),transparent_70%)]',
+        'bg-[radial-gradient(circle_at_center,rgba(161,0,255,0.15),rgba(106,0,255,0.08),transparent_70%)]',
         isHovered ? 'opacity-100' : 'opacity-0',
         className
       )}

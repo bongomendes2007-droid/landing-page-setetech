@@ -225,7 +225,7 @@ export default function ContactSection() {
         {status === 'success' && (
           <p
             className="text-sm font-medium text-center py-3 rounded-xl"
-            style={{ background: 'rgba(128,240,160,0.12)', color: 'var(--color-accent)', border: '1px solid rgba(128,240,160,0.2)' }}
+            style={{ background: 'rgba(161,0,255,0.12)', color: 'var(--color-accent)', border: '1px solid rgba(161,0,255,0.2)' }}
           >
             ✓ Mensagem enviada! Entraremos em contato em breve.
           </p>
@@ -245,7 +245,7 @@ export default function ContactSection() {
           className="w-full py-3.5 rounded-full font-semibold text-sm transition-opacity hover:opacity-90 disabled:opacity-50"
           style={{
             background: 'var(--gradient-accent)',
-            color: '#0D1F23',
+            color: '#FFFFFF',
             fontFamily: 'var(--font-dm-sans)',
           }}
         >

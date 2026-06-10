@@ -65,7 +65,7 @@ export default function Footer() {
                   points="16,2 30,10 30,22 16,30 2,22 2,10"
                   stroke="var(--color-accent)"
                   strokeWidth="1.5"
-                  fill="rgba(128,240,160,0.08)"
+                  fill="rgba(161,0,255,0.08)"
                 />
                 <text
                   x="16" y="21" textAnchor="middle"
@@ -104,7 +104,7 @@ export default function Footer() {
                   }}
                   onMouseEnter={(e) => {
                     (e.currentTarget as HTMLElement).style.color = 'var(--color-accent)'
-                    ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(128,240,160,0.3)'
+                    ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(161,0,255,0.3)'
                   }}
                   onMouseLeave={(e) => {
                     (e.currentTarget as HTMLElement).style.color = 'var(--color-muted)'

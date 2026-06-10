@@ -27,7 +27,7 @@ export default function Navbar() {
         onEnter: () => {
           gsap.to(navRef.current, {
             backdropFilter: 'blur(20px)',
-            backgroundColor: 'rgba(13,31,35,0.90)',
+            backgroundColor: 'rgba(13,13,13,0.90)',
             duration: 0.4,
             ease: 'power2.out',
           })
@@ -36,7 +36,7 @@ export default function Navbar() {
         onLeaveBack: () => {
           gsap.to(navRef.current, {
             backdropFilter: 'blur(0px)',
-            backgroundColor: 'rgba(13,31,35,0)',
+            backgroundColor: 'rgba(13,13,13,0)',
             duration: 0.4,
           })
           gsap.to(lineRef.current, { opacity: 0, duration: 0.4 })
@@ -52,7 +52,7 @@ export default function Navbar() {
       <nav
         ref={navRef}
         className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 lg:px-20 h-16"
-        style={{ backgroundColor: 'rgba(13,31,35,0)' }}
+        style={{ backgroundColor: 'rgba(13,13,13,0)' }}
       >
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2.5 select-none">
@@ -61,7 +61,7 @@ export default function Navbar() {
               points="16,2 30,10 30,22 16,30 2,22 2,10"
               stroke="var(--color-accent)"
               strokeWidth="1.5"
-              fill="rgba(128,240,160,0.08)"
+              fill="rgba(161,0,255,0.08)"
             />
             <text
               x="16"
@@ -104,7 +104,7 @@ export default function Navbar() {
             className="px-5 py-2 text-sm font-semibold rounded-full transition-opacity hover:opacity-90"
             style={{
               background: 'var(--gradient-accent)',
-              color: '#0D1F23',
+              color: '#FFFFFF',
               fontFamily: 'var(--font-dm-sans)',
             }}
           >
@@ -194,7 +194,7 @@ export default function Navbar() {
               <Link
                 href="#contato"
                 className="mt-auto px-5 py-3 text-sm font-semibold rounded-full text-center transition-opacity hover:opacity-90"
-                style={{ background: 'var(--gradient-accent)', color: '#0D1F23', fontFamily: 'var(--font-dm-sans)' }}
+                style={{ background: 'var(--gradient-accent)', color: '#FFFFFF', fontFamily: 'var(--font-dm-sans)' }}
                 onClick={() => setOpen(false)}
               >
                 Fale Conosco

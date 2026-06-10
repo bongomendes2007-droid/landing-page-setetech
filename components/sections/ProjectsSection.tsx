@@ -9,21 +9,21 @@ const PROJECTS = [
     tag: 'GovTech',
     title: 'Portal de Transparência Municipal',
     metric: '12 municípios conectados',
-    bg: 'linear-gradient(135deg, #0D1F23, #2D4A53)',
+    bg: 'linear-gradient(135deg, #0D0D0D, #1A0033)',
     large: true,
   },
   {
     tag: 'E-Commerce',
     title: 'Plataforma AGROSETE',
     metric: '+120% vendas em 6 meses',
-    bg: 'linear-gradient(135deg, #132E35, #006B3D)',
+    bg: 'linear-gradient(135deg, #1A1A1A, #3D0099)',
     large: false,
   },
   {
     tag: 'Automação',
     title: 'Sistema de Gestão Esportiva',
     metric: '8.000 atletas cadastrados',
-    bg: 'linear-gradient(135deg, #0D1F23, #132E35)',
+    bg: 'linear-gradient(135deg, #0D0D0D, #1A1A1A)',
     large: false,
   },
 ]
@@ -104,7 +104,7 @@ export default function ProjectsSection() {
               <div
                 className="absolute inset-0 pointer-events-none"
                 style={{
-                  background: 'linear-gradient(to top, rgba(13,31,35,0.85) 0%, rgba(13,31,35,0.1) 60%, transparent 100%)',
+                  background: 'linear-gradient(to top, rgba(13,13,13,0.85) 0%, rgba(13,13,13,0.1) 60%, transparent 100%)',
                 }}
               />
 
@@ -113,8 +113,8 @@ export default function ProjectsSection() {
                 <span
                   className="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-3"
                   style={{
-                    background: 'rgba(128,240,160,0.15)',
-                    border: '1px solid rgba(128,240,160,0.3)',
+                    background: 'rgba(161,0,255,0.15)',
+                    border: '1px solid rgba(161,0,255,0.3)',
                     color: 'var(--color-accent)',
                     fontFamily: 'var(--font-dm-sans)',
                   }}

@@ -89,7 +89,7 @@ export default function TestimonialsSection() {
             <div className="flex items-center gap-4">
               <div
                 className="w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold shrink-0"
-                style={{ background: 'var(--gradient-accent)', color: '#0D1F23', fontFamily: 'var(--font-syne)' }}
+                style={{ background: 'var(--gradient-accent)', color: '#FFFFFF', fontFamily: 'var(--font-syne)' }}
               >
                 {t.avatar}
               </div>

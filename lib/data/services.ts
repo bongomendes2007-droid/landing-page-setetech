@@ -79,7 +79,7 @@ export const services: Service[] = [
       'Gestão de redes sociais',
     ],
     icon: 'TrendingUp',
-    color: 'from-emerald-500 to-cyan-600',
+    color: 'from-violet-600 to-fuchsia-500',
   },
   {
     id: 'govtech',

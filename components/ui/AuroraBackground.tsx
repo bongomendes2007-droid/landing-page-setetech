@@ -25,7 +25,7 @@ export default function AuroraBackground() {
     canvas.width  = width
     canvas.height = height
 
-    const colors = ['rgba(0,107,61,', 'rgba(50,200,133,', 'rgba(128,240,160,']
+    const colors = ['rgba(61,0,153,', 'rgba(106,0,255,', 'rgba(161,0,255,']
     const blobs: Blob[] = Array.from({ length: 5 }, (_, i) => ({
       x: Math.random() * width,
       y: Math.random() * height,

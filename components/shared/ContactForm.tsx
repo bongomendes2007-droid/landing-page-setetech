@@ -57,7 +57,7 @@ export default function ContactForm() {
   if (status === 'success') {
     return (
       <div className="flex flex-col items-center justify-center py-16 text-center">
-        <CheckCircle2 className="w-16 h-16 text-emerald-500 mb-4" aria-hidden="true" />
+        <CheckCircle2 className="w-16 h-16 text-violet-500 mb-4" aria-hidden="true" />
         <h3 className="text-2xl font-bold text-slate-900 mb-2">Mensagem enviada!</h3>
         <p className="text-slate-600 max-w-sm">
           Obrigado pelo contato. Nossa equipe retornará em até 1 dia útil.

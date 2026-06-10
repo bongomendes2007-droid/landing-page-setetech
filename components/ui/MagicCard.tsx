@@ -42,7 +42,7 @@ export default function MagicCard({ children, className = '' }: MagicCardProps) 
         ref={glowRef}
         className="pointer-events-none absolute -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full opacity-0 transition-opacity duration-300"
         style={{
-          background: 'radial-gradient(circle, rgba(128,240,160,0.12) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(161,0,255,0.12) 0%, transparent 70%)',
         }}
       />
       {children}

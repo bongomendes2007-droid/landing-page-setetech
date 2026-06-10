@@ -35,7 +35,7 @@ export default function HeroSection() {
       <div
         className="absolute inset-0 z-[15] opacity-[0.04]"
         style={{
-          backgroundImage: 'linear-gradient(rgba(128,240,160,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(128,240,160,0.5) 1px, transparent 1px)',
+          backgroundImage: 'linear-gradient(rgba(161,0,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(161,0,255,0.5) 1px, transparent 1px)',
           backgroundSize: '60px 60px',
         }}
       />
@@ -46,7 +46,7 @@ export default function HeroSection() {
       {/* Linha accent topo */}
       <div
         className="absolute top-0 left-0 right-0 h-px z-40"
-        style={{ background: 'linear-gradient(90deg, transparent, #32C885, #80F0A0, transparent)' }}
+        style={{ background: 'linear-gradient(90deg, transparent, #6A00FF, #D600FF, transparent)' }}
       />
 
       {/* Layout principal — sem z-index para não criar stacking context isolado */}
@@ -59,17 +59,17 @@ export default function HeroSection() {
           <div
             className="inline-flex items-center gap-2 mb-6 w-fit"
             style={{
-              border: '1px solid rgba(50,200,133,0.3)',
+              border: '1px solid rgba(106,0,255,0.35)',
               borderRadius: '40px',
               padding: '6px 18px',
-              background: 'rgba(50,200,133,0.06)',
+              background: 'rgba(106,0,255,0.08)',
             }}
           >
             <span
               className="w-1.5 h-1.5 rounded-full animate-pulse"
-              style={{ background: '#32C885', boxShadow: '0 0 6px #32C885' }}
+              style={{ background: '#6A00FF', boxShadow: '0 0 6px #6A00FF' }}
             />
-            <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.1em', color: '#80F0A0' }}>
+            <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.1em', color: '#A100FF' }}>
               TECNOLOGIA QUE MOVE NEGÓCIOS
             </span>
           </div>
@@ -83,13 +83,13 @@ export default function HeroSection() {
               fontWeight: 800,
               lineHeight: 1.05,
               letterSpacing: '-0.02em',
-              color: '#F0F4F5',
+              color: '#FFFFFF',
             }}
           >
             Tecnologia que move<br />
             negócios para o{' '}
             <span style={{
-              background: 'linear-gradient(135deg, #006B3D, #32C885, #80F0A0)',
+              background: 'linear-gradient(90deg, #6A00FF, #D600FF)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
@@ -105,7 +105,7 @@ export default function HeroSection() {
               fontFamily: "'DM Sans', sans-serif",
               fontSize: '16px',
               lineHeight: 1.75,
-              color: 'rgba(175,179,183,0.7)',
+              color: 'rgba(170,170,170,0.8)',
               maxWidth: '420px',
             }}
           >
@@ -119,8 +119,8 @@ export default function HeroSection() {
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                background: 'linear-gradient(135deg, #006B3D, #32C885, #80F0A0)',
-                color: '#0D1F23',
+                background: '#6A00FF',
+                color: '#FFFFFF',
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: '14px',
                 fontWeight: 700,
@@ -139,13 +139,13 @@ export default function HeroSection() {
                 display: 'inline-flex',
                 alignItems: 'center',
                 background: 'transparent',
-                color: '#80F0A0',
+                color: '#FFFFFF',
                 fontFamily: "'DM Sans', sans-serif",
                 fontSize: '14px',
                 fontWeight: 500,
                 padding: '13px 32px',
                 borderRadius: '40px',
-                border: '1px solid rgba(128,240,160,0.35)',
+                border: '1px solid rgba(106,0,255,0.5)',
                 cursor: 'pointer',
                 textDecoration: 'none',
               }}
@@ -162,10 +162,10 @@ export default function HeroSection() {
               { num: '5',   label: 'Anos de experiência' },
             ].map((s) => (
               <div key={s.label}>
-                <div style={{ fontFamily: "'Syne', sans-serif", fontSize: '32px', fontWeight: 800, color: '#80F0A0', lineHeight: 1 }}>
+                <div style={{ fontFamily: "'Syne', sans-serif", fontSize: '32px', fontWeight: 800, color: '#A100FF', lineHeight: 1 }}>
                   {s.num}
                 </div>
-                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '12px', color: '#5A636A', marginTop: '4px' }}>
+                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '12px', color: '#666666', marginTop: '4px' }}>
                   {s.label}
                 </div>
               </div>
@@ -184,12 +184,12 @@ export default function HeroSection() {
 
       {/* Scroll indicator (z-30) */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-30">
-        <span style={{ fontSize: '10px', letterSpacing: '0.12em', color: '#2D4A53', textTransform: 'uppercase' }}>
+        <span style={{ fontSize: '10px', letterSpacing: '0.12em', color: 'rgba(161,0,255,0.4)', textTransform: 'uppercase' }}>
           Role para baixo
         </span>
         <div style={{
           width: '1px', height: '48px',
-          background: 'linear-gradient(to bottom, #32C885, transparent)',
+          background: 'linear-gradient(to bottom, #6A00FF, transparent)',
           animation: 'scrollPulse 1.8s ease-in-out infinite',
         }} />
       </div>
