@@ -157,7 +157,14 @@ export default function HeroSection() {
         </div>
 
         {/* CAMADA 3 — robô 3D (z-20) */}
-        <div className="flex-1 relative z-20 w-full md:w-auto" style={{ minHeight: '500px' }}>
+        <div
+          className="flex-none relative z-20 w-full md:w-[55%]"
+          style={{
+            minHeight: '650px',
+            transform: 'scale(1.15)',
+            transformOrigin: 'center center',
+          }}
+        >
           <SplineScene
             scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
             className="w-full h-full absolute inset-0"
