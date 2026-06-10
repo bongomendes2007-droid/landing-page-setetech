@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
         hostname: 'res.cloudinary.com',
         pathname: '/dd5f5j2ni/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        pathname: '/dnth1inmv/**',
+      },
     ],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
   },

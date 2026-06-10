@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const NAV_LINKS = [
@@ -35,28 +36,14 @@ export default function Navbar() {
         }}
       >
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 select-none">
-          <svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden>
-            <polygon
-              points="16,2 30,10 30,22 16,30 2,22 2,10"
-              stroke="var(--color-accent)"
-              strokeWidth="1.5"
-              fill="rgba(161,0,255,0.08)"
-            />
-            <text
-              x="16" y="21" textAnchor="middle"
-              fill="var(--color-accent)" fontSize="13" fontWeight="800"
-              fontFamily="var(--font-syne)"
-            >
-              S
-            </text>
-          </svg>
-          <span
-            className="font-bold tracking-wider"
-            style={{ fontFamily: 'var(--font-syne)', color: '#FFFFFF', fontSize: '15px' }}
-          >
-            SETE <span style={{ color: 'var(--color-accent)' }}>TECH</span>
-          </span>
+        <Link href="/" className="flex items-center select-none">
+          <Image
+            src="https://res.cloudinary.com/dnth1inmv/image/upload/v1781121651/logo_Sete_Tech_color_1_irsexx.png"
+            alt="SETE TECH"
+            width={120}
+            height={36}
+            style={{ objectFit: 'contain' }}
+          />
         </Link>
 
         {/* Separador */}
