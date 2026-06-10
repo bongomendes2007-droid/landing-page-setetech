@@ -1,10 +1,8 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 const NAV_LINKS = [
   { label: 'Serviços', href: '#servicos' },
@@ -14,49 +12,31 @@ const NAV_LINKS = [
 ]
 
 export default function Navbar() {
-  const navRef  = useRef<HTMLElement>(null)
-  const lineRef = useRef<HTMLDivElement>(null)
   const [open, setOpen] = useState(false)
-
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger)
-
-    const ctx = gsap.context(() => {
-      ScrollTrigger.create({
-        start: 'top -60',
-        onEnter: () => {
-          gsap.to(navRef.current, {
-            backdropFilter: 'blur(20px)',
-            backgroundColor: 'rgba(13,13,13,0.90)',
-            duration: 0.4,
-            ease: 'power2.out',
-          })
-          gsap.to(lineRef.current, { opacity: 1, duration: 0.4 })
-        },
-        onLeaveBack: () => {
-          gsap.to(navRef.current, {
-            backdropFilter: 'blur(0px)',
-            backgroundColor: 'rgba(13,13,13,0)',
-            duration: 0.4,
-          })
-          gsap.to(lineRef.current, { opacity: 0, duration: 0.4 })
-        },
-      })
-    })
-
-    return () => ctx.revert()
-  }, [])
+  const [ctaHover, setCtaHover] = useState(false)
 
   return (
     <>
+      {/* Desktop — pill flutuante */}
       <nav
-        ref={navRef}
-        className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 lg:px-20 h-16"
-        style={{ backgroundColor: 'rgba(13,13,13,0)' }}
+        className="fixed z-50 hidden md:flex items-center gap-5"
+        style={{
+          top: '16px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          borderRadius: '9999px',
+          background: 'rgba(10, 10, 10, 0.85)',
+          backdropFilter: 'blur(12px)',
+          WebkitBackdropFilter: 'blur(12px)',
+          border: '1px solid rgba(255,255,255,0.08)',
+          boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
+          padding: '8px 16px',
+          whiteSpace: 'nowrap',
+        }}
       >
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2.5 select-none">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden>
+        <Link href="/" className="flex items-center gap-2 select-none">
+          <svg width="26" height="26" viewBox="0 0 32 32" fill="none" aria-hidden>
             <polygon
               points="16,2 30,10 30,22 16,30 2,22 2,10"
               stroke="var(--color-accent)"
@@ -64,88 +44,95 @@ export default function Navbar() {
               fill="rgba(161,0,255,0.08)"
             />
             <text
-              x="16"
-              y="21"
-              textAnchor="middle"
-              fill="var(--color-accent)"
-              fontSize="13"
-              fontWeight="800"
+              x="16" y="21" textAnchor="middle"
+              fill="var(--color-accent)" fontSize="13" fontWeight="800"
               fontFamily="var(--font-syne)"
             >
               S
             </text>
           </svg>
           <span
-            className="text-lg font-bold tracking-wider"
-            style={{ fontFamily: 'var(--font-syne)', color: 'var(--color-text)' }}
+            className="font-bold tracking-wider"
+            style={{ fontFamily: 'var(--font-syne)', color: '#FFFFFF', fontSize: '15px' }}
           >
             SETE <span style={{ color: 'var(--color-accent)' }}>TECH</span>
           </span>
         </Link>
 
-        {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-8">
+        {/* Separador */}
+        <div style={{ width: '1px', height: '16px', background: 'rgba(255,255,255,0.12)', flexShrink: 0 }} />
+
+        {/* Links */}
+        <div className="flex items-center gap-6">
           {NAV_LINKS.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className="text-sm font-medium transition-colors hover:text-[var(--color-accent)]"
-              style={{ fontFamily: 'var(--font-dm-sans)', color: 'var(--color-muted)' }}
+              style={{
+                fontFamily: 'var(--font-dm-sans)',
+                fontSize: '14px',
+                color: '#AAAAAA',
+                textDecoration: 'none',
+                transition: 'color 0.2s',
+              }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = '#FFFFFF' }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = '#AAAAAA' }}
             >
               {l.label}
             </Link>
           ))}
         </div>
 
-        {/* CTA desktop */}
-        <div className="hidden md:flex">
-          <Link
-            href="#contato"
-            className="px-5 py-2 text-sm font-semibold rounded-full transition-opacity hover:opacity-90"
-            style={{
-              background: 'var(--gradient-accent)',
-              color: '#FFFFFF',
-              fontFamily: 'var(--font-dm-sans)',
-            }}
-          >
-            Fale Conosco
-          </Link>
-        </div>
+        {/* CTA */}
+        <Link
+          href="#contato"
+          onMouseEnter={() => setCtaHover(true)}
+          onMouseLeave={() => setCtaHover(false)}
+          style={{
+            background: ctaHover ? '#D600FF' : '#FFFFFF',
+            color: ctaHover ? '#FFFFFF' : '#0D0D0D',
+            borderRadius: '9999px',
+            padding: '8px 20px',
+            fontSize: '14px',
+            fontWeight: 600,
+            fontFamily: 'var(--font-dm-sans)',
+            transition: 'background 0.2s, color 0.2s',
+            textDecoration: 'none',
+            display: 'inline-block',
+          }}
+        >
+          Fale Conosco
+        </Link>
+      </nav>
 
-        {/* Mobile hamburger */}
+      {/* Mobile — botão hamburguer flutuante */}
+      <div className="fixed top-4 right-4 z-50 md:hidden">
         <button
-          className="md:hidden flex flex-col justify-center items-center gap-1.5 w-8 h-8"
+          className="w-10 h-10 rounded-full flex flex-col justify-center items-center gap-1.5"
+          style={{
+            background: 'rgba(10,10,10,0.85)',
+            border: '1px solid rgba(255,255,255,0.08)',
+            backdropFilter: 'blur(12px)',
+            WebkitBackdropFilter: 'blur(12px)',
+          }}
           onClick={() => setOpen(!open)}
           aria-label={open ? 'Fechar menu' : 'Abrir menu'}
           aria-expanded={open}
         >
           <span
-            className="block w-6 h-px rounded transition-all duration-300"
-            style={{
-              background: 'var(--color-text)',
-              transform: open ? 'rotate(45deg) translateY(4px)' : 'none',
-            }}
+            className="block w-5 h-px rounded transition-all duration-300"
+            style={{ background: '#FFFFFF', transform: open ? 'rotate(45deg) translateY(4px)' : 'none' }}
           />
           <span
-            className="block w-6 h-px rounded transition-all duration-300"
-            style={{ background: 'var(--color-text)', opacity: open ? 0 : 1 }}
+            className="block w-5 h-px rounded transition-all duration-300"
+            style={{ background: '#FFFFFF', opacity: open ? 0 : 1 }}
           />
           <span
-            className="block w-6 h-px rounded transition-all duration-300"
-            style={{
-              background: 'var(--color-text)',
-              transform: open ? 'rotate(-45deg) translateY(-4px)' : 'none',
-            }}
+            className="block w-5 h-px rounded transition-all duration-300"
+            style={{ background: '#FFFFFF', transform: open ? 'rotate(-45deg) translateY(-4px)' : 'none' }}
           />
         </button>
-
-        {/* Accent bottom line */}
-        <div
-          ref={lineRef}
-          className="absolute bottom-0 left-0 right-0 h-px opacity-0 pointer-events-none"
-          style={{ background: 'linear-gradient(to right, transparent, var(--color-accent2), transparent)' }}
-        />
-      </nav>
+      </div>
 
       {/* Mobile drawer */}
       <AnimatePresence>
@@ -193,8 +180,8 @@ export default function Navbar() {
               ))}
               <Link
                 href="#contato"
-                className="mt-auto px-5 py-3 text-sm font-semibold rounded-full text-center transition-opacity hover:opacity-90"
-                style={{ background: 'var(--gradient-accent)', color: '#FFFFFF', fontFamily: 'var(--font-dm-sans)' }}
+                className="mt-auto px-5 py-3 text-sm font-semibold rounded-full text-center"
+                style={{ background: '#6A00FF', color: '#FFFFFF', fontFamily: 'var(--font-dm-sans)' }}
                 onClick={() => setOpen(false)}
               >
                 Fale Conosco

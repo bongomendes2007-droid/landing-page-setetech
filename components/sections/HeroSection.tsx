@@ -7,7 +7,7 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
-      className="relative overflow-hidden w-full min-h-screen flex items-center"
+      className="relative overflow-hidden w-full min-h-screen flex items-center pt-20"
     >
       {/* CAMADA 1 — Animated Gradient Background (z-0) */}
       <AnimatedGradientBackground
@@ -49,10 +49,10 @@ export default function HeroSection() {
         style={{ background: 'linear-gradient(90deg, transparent, #6A00FF, #D600FF, transparent)' }}
       />
 
-      {/* Layout principal — sem z-index para não criar stacking context isolado */}
+      {/* Layout principal */}
       <div className="relative w-full flex flex-col md:flex-row items-center min-h-screen">
 
-        {/* CAMADA 4 — conteúdo texto, CTAs, stats (z-30) */}
+        {/* CAMADA 4 — conteúdo texto e CTAs (z-30) */}
         <div className="flex-1 relative z-30 px-8 md:px-16 lg:px-24 py-32 flex flex-col justify-center">
 
           {/* Tag pill */}
@@ -74,28 +74,29 @@ export default function HeroSection() {
             </span>
           </div>
 
-          {/* Título */}
+          {/* Título — DM Serif Display */}
           <h1
             className="mb-6"
             style={{
-              fontFamily: "'Syne', sans-serif",
-              fontSize: 'clamp(36px, 5vw, 68px)',
-              fontWeight: 800,
-              lineHeight: 1.05,
-              letterSpacing: '-0.02em',
+              fontFamily: 'var(--font-serif)',
+              fontSize: 'clamp(40px, 5.5vw, 72px)',
+              fontWeight: 400,
+              lineHeight: 1.08,
+              letterSpacing: '-0.01em',
               color: '#FFFFFF',
             }}
           >
-            Tecnologia que move<br />
+            Tecnologia que <em>move</em><br />
             negócios para o{' '}
-            <span style={{
+            <em style={{
+              fontStyle: 'italic',
               background: 'linear-gradient(90deg, #6A00FF, #D600FF)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
             }}>
               FUTURO.
-            </span>
+            </em>
           </h1>
 
           {/* Subtítulo */}
@@ -113,7 +114,7 @@ export default function HeroSection() {
           </p>
 
           {/* Botões */}
-          <div className="flex flex-wrap gap-3 mb-16">
+          <div className="flex flex-wrap gap-3">
             <a
               href="#servicos"
               style={{
@@ -152,24 +153,6 @@ export default function HeroSection() {
             >
               Fale com Especialista
             </a>
-          </div>
-
-          {/* Stats */}
-          <div className="flex flex-wrap gap-10">
-            {[
-              { num: '47+', label: 'Projetos entregues' },
-              { num: '12',  label: 'Municípios atendidos' },
-              { num: '5',   label: 'Anos de experiência' },
-            ].map((s) => (
-              <div key={s.label}>
-                <div style={{ fontFamily: "'Syne', sans-serif", fontSize: '32px', fontWeight: 800, color: '#A100FF', lineHeight: 1 }}>
-                  {s.num}
-                </div>
-                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: '12px', color: '#666666', marginTop: '4px' }}>
-                  {s.label}
-                </div>
-              </div>
-            ))}
           </div>
         </div>
 
