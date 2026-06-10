@@ -38,7 +38,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex items-center select-none">
           <Image
-            src="https://res.cloudinary.com/dnth1inmv/image/upload/v1781121651/logo_Sete_Tech_color_1_irsexx.png"
+            src="https://res.cloudinary.com/dnth1inmv/image/upload/v1781123099/logo_Sete_Tech_branco_1_abpxap.png"
             alt="SETE TECH"
             width={120}
             height={36}
