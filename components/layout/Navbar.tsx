@@ -40,8 +40,8 @@ export default function Navbar() {
           <Image
             src="https://res.cloudinary.com/dnth1inmv/image/upload/v1781123099/logo_Sete_Tech_branco_1_abpxap.png"
             alt="SETE TECH"
-            width={120}
-            height={36}
+            width={80}
+            height={24}
             style={{ objectFit: 'contain' }}
           />
         </Link>
