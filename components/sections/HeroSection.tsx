@@ -53,26 +53,7 @@ export default function HeroSection() {
       <div className="relative w-full flex flex-col md:flex-row items-center min-h-screen">
 
         {/* CAMADA 4 — conteúdo texto e CTAs (z-30) */}
-        <div className="flex-1 relative z-30 pl-8 pr-8 md:pl-16 lg:pl-24 py-32 flex flex-col justify-center">
-
-          {/* Tag pill */}
-          <div
-            className="inline-flex items-center gap-2 mb-6 w-fit"
-            style={{
-              border: '1px solid rgba(106,0,255,0.35)',
-              borderRadius: '40px',
-              padding: '6px 18px',
-              background: 'rgba(106,0,255,0.08)',
-            }}
-          >
-            <span
-              className="w-1.5 h-1.5 rounded-full animate-pulse"
-              style={{ background: '#6A00FF', boxShadow: '0 0 6px #6A00FF' }}
-            />
-            <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.1em', color: '#A100FF' }}>
-              TECNOLOGIA QUE MOVE NEGÓCIOS
-            </span>
-          </div>
+        <div className="flex-1 relative z-30 pl-16 pr-8 md:pl-20 lg:pl-24 py-32 flex flex-col justify-center">
 
           {/* Título — DM Serif Display */}
           <h1
