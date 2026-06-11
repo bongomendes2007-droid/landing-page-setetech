@@ -13,16 +13,16 @@ const images = [
 export function TechMarquee() {
   return (
     <div className="w-full overflow-hidden bg-[#0D0D0D] py-10">
-      <Marquee pauseOnHover className="[--duration:40s] [--gap:5rem]">
+      <Marquee pauseOnHover className="[--duration:40s] [--gap:4rem]">
         {images.map((src, i) => (
           <div
             key={i}
-            className="flex items-center justify-center mx-10 opacity-50 hover:opacity-100 transition-opacity duration-300"
+            className="flex items-center justify-center mx-8 h-16 w-32 opacity-60 hover:opacity-100 transition-opacity duration-300"
           >
             <img
               src={src}
               alt={`Logo ${i + 1}`}
-              className="h-12 w-auto object-contain mix-blend-screen"
+              className="max-h-12 max-w-full object-contain"
             />
           </div>
         ))}
