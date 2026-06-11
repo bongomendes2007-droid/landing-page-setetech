@@ -17,12 +17,12 @@ export function TechMarquee() {
         {images.map((src, i) => (
           <div
             key={i}
-            className="flex items-center justify-center mx-8 h-16 w-32 opacity-60 hover:opacity-100 transition-opacity duration-300"
+            className="flex items-center justify-center mx-10 opacity-70 hover:opacity-100 transition-opacity duration-300"
           >
             <img
               src={src}
               alt={`Logo ${i + 1}`}
-              className="max-h-12 max-w-full object-contain"
+              className="h-12 w-12 object-contain"
             />
           </div>
         ))}
