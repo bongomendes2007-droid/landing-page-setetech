@@ -46,23 +46,52 @@ export default function TestimonialsSection() {
   return (
     <section
       id="depoimentos"
-      className="py-24 px-6 md:px-12 lg:px-20 overflow-hidden"
-      style={{ background: 'var(--color-surface)' }}
+      className="overflow-hidden"
+      style={{
+        background: 'var(--color-surface)',
+        paddingTop: '96px',
+        paddingBottom: '96px',
+        paddingLeft: 'clamp(32px, 8vw, 96px)',
+        paddingRight: 'clamp(32px, 8vw, 96px)',
+      }}
     >
-      <div className="max-w-4xl mx-auto">
+      <div style={{ maxWidth: '768px', margin: '0 auto' }}>
+
         {/* Header */}
-        <div className="mb-14 text-center">
+        <div className="text-center" style={{ marginBottom: '56px' }}>
           <span
-            className="inline-block text-xs font-semibold tracking-widest uppercase mb-3"
-            style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-dm-sans)' }}
+            style={{
+              display: 'inline-block',
+              fontSize: '11px',
+              fontWeight: 600,
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              color: 'var(--color-accent)',
+              fontFamily: 'var(--font-dm-sans)',
+              marginBottom: '12px',
+            }}
           >
             DEPOIMENTOS
           </span>
           <h2
-            className="text-3xl md:text-4xl font-extrabold"
-            style={{ fontFamily: 'var(--font-syne)', color: 'var(--color-text)' }}
+            style={{
+              fontFamily: 'var(--font-serif)',
+              fontSize: 'clamp(28px, 3.5vw, 48px)',
+              fontWeight: 400,
+              color: 'var(--color-text)',
+              lineHeight: 1.1,
+            }}
           >
-            O que nossos clientes dizem
+            O que nossos{' '}
+            <em style={{
+              fontStyle: 'italic',
+              background: 'linear-gradient(90deg, #6A00FF, #D600FF)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}>
+              clientes dizem
+            </em>
           </h2>
         </div>
 
@@ -74,18 +103,25 @@ export default function TestimonialsSection() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -40 }}
             transition={{ duration: 0.4, ease: 'easeOut' }}
-            className="rounded-2xl p-8 md:p-12"
-            style={{ background: 'var(--color-card)', border: '1px solid var(--color-border)' }}
+            className="rounded-2xl"
+            style={{
+              background: 'var(--color-card)',
+              border: '1px solid var(--color-border)',
+              padding: '48px',
+            }}
           >
-            {/* Quote */}
             <p
-              className="text-lg md:text-xl leading-relaxed mb-8"
-              style={{ fontFamily: 'var(--font-dm-sans)', color: 'var(--color-text)', fontStyle: 'italic' }}
+              className="text-lg leading-relaxed"
+              style={{
+                fontFamily: 'var(--font-dm-sans)',
+                color: 'var(--color-text)',
+                fontStyle: 'italic',
+                marginBottom: '32px',
+              }}
             >
               &ldquo;{t.text}&rdquo;
             </p>
 
-            {/* Author */}
             <div className="flex items-center gap-4">
               <div
                 className="w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold shrink-0"
@@ -96,12 +132,16 @@ export default function TestimonialsSection() {
               <div>
                 <p
                   className="font-bold text-sm"
-                  style={{ fontFamily: 'var(--font-syne)', color: 'var(--color-text)' }}
+                  style={{
+                    fontFamily: 'var(--font-syne)',
+                    color: 'var(--color-text)',
+                    marginBottom: '2px',
+                  }}
                 >
                   {t.name}
                 </p>
                 <p
-                  className="text-xs mt-0.5"
+                  className="text-xs"
                   style={{ fontFamily: 'var(--font-dm-sans)', color: 'var(--color-subtle)' }}
                 >
                   {t.role} · {t.company}
@@ -111,8 +151,8 @@ export default function TestimonialsSection() {
           </motion.div>
         </div>
 
-        {/* Navigation */}
-        <div className="flex items-center justify-center gap-4 mt-8">
+        {/* Navegação */}
+        <div className="flex items-center justify-center gap-4" style={{ marginTop: '32px' }}>
           <button
             onClick={prev}
             className="w-10 h-10 rounded-full flex items-center justify-center transition-colors hover:bg-[var(--color-card)]"
@@ -122,7 +162,6 @@ export default function TestimonialsSection() {
             ←
           </button>
 
-          {/* Dots */}
           <div className="flex gap-2">
             {TESTIMONIALS.map((_, i) => (
               <button

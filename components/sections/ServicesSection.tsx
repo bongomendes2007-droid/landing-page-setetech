@@ -54,6 +54,14 @@ const SERVICES = [
   },
 ]
 
+const gradientText: React.CSSProperties = {
+  fontStyle: 'italic',
+  background: 'linear-gradient(90deg, #6A00FF, #D600FF)',
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
+  backgroundClip: 'text',
+}
+
 export default function ServicesSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const cardsRef   = useRef<HTMLDivElement>(null)
@@ -84,57 +92,116 @@ export default function ServicesSection() {
     <section
       ref={sectionRef}
       id="servicos"
-      className="py-24 px-6 md:px-12 lg:px-20"
-      style={{ background: 'var(--color-bg)' }}
+      style={{
+        background: 'var(--color-bg)',
+        paddingTop: '96px',
+        paddingBottom: '128px',
+        paddingLeft: 'clamp(32px, 8vw, 96px)',
+        paddingRight: 'clamp(32px, 8vw, 96px)',
+      }}
     >
-      <div className="max-w-6xl mx-auto">
+      <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
+
         {/* Header */}
-        <div className="mb-14">
+        <div style={{ marginBottom: '56px' }}>
           <span
-            className="inline-block text-xs font-semibold tracking-widest uppercase mb-3"
-            style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-dm-sans)' }}
+            style={{
+              display: 'inline-block',
+              fontSize: '11px',
+              fontWeight: 600,
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              color: 'var(--color-accent)',
+              fontFamily: 'var(--font-dm-sans)',
+              marginBottom: '12px',
+            }}
           >
             O QUE FAZEMOS
           </span>
           <h2
-            className="text-3xl md:text-4xl font-extrabold"
-            style={{ fontFamily: 'var(--font-syne)', color: 'var(--color-text)' }}
+            style={{
+              fontFamily: 'var(--font-serif)',
+              fontSize: 'clamp(32px, 4vw, 56px)',
+              fontWeight: 400,
+              color: 'var(--color-text)',
+              lineHeight: 1.1,
+            }}
           >
-            Nossos Serviços
+            Nossos{' '}
+            <em style={gradientText}>Serviços</em>
           </h2>
         </div>
 
-        {/* Grid */}
+        {/* Grid — 5 cards: 3 em linha, 2 centralizados */}
         <div
           ref={cardsRef}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-8"
         >
-          {SERVICES.map((s) => (
-            <MagicCard key={s.title} className="p-7">
-              {/* Icon */}
+          {SERVICES.map((s, i) => (
+            <MagicCard
+              key={s.title}
+              className={
+                i < 3
+                  ? 'lg:col-span-2'
+                  : i === 3
+                  ? 'lg:col-start-2 lg:col-span-2'
+                  : 'sm:col-span-2 lg:col-start-4 lg:col-span-2'
+              }
+              style={{ padding: '32px' }}
+            >
+              {/* Ícone */}
               <div
-                className="inline-flex items-center justify-center w-12 h-12 rounded-xl mb-5"
-                style={{ background: 'var(--color-card)', color: 'var(--color-accent)' }}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '48px',
+                  height: '48px',
+                  borderRadius: '12px',
+                  background: 'var(--color-card)',
+                  color: 'var(--color-accent)',
+                  marginBottom: '20px',
+                }}
               >
                 {s.icon}
               </div>
 
               <h3
-                className="text-base font-bold mb-2"
-                style={{ fontFamily: 'var(--font-syne)', color: 'var(--color-text)' }}
+                style={{
+                  fontFamily: 'var(--font-syne)',
+                  fontSize: '16px',
+                  fontWeight: 700,
+                  color: 'var(--color-text)',
+                  marginBottom: '8px',
+                }}
               >
                 {s.title}
               </h3>
+
               <p
-                className="text-sm leading-relaxed mb-5"
-                style={{ fontFamily: 'var(--font-dm-sans)', color: 'var(--color-muted)' }}
+                style={{
+                  fontFamily: 'var(--font-dm-sans)',
+                  fontSize: '14px',
+                  lineHeight: 1.65,
+                  color: 'var(--color-muted)',
+                  marginBottom: '24px',
+                }}
               >
                 {s.desc}
               </p>
+
               <a
                 href="#contato"
-                className="text-sm font-semibold transition-colors hover:opacity-80"
-                style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-dm-sans)' }}
+                style={{
+                  fontFamily: 'var(--font-dm-sans)',
+                  fontSize: '14px',
+                  fontWeight: 600,
+                  color: 'var(--color-accent)',
+                  textDecoration: 'none',
+                  transition: 'opacity 0.2s',
+                }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.opacity = '0.7' }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.opacity = '1' }}
               >
                 Saiba mais →
               </a>

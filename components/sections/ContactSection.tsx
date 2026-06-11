@@ -14,7 +14,7 @@ interface FormData {
 }
 
 const SERVICES = [
-  { value: '', label: 'Selecione um serviço (opcional)' },
+  { value: '',          label: 'Selecione um serviço (opcional)' },
   { value: 'web',       label: 'Desenvolvimento Web' },
   { value: 'design',    label: 'Design & UX' },
   { value: 'ia',        label: 'Automação & IA' },
@@ -88,37 +88,72 @@ export default function ContactSection() {
   return (
     <section
       id="contato"
-      className="relative py-24 px-6 md:px-12 lg:px-20 overflow-hidden"
-      style={{ background: 'var(--color-bg)' }}
+      className="relative overflow-hidden"
+      style={{
+        background: 'var(--color-bg)',
+        paddingTop: '96px',
+        paddingBottom: '96px',
+        paddingLeft: 'clamp(32px, 8vw, 96px)',
+        paddingRight: 'clamp(32px, 8vw, 96px)',
+      }}
     >
       <AuroraBackground />
 
-      <div className="relative z-10 max-w-2xl mx-auto text-center mb-14">
+      {/* Header */}
+      <div
+        className="relative z-10 text-center"
+        style={{ maxWidth: '672px', margin: '0 auto', marginBottom: '56px' }}
+      >
         <span
-          className="inline-block text-xs font-semibold tracking-widest uppercase mb-3"
-          style={{ color: 'var(--color-accent)', fontFamily: 'var(--font-dm-sans)' }}
+          style={{
+            display: 'inline-block',
+            fontSize: '11px',
+            fontWeight: 600,
+            letterSpacing: '0.1em',
+            textTransform: 'uppercase',
+            color: 'var(--color-accent)',
+            fontFamily: 'var(--font-dm-sans)',
+            marginBottom: '12px',
+          }}
         >
           VAMOS CONVERSAR
         </span>
         <h2
-          className="text-3xl md:text-4xl font-extrabold mb-4 leading-tight"
-          style={{ fontFamily: 'var(--font-syne)', color: 'var(--color-text)' }}
+          style={{
+            fontFamily: 'var(--font-serif)',
+            fontSize: 'clamp(28px, 3.5vw, 48px)',
+            fontWeight: 400,
+            color: 'var(--color-text)',
+            lineHeight: 1.1,
+            marginBottom: '16px',
+          }}
         >
           Pronto para transformar <br className="hidden md:block" />
-          <span className="gradient-text">seu negócio?</span>
+          <em style={{
+            fontStyle: 'italic',
+            background: 'linear-gradient(90deg, #6A00FF, #D600FF)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+          }}>
+            seu negócio?
+          </em>
         </h2>
-        <p
-          className="text-base"
-          style={{ fontFamily: 'var(--font-dm-sans)', color: 'var(--color-muted)' }}
-        >
+        <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '16px', color: 'var(--color-muted)' }}>
           Fale com nossos especialistas em Teresina, PI. Resposta em até 24 horas.
         </p>
       </div>
 
       <form
         onSubmit={(e) => { e.preventDefault(); void handleSubmit() }}
-        className="relative z-10 max-w-2xl mx-auto rounded-2xl p-8 flex flex-col gap-5"
-        style={{ background: 'var(--color-surface)', border: '1px solid var(--color-border)' }}
+        className="relative z-10 rounded-2xl flex flex-col gap-5"
+        style={{
+          maxWidth: '672px',
+          margin: '0 auto',
+          background: 'var(--color-surface)',
+          border: '1px solid var(--color-border)',
+          padding: '32px',
+        }}
         noValidate
       >
         {/* Row 1: Nome + E-mail */}
@@ -133,7 +168,7 @@ export default function ContactSection() {
               onFocus={(e) => (e.target.style.borderColor = 'var(--color-accent2)')}
               onBlur={(e) => (e.target.style.borderColor = errors.name ? '#ff6b6b' : 'var(--color-border)')}
             />
-            {errors.name && <p className="text-xs mt-1" style={{ color: '#ff6b6b' }}>{errors.name}</p>}
+            {errors.name && <p className="text-xs" style={{ color: '#ff6b6b', marginTop: '4px' }}>{errors.name}</p>}
           </div>
           <div>
             <label style={labelStyle}>E-mail *</label>
@@ -145,7 +180,7 @@ export default function ContactSection() {
               onFocus={(e) => (e.target.style.borderColor = 'var(--color-accent2)')}
               onBlur={(e) => (e.target.style.borderColor = errors.email ? '#ff6b6b' : 'var(--color-border)')}
             />
-            {errors.email && <p className="text-xs mt-1" style={{ color: '#ff6b6b' }}>{errors.email}</p>}
+            {errors.email && <p className="text-xs" style={{ color: '#ff6b6b', marginTop: '4px' }}>{errors.email}</p>}
           </div>
         </div>
 
@@ -161,7 +196,7 @@ export default function ContactSection() {
               onFocus={(e) => (e.target.style.borderColor = 'var(--color-accent2)')}
               onBlur={(e) => (e.target.style.borderColor = errors.phone ? '#ff6b6b' : 'var(--color-border)')}
             />
-            {errors.phone && <p className="text-xs mt-1" style={{ color: '#ff6b6b' }}>{errors.phone}</p>}
+            {errors.phone && <p className="text-xs" style={{ color: '#ff6b6b', marginTop: '4px' }}>{errors.phone}</p>}
           </div>
           <div>
             <label style={labelStyle}>Empresa</label>
@@ -205,7 +240,7 @@ export default function ContactSection() {
             onFocus={(e) => (e.target.style.borderColor = 'var(--color-accent2)')}
             onBlur={(e) => (e.target.style.borderColor = errors.subject ? '#ff6b6b' : 'var(--color-border)')}
           />
-          {errors.subject && <p className="text-xs mt-1" style={{ color: '#ff6b6b' }}>{errors.subject}</p>}
+          {errors.subject && <p className="text-xs" style={{ color: '#ff6b6b', marginTop: '4px' }}>{errors.subject}</p>}
         </div>
 
         {/* Mensagem */}
@@ -219,21 +254,31 @@ export default function ContactSection() {
             onFocus={(e) => (e.target.style.borderColor = 'var(--color-accent2)')}
             onBlur={(e) => (e.target.style.borderColor = errors.message ? '#ff6b6b' : 'var(--color-border)')}
           />
-          {errors.message && <p className="text-xs mt-1" style={{ color: '#ff6b6b' }}>{errors.message}</p>}
+          {errors.message && <p className="text-xs" style={{ color: '#ff6b6b', marginTop: '4px' }}>{errors.message}</p>}
         </div>
 
         {status === 'success' && (
           <p
-            className="text-sm font-medium text-center py-3 rounded-xl"
-            style={{ background: 'rgba(161,0,255,0.12)', color: 'var(--color-accent)', border: '1px solid rgba(161,0,255,0.2)' }}
+            className="text-sm font-medium text-center rounded-xl"
+            style={{
+              background: 'rgba(161,0,255,0.12)',
+              color: 'var(--color-accent)',
+              border: '1px solid rgba(161,0,255,0.2)',
+              padding: '12px',
+            }}
           >
             ✓ Mensagem enviada! Entraremos em contato em breve.
           </p>
         )}
         {status === 'error' && !Object.keys(errors).length && (
           <p
-            className="text-sm font-medium text-center py-3 rounded-xl"
-            style={{ background: 'rgba(255,80,80,0.08)', color: '#ff6b6b', border: '1px solid rgba(255,80,80,0.2)' }}
+            className="text-sm font-medium text-center rounded-xl"
+            style={{
+              background: 'rgba(255,80,80,0.08)',
+              color: '#ff6b6b',
+              border: '1px solid rgba(255,80,80,0.2)',
+              padding: '12px',
+            }}
           >
             Erro ao enviar. Tente novamente ou fale pelo WhatsApp.
           </p>
@@ -242,11 +287,12 @@ export default function ContactSection() {
         <button
           type="submit"
           disabled={status === 'loading'}
-          className="w-full py-3.5 rounded-full font-semibold text-sm transition-opacity hover:opacity-90 disabled:opacity-50"
+          className="w-full rounded-full font-semibold text-sm transition-opacity hover:opacity-90 disabled:opacity-50"
           style={{
             background: 'var(--gradient-accent)',
             color: '#FFFFFF',
             fontFamily: 'var(--font-dm-sans)',
+            padding: '14px',
           }}
         >
           {status === 'loading' ? 'Enviando...' : 'Enviar Mensagem'}
