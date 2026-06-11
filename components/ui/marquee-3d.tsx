@@ -35,10 +35,9 @@ const reviews = [
   },
 ]
 
-const col1 = reviews.slice(0, 2)
-const col2 = reviews.slice(2, 4)
-const col3 = reviews.slice(4, 6)
-const col4 = reviews.slice(0, 2)
+const col1 = [reviews[0], reviews[1], reviews[2]]
+const col2 = [reviews[1], reviews[2], reviews[3]]
+const col3 = [reviews[3], reviews[4], reviews[5]]
 
 const ReviewCard = ({ name, username, body }: {
   name: string; username: string; body: string
@@ -47,7 +46,7 @@ const ReviewCard = ({ name, username, body }: {
 
   return (
     <figure className={cn(
-      "relative w-64 cursor-pointer overflow-hidden rounded-xl border p-5",
+      "relative w-72 cursor-pointer overflow-hidden rounded-xl border p-5",
       "border-[#6A00FF]/20 bg-[#1A0033]/60 hover:bg-[#1A0033]",
       "transition-colors duration-200"
     )}>
@@ -67,24 +66,21 @@ const ReviewCard = ({ name, username, body }: {
 
 export function Marquee3D() {
   return (
-    <div className="relative flex h-[600px] w-full flex-row items-center justify-center gap-6 overflow-hidden [perspective:400px]">
+    <div className="relative flex h-[550px] w-full max-w-5xl mx-auto flex-row items-center justify-center gap-6 overflow-hidden [perspective:800px]">
       <div
         className="flex flex-row items-center gap-6"
         style={{
-          transform: "translateX(-50px) translateY(20px) translateZ(-50px) rotateX(15deg) rotateY(-5deg) rotateZ(10deg)",
+          transform: "rotateX(10deg) rotateZ(8deg)",
         }}
       >
-        <Marquee pauseOnHover vertical className="[--duration:20s]">
+        <Marquee pauseOnHover vertical className="[--duration:28s]">
           {col1.map((r) => <ReviewCard key={r.username} {...r} />)}
         </Marquee>
         <Marquee reverse pauseOnHover vertical className="[--duration:20s]">
           {col2.map((r) => <ReviewCard key={r.username} {...r} />)}
         </Marquee>
-        <Marquee reverse pauseOnHover vertical className="[--duration:20s]">
+        <Marquee pauseOnHover vertical className="[--duration:35s]">
           {col3.map((r) => <ReviewCard key={r.username} {...r} />)}
-        </Marquee>
-        <Marquee pauseOnHover vertical className="[--duration:20s]">
-          {col4.map((r) => <ReviewCard key={r.username} {...r} />)}
         </Marquee>
       </div>
 
