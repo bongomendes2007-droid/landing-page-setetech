@@ -1,6 +1,5 @@
 "use client"
 import { Marquee } from "@/components/ui/marquee"
-import Image from "next/image"
 
 const images = [
   "https://res.cloudinary.com/dnth1inmv/image/upload/v1781209772/d8f1375d-6ddd-455b-8fe9-3dc972baeef0_uuoq03.png",
@@ -13,18 +12,17 @@ const images = [
 
 export function TechMarquee() {
   return (
-    <div className="w-full overflow-hidden bg-[#0D0D0D] py-6 border-y border-white/5">
-      <Marquee className="[--duration:35s]" pauseOnHover>
+    <div className="w-full overflow-hidden bg-[#0D0D0D] py-10">
+      <Marquee pauseOnHover className="[--duration:40s] [--gap:5rem]">
         {images.map((src, i) => (
           <div
-            key={src}
-            className="relative mx-4 h-20 w-32 flex-shrink-0 overflow-hidden rounded-xl border border-white/10 hover:border-[#6A00FF]/60 bg-[#1A1A1A] p-3 grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300 hover:scale-105"
+            key={i}
+            className="flex items-center justify-center mx-10 opacity-50 hover:opacity-100 transition-opacity duration-300"
           >
-            <Image
+            <img
               src={src}
-              alt={`Case SETE TECH ${i + 1}`}
-              fill
-              className="object-contain mix-blend-luminosity hover:mix-blend-normal transition-all duration-300"
+              alt={`Logo ${i + 1}`}
+              className="h-12 w-auto object-contain mix-blend-screen"
             />
           </div>
         ))}
