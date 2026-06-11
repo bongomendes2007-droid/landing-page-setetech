@@ -53,7 +53,15 @@ export default function HeroSection() {
       <div className="relative w-full flex flex-col md:flex-row items-center min-h-screen">
 
         {/* CAMADA 4 — conteúdo texto e CTAs (z-30) */}
-        <div className="flex-1 relative z-30 pl-16 pr-8 md:pl-20 lg:pl-24 py-32 flex flex-col justify-center">
+        <div
+          className="flex-1 relative z-30 flex flex-col justify-center"
+          style={{
+            paddingLeft: 'clamp(32px, 8vw, 96px)',
+            paddingRight: '32px',
+            paddingTop: '128px',
+            paddingBottom: '128px',
+          }}
+        >
 
           {/* Título — DM Serif Display */}
           <h1
