@@ -36,13 +36,13 @@ export function TechMarquee() {
         {images.map((img) => (
           <div
             key={img.src}
-            className="relative mx-4 h-40 w-64 flex-shrink-0 overflow-hidden rounded-xl border border-white/10 hover:border-[#6A00FF]/60 transition-all duration-300 hover:scale-105"
+            className="relative mx-4 h-20 w-32 flex-shrink-0 overflow-hidden rounded-xl border border-white/10 hover:border-[#6A00FF]/60 bg-[#1A1A1A] p-3 grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300 hover:scale-105"
           >
             <Image
               src={img.src}
               alt={img.alt}
               fill
-              className="object-cover"
+              className="object-contain mix-blend-luminosity hover:mix-blend-normal transition-all duration-300"
             />
           </div>
         ))}
