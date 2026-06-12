@@ -1,5 +1,6 @@
 'use client'
 
+import React from 'react'
 import Image from 'next/image'
 
 const SERVICES = [
@@ -77,33 +78,61 @@ const SERVICES = [
   },
 ]
 
+interface ServiceItem {
+  image: string
+  title: string
+  description: string
+  href: string
+  icon: React.ReactNode
+}
+
+function ServiceCard({ s, priority }: { s: ServiceItem; priority: boolean }) {
+  return (
+    <div className="flex flex-col rounded-[28px] border border-white/10 bg-[#161616] p-4 shadow-[0_4px_24px_rgba(0,0,0,0.15)] transition-all duration-300 hover:border-white/20 hover:shadow-[0_8px_32px_rgba(0,0,0,0.25)]">
+      <div className="relative h-52 w-full overflow-hidden rounded-[20px] flex-shrink-0">
+        <Image src={s.image} alt={s.title} fill className="object-cover" priority={priority} />
+      </div>
+      <div className="flex flex-col flex-grow px-2 pt-5 pb-3">
+        <div className="flex items-center gap-3 min-h-[40px]">
+          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/5 border border-white/10 text-[#A100FF]">
+            {s.icon}
+          </div>
+          <h3 className="text-lg font-bold text-white leading-tight" style={{ fontFamily: 'var(--font-syne)' }}>
+            {s.title}
+          </h3>
+        </div>
+        <p className="mt-4 text-sm text-white/65 leading-relaxed flex-grow" style={{ fontFamily: 'var(--font-dm-sans)' }}>
+          {s.description}
+        </p>
+        <a
+          href={s.href}
+          className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#A100FF] hover:text-[#D600FF] hover:gap-3 transition-all w-fit focus-visible:outline-2 focus-visible:outline-[#A100FF] focus-visible:outline-offset-2 rounded"
+          style={{ fontFamily: 'var(--font-dm-sans)' }}
+        >
+          Saiba mais <span aria-hidden>→</span>
+        </a>
+      </div>
+    </div>
+  )
+}
+
 export default function ServicesSection() {
   return (
     <section
       id="servicos"
-      style={{
-        background: '#F8F8F8',
-        paddingTop: '96px',
-        paddingBottom: '96px',
-        paddingLeft: 'clamp(32px, 8vw, 96px)',
-        paddingRight: 'clamp(32px, 8vw, 96px)',
-      }}
+      className="relative"
+      style={{ background: '#F8F8F8', paddingTop: '96px', paddingBottom: '96px' }}
     >
-      <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
+      {/* Sombra de entrada — suaviza transição do Hero escuro */}
+      <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-black/5 to-transparent pointer-events-none" />
+
+      <div className="px-6 md:px-12 lg:px-20 max-w-7xl mx-auto">
 
         {/* Header */}
         <div style={{ marginBottom: '56px' }}>
           <span
-            style={{
-              display: 'inline-block',
-              fontSize: '11px',
-              fontWeight: 600,
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              color: 'var(--color-accent)',
-              fontFamily: 'var(--font-dm-sans)',
-              marginBottom: '12px',
-            }}
+            className="inline-block text-xs font-bold tracking-[0.2em] uppercase text-[#6A00FF] mb-3"
+            style={{ fontFamily: 'var(--font-dm-sans)' }}
           >
             O QUE FAZEMOS
           </span>
@@ -129,55 +158,17 @@ export default function ServicesSection() {
           </h2>
         </div>
 
-        {/* Grid — 3 colunas, 2ª linha alinha à esquerda naturalmente */}
+        {/* Linha 1 — 3 cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
-          {SERVICES.map((s, i) => (
-            <div
-              key={s.title}
-              className="flex flex-col rounded-[28px] border border-white/10 bg-[#161616] p-4 shadow-[0_4px_24px_rgba(0,0,0,0.15)] transition-all duration-300 hover:border-white/20 hover:shadow-[0_8px_32px_rgba(0,0,0,0.25)]"
-            >
-              {/* Imagem emoldurada com cantos próprios */}
-              <div className="relative h-56 w-full overflow-hidden rounded-[20px] flex-shrink-0">
-                <Image
-                  src={s.image}
-                  alt={s.title}
-                  fill
-                  className="object-cover"
-                  {...(i < 3 ? { priority: true } : {})}
-                />
-              </div>
+          {SERVICES.slice(0, 3).map((s, i) => (
+            <ServiceCard key={s.title} s={s} priority={i < 3} />
+          ))}
+        </div>
 
-              {/* Conteúdo */}
-              <div className="flex flex-col flex-grow px-2 pt-5 pb-3">
-                {/* Ícone + título — min-h garante alinhamento com 1 ou 2 linhas */}
-                <div className="flex items-center gap-3 min-h-[40px]">
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/5 border border-white/10 text-[#A100FF]">
-                    {s.icon}
-                  </div>
-                  <h3
-                    className="text-lg font-bold text-white leading-tight"
-                    style={{ fontFamily: 'var(--font-syne)' }}
-                  >
-                    {s.title}
-                  </h3>
-                </div>
-
-                <p
-                  className="mt-4 text-sm text-white/65 leading-relaxed flex-grow"
-                  style={{ fontFamily: 'var(--font-dm-sans)' }}
-                >
-                  {s.description}
-                </p>
-
-                <a
-                  href={s.href}
-                  className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#A100FF] hover:text-[#D600FF] hover:gap-3 transition-all w-fit focus-visible:outline-2 focus-visible:outline-[#A100FF] focus-visible:outline-offset-2 rounded"
-                  style={{ fontFamily: 'var(--font-dm-sans)' }}
-                >
-                  Saiba mais <span aria-hidden>→</span>
-                </a>
-              </div>
-            </div>
+        {/* Linha 2 — 2 cards centralizados */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch lg:max-w-[calc(66.666%+8px)] mx-auto mt-6">
+          {SERVICES.slice(3).map((s) => (
+            <ServiceCard key={s.title} s={s} priority={false} />
           ))}
         </div>
 
