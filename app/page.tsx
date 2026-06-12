@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import LoadingScreen from '@/components/LoadingScreen'
 import HeroSection from '@/components/sections/HeroSection'
-import MarqueeSection from '@/components/sections/MarqueeSection'
 import ServicesSection from '@/components/sections/ServicesSection'
 import AboutSection from '@/components/sections/AboutSection'
 import ProjectsSection from '@/components/sections/ProjectsSection'
@@ -25,7 +24,6 @@ export default function Home() {
         }}
       >
         <HeroSection />
-        <MarqueeSection />
         <ServicesSection />
         <AboutSection />
         <ProjectsSection />
