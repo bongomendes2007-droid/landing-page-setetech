@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 
 const NAV_LINKS = [
   { label: 'Serviços', href: '#servicos' },
@@ -59,28 +60,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2.5 mb-4 select-none">
-              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden>
-                <polygon
-                  points="16,2 30,10 30,22 16,30 2,22 2,10"
-                  stroke="var(--color-accent)"
-                  strokeWidth="1.5"
-                  fill="rgba(161,0,255,0.08)"
-                />
-                <text
-                  x="16" y="21" textAnchor="middle"
-                  fill="var(--color-accent)" fontSize="13" fontWeight="800"
-                  fontFamily="var(--font-syne)"
-                >
-                  S
-                </text>
-              </svg>
-              <span
-                className="text-lg font-bold tracking-wider"
-                style={{ fontFamily: 'var(--font-syne)', color: 'var(--color-text)' }}
-              >
-                SETE <span style={{ color: 'var(--color-accent)' }}>TECH</span>
-              </span>
+            <Link href="/" className="flex items-center mb-4 select-none focus-visible:outline-2 focus-visible:outline-[#A100FF] focus-visible:outline-offset-2 rounded-sm">
+              <Image
+                src="https://res.cloudinary.com/dnth1inmv/image/upload/v1781123099/logo_Sete_Tech_branco_1_abpxap.png"
+                alt="SETE TECH"
+                width={100}
+                height={30}
+                style={{ objectFit: 'contain' }}
+              />
             </Link>
             <p
               className="text-sm leading-relaxed mb-6"
@@ -96,7 +83,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="w-9 h-9 rounded-xl flex items-center justify-center transition-colors"
+                  className="w-11 h-11 rounded-xl flex items-center justify-center transition-colors focus-visible:outline-2 focus-visible:outline-[#A100FF] focus-visible:outline-offset-2"
                   style={{
                     background: 'var(--color-card)',
                     color: 'var(--color-muted)',
@@ -130,7 +117,7 @@ export default function Footer() {
                 <li key={l.href}>
                   <Link
                     href={l.href}
-                    className="text-sm transition-colors hover:text-[var(--color-accent)]"
+                    className="text-sm transition-colors hover:text-[var(--color-accent)] focus-visible:outline-2 focus-visible:outline-[#A100FF] focus-visible:outline-offset-2 rounded"
                     style={{ fontFamily: 'var(--font-dm-sans)', color: 'var(--color-muted)' }}
                   >
                     {l.label}
@@ -153,7 +140,7 @@ export default function Footer() {
                 <li key={l.label}>
                   <Link
                     href={l.href}
-                    className="text-sm transition-colors hover:text-[var(--color-accent)]"
+                    className="text-sm transition-colors hover:text-[var(--color-accent)] focus-visible:outline-2 focus-visible:outline-[#A100FF] focus-visible:outline-offset-2 rounded"
                     style={{ fontFamily: 'var(--font-dm-sans)', color: 'var(--color-muted)' }}
                   >
                     {l.label}
@@ -175,7 +162,7 @@ export default function Footer() {
               <li>
                 <a
                   href="mailto:setetech.social@gmail.com"
-                  className="text-sm flex items-center gap-2 transition-colors hover:text-[var(--color-accent)]"
+                  className="text-sm flex items-center gap-2 transition-colors hover:text-[var(--color-accent)] focus-visible:outline-2 focus-visible:outline-[#A100FF] focus-visible:outline-offset-2 rounded"
                   style={{ fontFamily: 'var(--font-dm-sans)', color: 'var(--color-muted)' }}
                 >
                   <span style={{ color: 'var(--color-accent2)' }}>✉</span>
@@ -187,7 +174,7 @@ export default function Footer() {
                   href="https://wa.me/5586999999999"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm flex items-center gap-2 transition-colors hover:text-[var(--color-accent)]"
+                  className="text-sm flex items-center gap-2 transition-colors hover:text-[var(--color-accent)] focus-visible:outline-2 focus-visible:outline-[#A100FF] focus-visible:outline-offset-2 rounded"
                   style={{ fontFamily: 'var(--font-dm-sans)', color: 'var(--color-muted)' }}
                 >
                   <span style={{ color: 'var(--color-accent2)' }}>📱</span>
