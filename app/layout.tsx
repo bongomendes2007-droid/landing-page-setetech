@@ -65,7 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="pt-BR"
-      className={`${syne.variable} ${dmSans.variable} ${dmSerifDisplay.variable} h-full`}
+      className={`dark ${syne.variable} ${dmSans.variable} ${dmSerifDisplay.variable} h-full`}
     >
       <body className="min-h-full flex flex-col antialiased">
         <LenisProvider>

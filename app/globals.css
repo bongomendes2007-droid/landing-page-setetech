@@ -1,6 +1,16 @@
 @import "tailwindcss";
 
 :root {
+  /* Tailwind color tokens required by AuroraBackground */
+  --white:       #ffffff;
+  --black:       #09090b;
+  --transparent: transparent;
+  --blue-300:    #93c5fd;
+  --blue-400:    #60a5fa;
+  --blue-500:    #3b82f6;
+  --indigo-300:  #a5b4fc;
+  --violet-200:  #ddd6fe;
+
   --color-bg:        #0D0D0D;
   --color-surface:   #1A1A1A;
   --color-card:      #1A0033;
