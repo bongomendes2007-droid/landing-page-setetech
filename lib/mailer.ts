@@ -26,6 +26,10 @@ export async function sendContactEmail(data: ContactSchema): Promise<void> {
     ? serviceLabels[data.serviceInterest] ?? 'Não especificado'
     : 'Não especificado'
 
+  const emailSubject = data.subject
+    ? `[SETE TECH] ${data.subject}`
+    : `[SETE TECH] Nova mensagem de ${data.name}`
+
   const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #1e293b;">
       <div style="background: linear-gradient(135deg, #1e40af, #1e3a8a); padding: 32px; border-radius: 12px 12px 0 0;">
@@ -36,10 +40,10 @@ export async function sendContactEmail(data: ContactSchema): Promise<void> {
         <table style="width: 100%; border-collapse: collapse;">
           <tr><td style="padding: 8px 0; font-weight: bold; color: #475569; font-size: 13px; width: 140px;">Nome</td><td style="padding: 8px 0; color: #0f172a;">${data.name}</td></tr>
           <tr><td style="padding: 8px 0; font-weight: bold; color: #475569; font-size: 13px;">E-mail</td><td style="padding: 8px 0;"><a href="mailto:${data.email}" style="color: #1e40af;">${data.email}</a></td></tr>
-          <tr><td style="padding: 8px 0; font-weight: bold; color: #475569; font-size: 13px;">Telefone</td><td style="padding: 8px 0; color: #0f172a;">${data.phone}</td></tr>
+          ${data.phone ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #475569; font-size: 13px;">Telefone</td><td style="padding: 8px 0; color: #0f172a;">${data.phone}</td></tr>` : ''}
           ${data.company ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #475569; font-size: 13px;">Empresa</td><td style="padding: 8px 0; color: #0f172a;">${data.company}</td></tr>` : ''}
           <tr><td style="padding: 8px 0; font-weight: bold; color: #475569; font-size: 13px;">Serviço</td><td style="padding: 8px 0; color: #0f172a;">${serviceLabel}</td></tr>
-          <tr><td style="padding: 8px 0; font-weight: bold; color: #475569; font-size: 13px;">Assunto</td><td style="padding: 8px 0; color: #0f172a;">${data.subject}</td></tr>
+          ${data.subject ? `<tr><td style="padding: 8px 0; font-weight: bold; color: #475569; font-size: 13px;">Assunto</td><td style="padding: 8px 0; color: #0f172a;">${data.subject}</td></tr>` : ''}
         </table>
         <div style="margin-top: 20px; padding: 16px; background: white; border-radius: 8px; border: 1px solid #e2e8f0;">
           <p style="font-weight: bold; color: #475569; font-size: 13px; margin: 0 0 8px;">Mensagem</p>
@@ -53,7 +57,7 @@ export async function sendContactEmail(data: ContactSchema): Promise<void> {
     from: `"Site SETE TECH" <${process.env.SMTP_USER}>`,
     to: process.env.CONTACT_EMAIL ?? 'setetech.social@gmail.com',
     replyTo: data.email,
-    subject: `[SETE TECH] ${data.subject}`,
+    subject: emailSubject,
     html,
   })
 }

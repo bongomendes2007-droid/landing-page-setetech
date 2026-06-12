@@ -11,14 +11,13 @@ export const contactSchema = z.object({
     .max(200, 'E-mail muito longo'),
   phone: z
     .string()
-    .min(10, 'Telefone inválido — inclua o DDD')
-    .max(20, 'Telefone muito longo')
-    .regex(/^[\d\s\(\)\-\+]+$/, 'Telefone deve conter apenas números, espaços e símbolos ( ) - +'),
+    .max(20)
+    .optional(),
   company: z.string().max(150, 'Nome da empresa muito longo').optional(),
   subject: z
     .string()
-    .min(5, 'Assunto deve ter ao menos 5 caracteres')
-    .max(200, 'Assunto muito longo'),
+    .max(200, 'Assunto muito longo')
+    .optional(),
   message: z
     .string()
     .min(20, 'Mensagem deve ter ao menos 20 caracteres')
