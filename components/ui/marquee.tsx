@@ -7,6 +7,8 @@ interface MarqueeProps {
   children?: React.ReactNode;
   vertical?: boolean;
   repeat?: number;
+  gap?: string;
+  fade?: boolean;
   [key: string]: unknown;
 }
 
@@ -17,16 +19,20 @@ export function Marquee({
   children,
   vertical = false,
   repeat = 4,
+  gap,
+  fade = false,
   ...props
 }: MarqueeProps) {
   return (
     <div
       {...props}
+      style={gap ? { "--gap": gap } as React.CSSProperties : undefined}
       className={cn(
         "group flex overflow-hidden p-2 [--duration:40s] [--gap:1rem] [gap:var(--gap)]",
         {
           "flex-row": !vertical,
           "flex-col": vertical,
+          "[mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]": fade,
         },
         className
       )}
