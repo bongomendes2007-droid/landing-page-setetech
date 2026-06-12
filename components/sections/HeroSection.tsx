@@ -97,6 +97,7 @@ export default function HeroSection() {
               lineHeight: 1.75,
               color: 'rgba(170,170,170,0.8)',
               maxWidth: '420px',
+              textShadow: '0 1px 4px rgba(0,0,0,0.6)',
             }}
           >
             Soluções digitais completas para empresas e órgãos públicos do Piauí e de todo o Brasil.
@@ -106,9 +107,11 @@ export default function HeroSection() {
           <div className="flex flex-wrap gap-3">
             <a
               href="#servicos"
+              className="focus-visible:outline-2 focus-visible:outline-[#A100FF] focus-visible:outline-offset-2"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
+                minHeight: '44px',
                 background: '#6A00FF',
                 color: '#FFFFFF',
                 fontFamily: "'DM Sans', sans-serif",
@@ -125,9 +128,11 @@ export default function HeroSection() {
             </a>
             <a
               href="#contato"
+              className="focus-visible:outline-2 focus-visible:outline-[#A100FF] focus-visible:outline-offset-2"
               style={{
                 display: 'inline-flex',
                 alignItems: 'center',
+                minHeight: '44px',
                 background: 'transparent',
                 color: '#FFFFFF',
                 fontFamily: "'DM Sans', sans-serif",
@@ -163,7 +168,7 @@ export default function HeroSection() {
 
       {/* Scroll indicator (z-30) */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-30">
-        <span style={{ fontSize: '10px', letterSpacing: '0.12em', color: 'rgba(161,0,255,0.4)', textTransform: 'uppercase' }}>
+        <span style={{ fontSize: '10px', letterSpacing: '0.12em', color: 'rgba(161,0,255,0.7)', textTransform: 'uppercase' }}>
           Role para baixo
         </span>
         <div style={{
@@ -172,13 +177,6 @@ export default function HeroSection() {
           animation: 'scrollPulse 1.8s ease-in-out infinite',
         }} />
       </div>
-
-      <style>{`
-        @keyframes scrollPulse {
-          0%, 100% { opacity: 0.3; }
-          50% { opacity: 1; }
-        }
-      `}</style>
     </section>
   )
 }

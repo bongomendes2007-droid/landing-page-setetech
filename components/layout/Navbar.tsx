@@ -6,10 +6,11 @@ import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const NAV_LINKS = [
-  { label: 'Serviços', href: '#servicos' },
-  { label: 'Sobre',    href: '#sobre' },
-  { label: 'Cases',    href: '#cases' },
-  { label: 'Contato',  href: '#contato' },
+  { label: 'Serviços',    href: '#servicos' },
+  { label: 'Sobre',       href: '#sobre' },
+  { label: 'Cases',       href: '#cases' },
+  { label: 'Depoimentos', href: '#depoimentos' },
+  { label: 'Contato',     href: '#contato' },
 ]
 
 export default function Navbar() {
@@ -36,7 +37,7 @@ export default function Navbar() {
         }}
       >
         {/* Logo */}
-        <Link href="/" className="flex items-center select-none">
+        <Link href="/" className="flex items-center select-none focus-visible:outline-2 focus-visible:outline-[#A100FF] focus-visible:outline-offset-2 rounded-sm">
           <Image
             src="https://res.cloudinary.com/dnth1inmv/image/upload/v1781123099/logo_Sete_Tech_branco_1_abpxap.png"
             alt="SETE TECH"
@@ -55,6 +56,7 @@ export default function Navbar() {
             <Link
               key={l.href}
               href={l.href}
+              className="rounded focus-visible:outline-2 focus-visible:outline-[#A100FF] focus-visible:outline-offset-2"
               style={{
                 fontFamily: 'var(--font-dm-sans)',
                 fontSize: '14px',
@@ -75,6 +77,7 @@ export default function Navbar() {
           href="#contato"
           onMouseEnter={() => setCtaHover(true)}
           onMouseLeave={() => setCtaHover(false)}
+          className="focus-visible:outline-2 focus-visible:outline-[#A100FF] focus-visible:outline-offset-2"
           style={{
             background: ctaHover ? '#D600FF' : '#FFFFFF',
             color: ctaHover ? '#FFFFFF' : '#0D0D0D',
@@ -95,7 +98,7 @@ export default function Navbar() {
       {/* Mobile — botão hamburguer flutuante */}
       <div className="fixed top-4 right-4 z-50 md:hidden">
         <button
-          className="w-10 h-10 rounded-full flex flex-col justify-center items-center gap-1.5"
+          className="w-11 h-11 rounded-full flex flex-col justify-center items-center gap-1.5 focus-visible:outline-2 focus-visible:outline-[#A100FF] focus-visible:outline-offset-2"
           style={{
             background: 'rgba(10,10,10,0.85)',
             border: '1px solid rgba(255,255,255,0.08)',
@@ -141,7 +144,7 @@ export default function Navbar() {
               transition={{ type: 'spring', stiffness: 260, damping: 28 }}
             >
               <button
-                className="self-end mb-2 text-2xl leading-none"
+                className="self-end mb-2 w-10 h-10 flex items-center justify-center rounded-full text-2xl leading-none focus-visible:outline-2 focus-visible:outline-[#A100FF] focus-visible:outline-offset-2"
                 style={{ color: 'var(--color-muted)' }}
                 onClick={() => setOpen(false)}
                 aria-label="Fechar menu"
@@ -157,7 +160,7 @@ export default function Navbar() {
                 >
                   <Link
                     href={l.href}
-                    className="text-xl font-semibold block hover:text-[var(--color-accent)] transition-colors"
+                    className="text-xl font-semibold block hover:text-[var(--color-accent)] transition-colors focus-visible:outline-2 focus-visible:outline-[#A100FF] focus-visible:outline-offset-2 rounded"
                     style={{ fontFamily: 'var(--font-syne)', color: 'var(--color-text)' }}
                     onClick={() => setOpen(false)}
                   >
@@ -167,7 +170,7 @@ export default function Navbar() {
               ))}
               <Link
                 href="#contato"
-                className="mt-auto px-5 py-3 text-sm font-semibold rounded-full text-center"
+                className="mt-auto px-5 py-3 text-sm font-semibold rounded-full text-center focus-visible:outline-2 focus-visible:outline-[#A100FF] focus-visible:outline-offset-2"
                 style={{ background: '#6A00FF', color: '#FFFFFF', fontFamily: 'var(--font-dm-sans)' }}
                 onClick={() => setOpen(false)}
               >
