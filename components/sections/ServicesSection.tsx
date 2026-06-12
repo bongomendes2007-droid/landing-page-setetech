@@ -148,14 +148,14 @@ export default function ServicesSection() {
               </div>
 
               {/* Conteúdo */}
-              <div className="flex flex-col flex-grow px-3 pt-6 pb-4">
-                {/* Ícone + título */}
-                <div className="flex items-center gap-3">
-                  <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-white/5 border border-white/10 text-[#A100FF]">
+              <div className="flex flex-col flex-grow px-2 pt-5 pb-3">
+                {/* Ícone + título — min-h garante alinhamento com 1 ou 2 linhas */}
+                <div className="flex items-center gap-3 min-h-[40px]">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/5 border border-white/10 text-[#A100FF]">
                     {s.icon}
                   </div>
                   <h3
-                    className="text-lg font-bold text-white leading-snug"
+                    className="text-lg font-bold text-white leading-tight"
                     style={{ fontFamily: 'var(--font-syne)' }}
                   >
                     {s.title}
@@ -163,15 +163,15 @@ export default function ServicesSection() {
                 </div>
 
                 <p
-                  className="mt-4 flex-grow text-white/65 leading-relaxed"
-                  style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '15px' }}
+                  className="mt-4 text-sm text-white/65 leading-relaxed flex-grow"
+                  style={{ fontFamily: 'var(--font-dm-sans)' }}
                 >
                   {s.description}
                 </p>
 
                 <a
                   href={s.href}
-                  className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[#A100FF] hover:text-[#D600FF] hover:gap-3 transition-all w-fit focus-visible:outline-2 focus-visible:outline-[#A100FF] focus-visible:outline-offset-2 rounded"
+                  className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#A100FF] hover:text-[#D600FF] hover:gap-3 transition-all w-fit focus-visible:outline-2 focus-visible:outline-[#A100FF] focus-visible:outline-offset-2 rounded"
                   style={{ fontFamily: 'var(--font-dm-sans)' }}
                 >
                   Saiba mais <span aria-hidden>→</span>
@@ -181,22 +181,6 @@ export default function ServicesSection() {
           ))}
         </div>
 
-        {/* CTA final */}
-        <div className="mt-20 flex flex-col items-center gap-4">
-          <p
-            className="text-white/60"
-            style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '16px' }}
-          >
-            Não encontrou o que precisa?
-          </p>
-          <a
-            href="#contato"
-            className="rounded-full bg-[#6A00FF] hover:bg-[#A100FF] px-6 py-3 text-sm font-semibold text-white transition-colors focus-visible:outline-2 focus-visible:outline-[#A100FF] focus-visible:outline-offset-2"
-            style={{ fontFamily: 'var(--font-dm-sans)' }}
-          >
-            Fale com a gente →
-          </a>
-        </div>
       </div>
     </section>
   )
