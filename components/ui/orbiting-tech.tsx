@@ -1,21 +1,42 @@
 'use client'
 
 import { OrbitingCircles } from '@/components/ui/orbiting-circles'
-import Image from 'next/image'
 
-const innerIcons = ['react', 'typescript', 'javascript', 'nodedotjs', 'python']
+const innerIcons  = ['react', 'typescript', 'javascript', 'nodedotjs', 'python']
 const middleIcons = ['html5', 'css3', 'nextdotjs', 'git', 'github']
-const outerIcons = ['postgresql', 'firebase', 'vercel', 'docker', 'java']
+const outerIcons  = ['postgresql', 'firebase', 'vercel', 'docker', 'java']
+
+const slugMap: Record<string, string> = {
+  react:        'react',
+  typescript:   'typescript',
+  javascript:   'javascript',
+  nodedotjs:    'nodedotjs',
+  python:       'python',
+  html5:        'html5',
+  css3:         'css',
+  nextdotjs:    'nextdotjs',
+  git:          'git',
+  github:       'github',
+  postgresql:   'postgresql',
+  firebase:     'firebase',
+  vercel:       'vercel',
+  docker:       'docker',
+  java:         'openjdk',
+}
 
 function TechIcon({ slug, size }: { slug: string; size: number }) {
+  const mappedSlug = slugMap[slug] ?? slug
   return (
-    <Image
-      src={`https://cdn.simpleicons.org/${slug}`}
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={`https://cdn.simpleicons.org/${mappedSlug}`}
       alt={slug}
       width={size}
       height={size}
       className="opacity-90"
-      unoptimized
+      onError={(e) => {
+        (e.target as HTMLImageElement).style.display = 'none'
+      }}
     />
   )
 }
