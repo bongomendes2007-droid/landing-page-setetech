@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { IconCloudDemo } from '@/components/ui/icon-cloud-demo'
+import { OrbitingTech } from '@/components/ui/orbiting-tech'
 
 export default function AboutSection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -105,9 +105,9 @@ export default function AboutSection() {
           </p>
         </div>
 
-        {/* Coluna IconCloud */}
+        {/* Coluna órbitas de tecnologia */}
         <div className="flex-1 flex items-center justify-center">
-          <IconCloudDemo />
+          <OrbitingTech />
         </div>
       </div>
     </section>

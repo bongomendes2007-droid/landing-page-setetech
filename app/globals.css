@@ -91,6 +91,19 @@ body {
   .animate-marquee-vertical {
     animation: marquee-vertical var(--duration) linear infinite;
   }
+  .animate-orbit {
+    animation: orbit calc(var(--duration) * 1s) linear infinite;
+  }
+}
+
+/* OrbitingCircles — movimento circular ao redor do centro */
+@keyframes orbit {
+  0% {
+    transform: rotate(calc(var(--angle) * 1deg)) translateY(calc(var(--radius) * 1px)) rotate(calc(var(--angle) * -1deg));
+  }
+  100% {
+    transform: rotate(calc(var(--angle) * 1deg + 360deg)) translateY(calc(var(--radius) * 1px)) rotate(calc(var(--angle) * -1deg - 360deg));
+  }
 }
 
 .marquee-track {
