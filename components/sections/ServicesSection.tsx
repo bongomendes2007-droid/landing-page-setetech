@@ -120,7 +120,7 @@ export default function ServicesSection() {
   return (
     <section
       id="servicos"
-      className="relative"
+      className="relative overflow-hidden rounded-b-[40px]"
       style={{
         background: '#F8F8F8',
         paddingTop: '96px',
