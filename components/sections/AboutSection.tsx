@@ -3,18 +3,11 @@
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import AnimatedCounter from '@/components/ui/AnimatedCounter'
-
-const STATS = [
-  { target: 47, suffix: '+', label: 'Projetos entregues',    desc: 'Sistemas, sites e apps para clientes reais.' },
-  { target: 12, suffix: '',  label: 'Municípios atendidos',  desc: 'Do interior à capital do Piauí.' },
-  { target: 5,  suffix: '',  label: 'Anos de atuação',       desc: 'Construindo tecnologia que fica.' },
-]
+import { IconCloudDemo } from '@/components/ui/icon-cloud-demo'
 
 export default function AboutSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const textRef    = useRef<HTMLDivElement>(null)
-  const statsRef   = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
@@ -27,10 +20,6 @@ export default function AboutSection() {
       gsap.from(textRef.current, {
         opacity: 0, x: -60, duration: 0.9, ease: 'power3.out',
         scrollTrigger: { trigger: textRef.current, start: 'top 80%', once: true },
-      })
-      gsap.from(statsRef.current, {
-        opacity: 0, x: 60, duration: 0.9, ease: 'power3.out',
-        scrollTrigger: { trigger: statsRef.current, start: 'top 80%', once: true },
       })
     }, sectionRef)
 
@@ -116,44 +105,9 @@ export default function AboutSection() {
           </p>
         </div>
 
-        {/* Coluna stats */}
-        <div ref={statsRef} className="flex flex-col gap-8">
-          {STATS.map((s) => (
-            <div
-              key={s.label}
-              className="flex items-start gap-5 rounded-2xl"
-              style={{
-                background: 'var(--color-card)',
-                border: '1px solid var(--color-border)',
-                padding: '24px',
-              }}
-            >
-              <div
-                className="text-4xl font-extrabold shrink-0 w-20"
-                style={{ fontFamily: 'var(--font-syne)', color: 'var(--color-accent)' }}
-              >
-                <AnimatedCounter target={s.target} suffix={s.suffix} />
-              </div>
-              <div>
-                <p
-                  className="font-bold text-sm"
-                  style={{
-                    fontFamily: 'var(--font-syne)',
-                    color: 'var(--color-text)',
-                    marginBottom: '4px',
-                  }}
-                >
-                  {s.label}
-                </p>
-                <p
-                  className="text-sm"
-                  style={{ fontFamily: 'var(--font-dm-sans)', color: 'var(--color-muted)' }}
-                >
-                  {s.desc}
-                </p>
-              </div>
-            </div>
-          ))}
+        {/* Coluna IconCloud */}
+        <div className="flex-1 flex items-center justify-center">
+          <IconCloudDemo />
         </div>
       </div>
     </section>
