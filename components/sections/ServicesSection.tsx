@@ -75,7 +75,7 @@ export default function ServicesSection() {
       style={{
         background: 'var(--color-bg)',
         paddingTop: '96px',
-        paddingBottom: '128px',
+        paddingBottom: '96px',
         paddingLeft: 'clamp(32px, 8vw, 96px)',
         paddingRight: 'clamp(32px, 8vw, 96px)',
       }}
@@ -115,7 +115,7 @@ export default function ServicesSection() {
         {/* Grid — 5 cards: 3 em linha, 2 centralizados */}
         <div
           ref={cardsRef}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-x-6 gap-y-10"
         >
           {SERVICES.map((s, i) => (
             <MagicCard
@@ -186,9 +186,9 @@ export default function ServicesSection() {
           ))}
         </div>
 
-        {/* CTA de seção */}
+        {/* CTA de seção — irmão do grid, fora dele */}
         <div className="mt-16 text-center">
-          <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '16px', color: 'var(--color-muted)', marginBottom: '20px' }}>
+          <p className="text-white/60" style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '16px', marginBottom: '20px' }}>
             Não encontrou o que precisa?
           </p>
           <a
