@@ -24,11 +24,14 @@ export default function Home() {
         }}
       >
         <HeroSection />
-        <ServicesSection />
-        <AboutSection />
-        <ProjectsSection />
-        <TestimonialsSection />
-        <ContactSection />
+        {/* bg-[#F8F8F8] preenche os cantos arredondados do Hero */}
+        <div className="bg-[#F8F8F8]">
+          <ServicesSection />
+          <AboutSection />
+          <ProjectsSection />
+          <TestimonialsSection />
+          <ContactSection />
+        </div>
       </div>
     </>
   )

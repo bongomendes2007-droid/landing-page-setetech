@@ -121,12 +121,18 @@ export default function ServicesSection() {
     <section
       id="servicos"
       className="relative"
-      style={{ background: '#F8F8F8', paddingTop: '96px', paddingBottom: '96px' }}
+      style={{
+        background: '#F8F8F8',
+        paddingTop: '96px',
+        paddingBottom: '96px',
+        paddingLeft: 'clamp(32px, 8vw, 96px)',
+        paddingRight: 'clamp(32px, 8vw, 96px)',
+      }}
     >
       {/* Sombra de entrada — suaviza transição do Hero escuro */}
       <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-black/5 to-transparent pointer-events-none" />
 
-      <div className="px-6 md:px-12 lg:px-20 max-w-7xl mx-auto">
+      <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
 
         {/* Header */}
         <div style={{ marginBottom: '56px' }}>
