@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 
 export const TestimonialsColumn = (props: {
   className?: string;
@@ -12,21 +12,27 @@ export const TestimonialsColumn = (props: {
   }[];
   duration?: number;
 }) => {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <div className={props.className}>
       <motion.div
-        animate={{ translateY: "-50%" }}
-        transition={{
-          duration: props.duration || 10,
-          repeat: Infinity,
-          ease: "linear",
-          repeatType: "loop",
-        }}
+        animate={shouldReduceMotion ? undefined : { translateY: "-50%" }}
+        transition={
+          shouldReduceMotion
+            ? undefined
+            : {
+                duration: props.duration || 10,
+                repeat: Infinity,
+                ease: "linear" as const,
+                repeatType: "loop" as const,
+              }
+        }
         className="flex flex-col gap-6 pb-6"
       >
         {[...new Array(2)].fill(0).map((_, index) => (
           <React.Fragment key={index}>
-            {props.testimonials.map(({ text, image, name, role }, i) => (
+            {props.testimonials.map(({ text, name, role }, i) => (
               <div
                 className="p-8 rounded-3xl border border-[#6A00FF]/20 bg-[#1A0033]/60 shadow-lg shadow-[#6A00FF]/10 max-w-xs w-full"
                 key={i}

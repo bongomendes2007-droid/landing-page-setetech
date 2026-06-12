@@ -19,7 +19,11 @@ export default function AboutSection() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger)
 
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
     const ctx = gsap.context(() => {
+      if (prefersReducedMotion) return
+
       gsap.from(textRef.current, {
         opacity: 0, x: -60, duration: 0.9, ease: 'power3.out',
         scrollTrigger: { trigger: textRef.current, start: 'top 80%', once: true },
