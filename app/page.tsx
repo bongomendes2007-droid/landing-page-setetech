@@ -16,7 +16,9 @@ export default function Home() {
     <>
       {loading && <LoadingScreen onComplete={() => setLoading(false)} />}
 
+      {/* bg-[#F8F8F8] no pai do Hero: preenche os cantos arredondados */}
       <div
+        className="bg-[#F8F8F8]"
         style={{
           opacity: loading ? 0 : 1,
           transition: 'opacity 0.6s ease',
@@ -24,14 +26,11 @@ export default function Home() {
         }}
       >
         <HeroSection />
-        {/* bg-[#F8F8F8] preenche os cantos arredondados do Hero */}
-        <div className="bg-[#F8F8F8]">
-          <ServicesSection />
-          <AboutSection />
-          <ProjectsSection />
-          <TestimonialsSection />
-          <ContactSection />
-        </div>
+        <ServicesSection />
+        <AboutSection />
+        <ProjectsSection />
+        <TestimonialsSection />
+        <ContactSection />
       </div>
     </>
   )
