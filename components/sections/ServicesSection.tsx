@@ -120,13 +120,13 @@ export default function ServicesSection() {
           {SERVICES.map((s, i) => (
             <MagicCard
               key={s.title}
-              className={
+              className={`group ${
                 i < 3
                   ? 'lg:col-span-2'
                   : i === 3
                   ? 'lg:col-start-2 lg:col-span-2'
                   : 'sm:col-span-2 lg:col-start-4 lg:col-span-2'
-              }
+              }`}
             >
               {/* Foto no topo */}
               <div className="relative h-48 w-full overflow-hidden">
@@ -134,8 +134,8 @@ export default function ServicesSection() {
                   src={s.image}
                   alt={s.title}
                   fill
-                  className="object-cover transition-transform duration-500 hover:scale-105"
-                  unoptimized
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  {...(i < 3 ? { priority: true } : {})}
                 />
               </div>
 
@@ -167,6 +167,7 @@ export default function ServicesSection() {
 
                 <a
                   href="#contato"
+                  className="focus-visible:outline-2 focus-visible:outline-[#A100FF] focus-visible:outline-offset-2 rounded"
                   style={{
                     fontFamily: 'var(--font-dm-sans)',
                     fontSize: '14px',
@@ -183,6 +184,27 @@ export default function ServicesSection() {
               </div>
             </MagicCard>
           ))}
+        </div>
+
+        {/* CTA de seção */}
+        <div className="mt-16 text-center">
+          <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '16px', color: 'var(--color-muted)', marginBottom: '20px' }}>
+            Não encontrou o que precisa?
+          </p>
+          <a
+            href="#contato"
+            className="inline-flex items-center gap-2 rounded-full font-semibold text-sm hover:opacity-90 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-[#A100FF] focus-visible:outline-offset-2"
+            style={{
+              background: 'rgba(161,0,255,0.1)',
+              color: 'var(--color-accent)',
+              border: '1px solid rgba(161,0,255,0.3)',
+              fontFamily: 'var(--font-dm-sans)',
+              padding: '14px 32px',
+              transition: 'opacity 0.2s, transform 0.16s cubic-bezier(0.23,1,0.32,1)',
+            }}
+          >
+            Fale com a gente →
+          </a>
         </div>
       </div>
     </section>

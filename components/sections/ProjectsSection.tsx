@@ -114,7 +114,7 @@ export default function ProjectsSection() {
           {PROJECTS.map((p) => (
             <div
               key={p.title}
-              className={`relative overflow-hidden rounded-2xl group cursor-pointer ${p.large ? 'md:col-span-2 h-80 md:h-96' : 'h-56 md:h-96'}`}
+              className={`relative overflow-hidden rounded-2xl group ${p.large ? 'md:col-span-2 h-80 md:h-96' : 'h-56 md:h-96'}`}
             >
               <div
                 className="absolute inset-0 transition-transform duration-700 group-hover:scale-105"
@@ -164,6 +164,26 @@ export default function ProjectsSection() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* CTA de seção */}
+        <div className="mt-14 text-center">
+          <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '16px', color: 'var(--color-muted)', marginBottom: '20px' }}>
+            Quer resultados como esses?
+          </p>
+          <a
+            href="#contato"
+            className="inline-flex items-center gap-2 rounded-full font-semibold text-sm hover:opacity-90 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-[#A100FF] focus-visible:outline-offset-2"
+            style={{
+              background: 'var(--gradient-accent)',
+              color: '#FFFFFF',
+              fontFamily: 'var(--font-dm-sans)',
+              padding: '14px 32px',
+              transition: 'opacity 0.2s, transform 0.16s cubic-bezier(0.23,1,0.32,1)',
+            }}
+          >
+            Vamos conversar →
+          </a>
         </div>
       </div>
     </section>
