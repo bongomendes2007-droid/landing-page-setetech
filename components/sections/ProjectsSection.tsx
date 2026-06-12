@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { AuroraBackground } from '@/components/ui/aurora-background'
 
 const PROJECTS = [
   {
@@ -55,17 +56,16 @@ export default function ProjectsSection() {
   }, [])
 
   return (
-    <section
-      ref={sectionRef}
-      id="cases"
-      style={{
-        background: 'var(--color-bg)',
-        paddingTop: '96px',
-        paddingBottom: '96px',
-        paddingLeft: 'clamp(32px, 8vw, 96px)',
-        paddingRight: 'clamp(32px, 8vw, 96px)',
-      }}
-    >
+    <section ref={sectionRef} id="cases">
+      <AuroraBackground
+        showRadialGradient
+        style={{
+          paddingTop: '96px',
+          paddingBottom: '96px',
+          paddingLeft: 'clamp(32px, 8vw, 96px)',
+          paddingRight: 'clamp(32px, 8vw, 96px)',
+        }}
+      >
       <div style={{ maxWidth: '1152px', margin: '0 auto' }}>
 
         {/* Header */}
@@ -186,6 +186,7 @@ export default function ProjectsSection() {
           </a>
         </div>
       </div>
+      </AuroraBackground>
     </section>
   )
 }
