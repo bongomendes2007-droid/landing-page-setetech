@@ -158,17 +158,10 @@ export default function ServicesSection() {
           </h2>
         </div>
 
-        {/* Linha 1 — 3 cards */}
+        {/* Grade única — 3 cols, 2 últimos alinhados à esquerda naturalmente */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
-          {SERVICES.slice(0, 3).map((s, i) => (
+          {SERVICES.map((s, i) => (
             <ServiceCard key={s.title} s={s} priority={i < 3} />
-          ))}
-        </div>
-
-        {/* Linha 2 — 2 cards centralizados */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch lg:max-w-[calc(66.666%+8px)] mx-auto mt-6">
-          {SERVICES.slice(3).map((s) => (
-            <ServiceCard key={s.title} s={s} priority={false} />
           ))}
         </div>
 
