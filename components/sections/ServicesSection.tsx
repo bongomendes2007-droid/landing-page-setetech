@@ -82,7 +82,7 @@ export default function ServicesSection() {
     <section
       id="servicos"
       style={{
-        background: 'var(--color-bg)',
+        background: '#F8F8F8',
         paddingTop: '96px',
         paddingBottom: '96px',
         paddingLeft: 'clamp(32px, 8vw, 96px)',
@@ -112,7 +112,7 @@ export default function ServicesSection() {
               fontFamily: 'var(--font-serif)',
               fontSize: 'clamp(32px, 4vw, 56px)',
               fontWeight: 400,
-              color: 'var(--color-text)',
+              color: '#0D0D0D',
               lineHeight: 1.1,
             }}
           >
@@ -134,7 +134,7 @@ export default function ServicesSection() {
           {SERVICES.map((s, i) => (
             <div
               key={s.title}
-              className="flex flex-col rounded-[28px] border border-white/10 bg-[#161616] p-4 transition-colors duration-300 hover:border-white/20"
+              className="flex flex-col rounded-[28px] border border-white/10 bg-[#161616] p-4 shadow-[0_4px_24px_rgba(0,0,0,0.15)] transition-all duration-300 hover:border-white/20 hover:shadow-[0_8px_32px_rgba(0,0,0,0.25)]"
             >
               {/* Imagem emoldurada com cantos próprios */}
               <div className="relative h-56 w-full overflow-hidden rounded-[20px] flex-shrink-0">
