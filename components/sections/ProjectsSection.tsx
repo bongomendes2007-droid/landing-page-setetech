@@ -57,30 +57,33 @@ type Founder = (typeof founders)[0]
 function FounderCard({ founder }: { founder: Founder }) {
   return (
     <div
-      className="group relative flex flex-col rounded-[24px] overflow-hidden cursor-pointer
+      className="group relative flex flex-col rounded-[20px] overflow-hidden cursor-pointer
         transition-transform duration-300 hover:-translate-y-2"
       style={{ backgroundColor: founder.bgColor }}
     >
-      {/* Header: logo esquerda + ícone direita */}
-      <div className="flex items-center justify-between px-5 pt-5">
+      {/* Header: logo esquerda + ícone direita — padding 16px 16px 8px */}
+      <div className="flex items-center justify-between px-4 pt-4 pb-2">
         <img
           src="https://res.cloudinary.com/dnth1inmv/image/upload/v1781121651/logo_Sete_Tech_color_1_irsexx.png"
           alt="SETE TECH"
-          className="h-5 w-auto object-contain opacity-90"
+          className="h-[13px] w-auto object-contain opacity-90"
+          style={{ fontWeight: 700 }}
         />
         <div
-          className="flex h-10 w-10 items-center justify-center rounded-full text-xl"
+          className="flex items-center justify-center rounded-full text-xl"
           style={{
-            backgroundColor: founder.accentColor + '22',
-            border: `1px solid ${founder.accentColor}44`,
+            width: '36px',
+            height: '36px',
+            backgroundColor: founder.accentColor + '26',
+            border: `1px solid ${founder.accentColor}4D`,
           }}
         >
           {founder.icon}
         </div>
       </div>
 
-      {/* Foto — grande, dramática */}
-      <div className="relative mx-4 mt-4 overflow-hidden rounded-[16px]" style={{ height: '280px' }}>
+      {/* Foto full-width, 260px, gradiente 15%→60% */}
+      <div className="relative w-full overflow-hidden" style={{ height: '260px' }}>
         <Image
           src={founder.image}
           alt={founder.name}
@@ -89,42 +92,63 @@ function FounderCard({ founder }: { founder: Founder }) {
           unoptimized
         />
         <div
-          className="absolute inset-x-0 bottom-0 h-1/2"
-          style={{ background: `linear-gradient(to top, ${founder.bgColor}, transparent)` }}
+          className="absolute inset-x-0 bottom-0"
+          style={{
+            height: '100%',
+            background: `linear-gradient(to top, ${founder.bgColor} 15%, transparent 60%)`,
+          }}
         />
       </div>
 
-      {/* Info embaixo */}
-      <div className="flex flex-col gap-3 px-5 pt-4 pb-6">
+      {/* Info embaixo — padding 12px 16px 20px */}
+      <div className="flex flex-col gap-3" style={{ padding: '12px 16px 20px' }}>
 
         {/* Bullet + Nome */}
         <div className="flex items-center gap-2">
           <div
-            className="h-2 w-2 rounded-full flex-shrink-0"
-            style={{ backgroundColor: founder.accentColor }}
+            className="rounded-full flex-shrink-0"
+            style={{ width: '8px', height: '8px', backgroundColor: founder.accentColor }}
           />
-          <h3 className="text-xl font-bold text-white">{founder.name}</h3>
+          <h3 className="font-bold text-white" style={{ fontSize: '18px' }}>{founder.name}</h3>
         </div>
 
-        {/* Badges estilo Adapta */}
+        {/* Badges ✓ estilo Adapta */}
         <div className="flex items-center gap-3 flex-wrap">
           <div className="flex items-center gap-1.5">
-            <span className="text-white/40 text-xs">✓</span>
-            <span className="text-xs font-medium text-white/60 uppercase tracking-wide">
+            <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: '11px' }}>✓</span>
+            <span
+              className="uppercase"
+              style={{
+                fontSize: '11px',
+                fontWeight: 600,
+                letterSpacing: '0.05em',
+                color: 'rgba(255,255,255,0.55)',
+              }}
+            >
               {founder.tag1}
             </span>
           </div>
           <div className="h-3 w-px bg-white/20" />
           <div className="flex items-center gap-1.5">
-            <span className="text-white/40 text-xs">✓</span>
-            <span className="text-xs font-medium text-white/60 uppercase tracking-wide">
+            <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: '11px' }}>✓</span>
+            <span
+              className="uppercase"
+              style={{
+                fontSize: '11px',
+                fontWeight: 600,
+                letterSpacing: '0.05em',
+                color: 'rgba(255,255,255,0.55)',
+              }}
+            >
               {founder.tag2}
             </span>
           </div>
         </div>
 
         {/* Descrição */}
-        <p className="text-sm text-white/50 leading-relaxed">{founder.description}</p>
+        <p style={{ fontSize: '13px', lineHeight: 1.55, color: 'rgba(255,255,255,0.45)' }}>
+          {founder.description}
+        </p>
       </div>
     </div>
   )
