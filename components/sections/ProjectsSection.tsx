@@ -5,6 +5,8 @@ import Image from 'next/image'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
+const NOTCH_BG = '#EEEEEE'
+
 const founders = [
   {
     name: "Fundador 1",
@@ -13,7 +15,7 @@ const founders = [
     tag2: "FRONTEND",
     description: "Especialista em sistemas web de alta performance para empresas e órgãos públicos do Piauí.",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80",
-    bgColor: "#1a0a2e",
+    bgColor: "#1E0A35",
     accentColor: "#6A00FF",
     icon: "💻",
   },
@@ -24,7 +26,7 @@ const founders = [
     tag2: "INFRAESTRUTURA",
     description: "Lidera a arquitetura técnica e integração de modelos de IA nos produtos da SETE TECH.",
     image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80",
-    bgColor: "#0a1a0e",
+    bgColor: "#0A1A10",
     accentColor: "#00C853",
     icon: "🤖",
   },
@@ -35,7 +37,7 @@ const founders = [
     tag2: "DESIGN & UX",
     description: "Responsável pela identidade visual e estratégias de crescimento digital da SETE TECH.",
     image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80",
-    bgColor: "#1a1200",
+    bgColor: "#1A1200",
     accentColor: "#FFB300",
     icon: "🎨",
   },
@@ -46,7 +48,7 @@ const founders = [
     tag2: "ÓRGÃOS PÚBLICOS",
     description: "Especialista em soluções para prefeituras, autarquias e secretarias do Piauí.",
     image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80",
-    bgColor: "#0a0f1a",
+    bgColor: "#0A0F1E",
     accentColor: "#2979FF",
     icon: "🏛️",
   },
@@ -56,20 +58,68 @@ type Founder = (typeof founders)[0]
 
 function FounderCard({ founder }: { founder: Founder }) {
   return (
+    /*
+     * Sem overflow-hidden no card — necessário para que a máscara do notch
+     * (cor do fundo da seção) apareça sobre o canto do card sem ser clipada.
+     * O photo container tem seu próprio overflow-hidden para clipar a foto.
+     */
     <div
-      className="group relative flex flex-col h-full overflow-hidden cursor-pointer
+      className="group relative flex flex-col h-full cursor-pointer
         transition-transform duration-300 hover:-translate-y-2"
       style={{
         backgroundColor: founder.bgColor,
-        borderRadius: '28px',
+        borderRadius: '24px',
         border: '1px solid rgba(255,255,255,0.08)',
-        boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06)',
+        boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.07)',
       }}
     >
-      {/* Foto com margem e cantos próprios — altura FIXA em todos os cards */}
+      {/* ── NOTCH MASK ──────────────────────────────────────────────────────────
+          Quadrado 52×52px colorido com a cor de fundo da seção.
+          border-bottom-left-radius: 52px cria a curva côncava que forma o recorte.
+          border-top-right-radius: 24px bate com o border-radius do card.
+          z-index 20 — fica sobre o card mas abaixo do ícone (z-30).
+      ─────────────────────────────────────────────────────────────────────── */}
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          top: 0,
+          right: 0,
+          width: '52px',
+          height: '52px',
+          backgroundColor: NOTCH_BG,
+          borderBottomLeftRadius: '52px',
+          borderTopRightRadius: '24px',
+          zIndex: 20,
+        }}
+      />
+
+      {/* ── ÍCONE NO NOTCH ─────────────────────────────────────────────────────
+          Centrado dentro do recorte: top/right = 4px dão margem de 4px
+          até a borda do card. Diâmetro 44px encaixa em 52px de notch.
+      ─────────────────────────────────────────────────────────────────────── */}
+      <div
+        className="absolute flex items-center justify-center rounded-full select-none"
+        style={{
+          top: '4px',
+          right: '4px',
+          width: '44px',
+          height: '44px',
+          backgroundColor: founder.accentColor + 'E6',
+          border: '2px solid rgba(255,255,255,0.20)',
+          fontSize: '22px',
+          zIndex: 30,
+        }}
+      >
+        {founder.icon}
+      </div>
+
+      {/* ── FOTO ────────────────────────────────────────────────────────────────
+          m-3 cria margem visível entre card e foto (efeito "etiqueta").
+          overflow-hidden + rounded-[16px] são os cantos próprios da foto.
+      ─────────────────────────────────────────────────────────────────────── */}
       <div className="relative m-3 mb-0 h-[300px] flex-shrink-0 overflow-hidden rounded-[16px]">
 
-        {/* Camada de fundo colorido para o efeito backlight */}
+        {/* Camada radial colorida atrás da foto — efeito backlight */}
         <div
           className="absolute inset-0"
           style={{
@@ -87,7 +137,7 @@ function FounderCard({ founder }: { founder: Founder }) {
           unoptimized
         />
 
-        {/* Glow colorido sobre a foto — simula o backlight dramático */}
+        {/* Glow colorido sobre a foto (mix-blend-mode: screen) */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -97,26 +147,16 @@ function FounderCard({ founder }: { founder: Founder }) {
           }}
         />
 
-        {/* Header SOBRE a foto */}
-        <div className="absolute top-0 inset-x-0 flex items-center justify-between p-3.5" style={{ zIndex: 10 }}>
+        {/* Logo SETE TECH — apenas logo, ícone foi para o notch */}
+        <div className="absolute top-0 left-0 p-3.5" style={{ zIndex: 10 }}>
           <img
             src="https://res.cloudinary.com/dnth1inmv/image/upload/v1781121651/logo_Sete_Tech_color_1_irsexx.png"
             alt="SETE TECH"
             className="h-5 w-auto object-contain drop-shadow-lg"
           />
-          <div
-            className="flex h-9 w-9 items-center justify-center rounded-full text-base backdrop-blur-md"
-            style={{
-              backgroundColor: founder.accentColor + '33',
-              border: `1px solid ${founder.accentColor}66`,
-              zIndex: 10,
-            }}
-          >
-            {founder.icon}
-          </div>
         </div>
 
-        {/* Gradiente base fundindo foto com fundo do card */}
+        {/* Gradiente fundindo base da foto com o fundo do card */}
         <div
           className="absolute inset-x-0 bottom-0 h-2/5 pointer-events-none"
           style={{
@@ -126,10 +166,10 @@ function FounderCard({ founder }: { founder: Founder }) {
         />
       </div>
 
-      {/* Conteúdo */}
+      {/* ── CONTEÚDO ────────────────────────────────────────────────────────── */}
       <div className="flex flex-col flex-grow gap-2.5 px-5 pt-3 pb-6">
 
-        {/* Bullet + Nome */}
+        {/* Bullet colorido + Nome */}
         <div className="flex items-center gap-2">
           <div
             className="h-2 w-2 rounded-full flex-shrink-0"
@@ -143,7 +183,7 @@ function FounderCard({ founder }: { founder: Founder }) {
           </h3>
         </div>
 
-        {/* Badges como pills */}
+        {/* Badges — pills com fundo sutil */}
         <div className="flex items-center gap-2 flex-wrap">
           <span
             className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 font-semibold uppercase text-white/60"
@@ -169,7 +209,7 @@ function FounderCard({ founder }: { founder: Founder }) {
           </span>
         </div>
 
-        {/* Descrição — flex-grow iguala a altura dos cards */}
+        {/* Descrição */}
         <p
           className="mt-1 flex-grow text-white/45"
           style={{ fontSize: '13px', lineHeight: 1.55, fontFamily: 'var(--font-dm-sans)' }}
@@ -211,8 +251,9 @@ export default function ProjectsSection() {
     <section
       ref={sectionRef}
       id="cases"
-      className="bg-[#F8F8F8] rounded-b-[40px] overflow-hidden py-24"
+      className="rounded-b-[40px] overflow-hidden py-24"
       style={{
+        backgroundColor: NOTCH_BG,
         paddingLeft: 'clamp(32px, 8vw, 96px)',
         paddingRight: 'clamp(32px, 8vw, 96px)',
       }}
