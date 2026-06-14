@@ -67,37 +67,62 @@ function FounderCard({ founder }: { founder: Founder }) {
       }}
     >
       {/* Foto com margem e cantos próprios — altura FIXA em todos os cards */}
-      <div className="relative m-3 mb-0 h-[300px] flex-shrink-0 overflow-hidden rounded-[20px]">
+      <div className="relative m-3 mb-0 h-[300px] flex-shrink-0 overflow-hidden rounded-[16px]">
+
+        {/* Camada de fundo colorido para o efeito backlight */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `radial-gradient(ellipse at 50% 45%, ${founder.accentColor}55 0%, ${founder.bgColor} 72%)`,
+            zIndex: 0,
+          }}
+        />
+
         <Image
           src={founder.image}
           alt={founder.name}
           fill
-          className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
+          className="object-cover object-top group-hover:scale-105 transition-transform duration-700"
+          style={{ zIndex: 1, filter: 'brightness(0.82) contrast(1.05)' }}
           unoptimized
         />
 
+        {/* Glow colorido sobre a foto — simula o backlight dramático */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: `radial-gradient(ellipse at 50% 38%, ${founder.accentColor}28 0%, transparent 62%)`,
+            mixBlendMode: 'screen',
+            zIndex: 2,
+          }}
+        />
+
         {/* Header SOBRE a foto */}
-        <div className="absolute top-0 inset-x-0 flex items-center justify-between p-4 z-10">
+        <div className="absolute top-0 inset-x-0 flex items-center justify-between p-3.5" style={{ zIndex: 10 }}>
           <img
             src="https://res.cloudinary.com/dnth1inmv/image/upload/v1781121651/logo_Sete_Tech_color_1_irsexx.png"
             alt="SETE TECH"
             className="h-5 w-auto object-contain drop-shadow-lg"
           />
           <div
-            className="flex h-10 w-10 items-center justify-center rounded-full text-lg backdrop-blur-md"
+            className="flex h-9 w-9 items-center justify-center rounded-full text-base backdrop-blur-md"
             style={{
               backgroundColor: founder.accentColor + '33',
               border: `1px solid ${founder.accentColor}66`,
+              zIndex: 10,
             }}
           >
             {founder.icon}
           </div>
         </div>
 
-        {/* Gradiente base da foto fundindo com o card */}
+        {/* Gradiente base fundindo foto com fundo do card */}
         <div
-          className="absolute inset-x-0 bottom-0 h-2/5"
-          style={{ background: `linear-gradient(to top, ${founder.bgColor} 5%, transparent 100%)` }}
+          className="absolute inset-x-0 bottom-0 h-2/5 pointer-events-none"
+          style={{
+            background: `linear-gradient(to top, ${founder.bgColor} 5%, transparent 100%)`,
+            zIndex: 3,
+          }}
         />
       </div>
 
