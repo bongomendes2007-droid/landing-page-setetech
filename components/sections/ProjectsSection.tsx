@@ -137,13 +137,12 @@ function FounderCard({ founder }: { founder: Founder }) {
           unoptimized
         />
 
-        {/* Glow colorido sobre a foto (mix-blend-mode: screen) */}
+        {/* Glow colorido sobre a foto — luz vindo de baixo */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            background: `radial-gradient(ellipse at 50% 38%, ${founder.accentColor}28 0%, transparent 62%)`,
-            mixBlendMode: 'screen',
-            zIndex: 2,
+            background: `radial-gradient(ellipse at 50% 80%, ${founder.accentColor}55 0%, transparent 65%)`,
+            zIndex: 10,
           }}
         />
 
@@ -251,7 +250,7 @@ export default function ProjectsSection() {
     <section
       ref={sectionRef}
       id="cases"
-      className="rounded-b-[40px] overflow-hidden py-24"
+      className="rounded-b-[40px] overflow-hidden pt-32 pb-24"
       style={{
         backgroundColor: NOTCH_BG,
         paddingLeft: 'clamp(32px, 8vw, 96px)',
@@ -295,39 +294,13 @@ export default function ProjectsSection() {
         {/* Grid dos fundadores */}
         <div
           ref={gridRef}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch px-6 md:px-10 lg:px-16 max-w-7xl mx-auto"
         >
           {founders.map((founder) => (
             <FounderCard key={founder.name} founder={founder} />
           ))}
         </div>
 
-        {/* CTA */}
-        <div className="mt-14 text-center">
-          <p
-            style={{
-              fontFamily: 'var(--font-dm-sans)',
-              fontSize: '16px',
-              color: 'rgba(13,13,13,0.5)',
-              marginBottom: '20px',
-            }}
-          >
-            Quer resultados como esses?
-          </p>
-          <a
-            href="#contato"
-            className="inline-flex items-center gap-2 rounded-full font-semibold text-sm hover:opacity-90 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-[#A100FF] focus-visible:outline-offset-2"
-            style={{
-              background: 'var(--gradient-accent)',
-              color: '#FFFFFF',
-              fontFamily: 'var(--font-dm-sans)',
-              padding: '14px 32px',
-              transition: 'opacity 0.2s, transform 0.16s cubic-bezier(0.23,1,0.32,1)',
-            }}
-          >
-            Vamos conversar →
-          </a>
-        </div>
       </div>
     </section>
   )
