@@ -57,7 +57,7 @@ type Founder = (typeof founders)[0]
 function FounderCard({ founder }: { founder: Founder }) {
   return (
     <div
-      className="group relative flex flex-col overflow-hidden cursor-pointer
+      className="group relative flex flex-col h-full overflow-hidden cursor-pointer
         transition-transform duration-300 hover:-translate-y-2"
       style={{
         backgroundColor: founder.bgColor,
@@ -66,8 +66,8 @@ function FounderCard({ founder }: { founder: Founder }) {
         boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06)',
       }}
     >
-      {/* Foto com margem e cantos próprios — header fica sobre ela */}
-      <div className="relative m-3 mb-0 overflow-hidden rounded-[20px]" style={{ height: '300px' }}>
+      {/* Foto com margem e cantos próprios — altura FIXA em todos os cards */}
+      <div className="relative m-3 mb-0 h-[300px] flex-shrink-0 overflow-hidden rounded-[20px]">
         <Image
           src={founder.image}
           alt={founder.name}
@@ -102,7 +102,7 @@ function FounderCard({ founder }: { founder: Founder }) {
       </div>
 
       {/* Conteúdo */}
-      <div className="flex flex-col gap-2.5 px-5 pt-3 pb-6">
+      <div className="flex flex-col flex-grow gap-2.5 px-5 pt-3 pb-6">
 
         {/* Bullet + Nome */}
         <div className="flex items-center gap-2">
@@ -144,9 +144,9 @@ function FounderCard({ founder }: { founder: Founder }) {
           </span>
         </div>
 
-        {/* Descrição */}
+        {/* Descrição — flex-grow iguala a altura dos cards */}
         <p
-          className="mt-1 text-white/45"
+          className="mt-1 flex-grow text-white/45"
           style={{ fontSize: '13px', lineHeight: 1.55, fontFamily: 'var(--font-dm-sans)' }}
         >
           {founder.description}
@@ -229,7 +229,7 @@ export default function ProjectsSection() {
         {/* Grid dos fundadores */}
         <div
           ref={gridRef}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch"
         >
           {founders.map((founder) => (
             <FounderCard key={founder.name} founder={founder} />
