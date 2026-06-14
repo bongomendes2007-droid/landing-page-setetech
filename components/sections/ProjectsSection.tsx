@@ -57,96 +57,98 @@ type Founder = (typeof founders)[0]
 function FounderCard({ founder }: { founder: Founder }) {
   return (
     <div
-      className="group relative flex flex-col rounded-[20px] overflow-hidden cursor-pointer
+      className="group relative flex flex-col overflow-hidden cursor-pointer
         transition-transform duration-300 hover:-translate-y-2"
-      style={{ backgroundColor: founder.bgColor }}
+      style={{
+        backgroundColor: founder.bgColor,
+        borderRadius: '28px',
+        border: '1px solid rgba(255,255,255,0.08)',
+        boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06)',
+      }}
     >
-      {/* Header: logo esquerda + ícone direita — padding 16px 16px 8px */}
-      <div className="flex items-center justify-between px-4 pt-4 pb-2">
-        <img
-          src="https://res.cloudinary.com/dnth1inmv/image/upload/v1781121651/logo_Sete_Tech_color_1_irsexx.png"
-          alt="SETE TECH"
-          className="h-[13px] w-auto object-contain opacity-90"
-          style={{ fontWeight: 700 }}
-        />
-        <div
-          className="flex items-center justify-center rounded-full text-xl"
-          style={{
-            width: '36px',
-            height: '36px',
-            backgroundColor: founder.accentColor + '26',
-            border: `1px solid ${founder.accentColor}4D`,
-          }}
-        >
-          {founder.icon}
-        </div>
-      </div>
-
-      {/* Foto full-width, 260px, gradiente 15%→60% */}
-      <div className="relative w-full overflow-hidden" style={{ height: '260px' }}>
+      {/* Foto com margem e cantos próprios — header fica sobre ela */}
+      <div className="relative m-3 mb-0 overflow-hidden rounded-[20px]" style={{ height: '300px' }}>
         <Image
           src={founder.image}
           alt={founder.name}
           fill
-          className="object-cover object-top group-hover:scale-105 transition-transform duration-700"
+          className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
           unoptimized
         />
+
+        {/* Header SOBRE a foto */}
+        <div className="absolute top-0 inset-x-0 flex items-center justify-between p-4 z-10">
+          <img
+            src="https://res.cloudinary.com/dnth1inmv/image/upload/v1781121651/logo_Sete_Tech_color_1_irsexx.png"
+            alt="SETE TECH"
+            className="h-5 w-auto object-contain drop-shadow-lg"
+          />
+          <div
+            className="flex h-10 w-10 items-center justify-center rounded-full text-lg backdrop-blur-md"
+            style={{
+              backgroundColor: founder.accentColor + '33',
+              border: `1px solid ${founder.accentColor}66`,
+            }}
+          >
+            {founder.icon}
+          </div>
+        </div>
+
+        {/* Gradiente base da foto fundindo com o card */}
         <div
-          className="absolute inset-x-0 bottom-0"
-          style={{
-            height: '100%',
-            background: `linear-gradient(to top, ${founder.bgColor} 15%, transparent 60%)`,
-          }}
+          className="absolute inset-x-0 bottom-0 h-2/5"
+          style={{ background: `linear-gradient(to top, ${founder.bgColor} 5%, transparent 100%)` }}
         />
       </div>
 
-      {/* Info embaixo — padding 12px 16px 20px */}
-      <div className="flex flex-col gap-3" style={{ padding: '12px 16px 20px' }}>
+      {/* Conteúdo */}
+      <div className="flex flex-col gap-2.5 px-5 pt-3 pb-6">
 
         {/* Bullet + Nome */}
         <div className="flex items-center gap-2">
           <div
-            className="rounded-full flex-shrink-0"
-            style={{ width: '8px', height: '8px', backgroundColor: founder.accentColor }}
+            className="h-2 w-2 rounded-full flex-shrink-0"
+            style={{ backgroundColor: founder.accentColor }}
           />
-          <h3 className="font-bold text-white" style={{ fontSize: '18px' }}>{founder.name}</h3>
+          <h3
+            className="font-bold text-white tracking-tight"
+            style={{ fontSize: '19px', fontFamily: 'var(--font-dm-sans)' }}
+          >
+            {founder.name}
+          </h3>
         </div>
 
-        {/* Badges ✓ estilo Adapta */}
-        <div className="flex items-center gap-3 flex-wrap">
-          <div className="flex items-center gap-1.5">
-            <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: '11px' }}>✓</span>
-            <span
-              className="uppercase"
-              style={{
-                fontSize: '11px',
-                fontWeight: 600,
-                letterSpacing: '0.05em',
-                color: 'rgba(255,255,255,0.55)',
-              }}
-            >
-              {founder.tag1}
-            </span>
-          </div>
-          <div className="h-3 w-px bg-white/20" />
-          <div className="flex items-center gap-1.5">
-            <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: '11px' }}>✓</span>
-            <span
-              className="uppercase"
-              style={{
-                fontSize: '11px',
-                fontWeight: 600,
-                letterSpacing: '0.05em',
-                color: 'rgba(255,255,255,0.55)',
-              }}
-            >
-              {founder.tag2}
-            </span>
-          </div>
+        {/* Badges como pills */}
+        <div className="flex items-center gap-2 flex-wrap">
+          <span
+            className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 font-semibold uppercase text-white/60"
+            style={{
+              fontSize: '10px',
+              letterSpacing: '0.08em',
+              backgroundColor: 'rgba(255,255,255,0.08)',
+            }}
+          >
+            <span style={{ color: founder.accentColor }}>✓</span>
+            {founder.tag1}
+          </span>
+          <span
+            className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 font-semibold uppercase text-white/60"
+            style={{
+              fontSize: '10px',
+              letterSpacing: '0.08em',
+              backgroundColor: 'rgba(255,255,255,0.08)',
+            }}
+          >
+            <span style={{ color: founder.accentColor }}>✓</span>
+            {founder.tag2}
+          </span>
         </div>
 
         {/* Descrição */}
-        <p style={{ fontSize: '13px', lineHeight: 1.55, color: 'rgba(255,255,255,0.45)' }}>
+        <p
+          className="mt-1 text-white/45"
+          style={{ fontSize: '13px', lineHeight: 1.55, fontFamily: 'var(--font-dm-sans)' }}
+        >
           {founder.description}
         </p>
       </div>
