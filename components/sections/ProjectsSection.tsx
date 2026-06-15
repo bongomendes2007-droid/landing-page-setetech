@@ -1,26 +1,21 @@
 'use client'
 
-import { useId, useEffect, useRef } from 'react'
-import Image from 'next/image'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-const SECTION_BG = '#EEEEEE'
-
-/* ── Dimensões do card ─────────────────────────────────────────── */
-const W = 260   // largura px
-const H = 480   // altura px
-const R = 24    // border-radius nos 3 cantos normais
-const N = 48    // raio do notch côncavo no canto superior direito
+import { useId } from 'react'
+import { motion } from 'framer-motion'
+import { Autoplay, EffectCoverflow, Pagination } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import 'swiper/css'
+import 'swiper/css/effect-coverflow'
+import 'swiper/css/pagination'
 
 const founders = [
   {
-    name: 'Fundador 1',
+    name: 'Bongo Mendes',
     tag1: 'DESENVOLVIMENTO WEB',
     tag2: 'FRONTEND',
     description: 'Especialista em sistemas web de alta performance para empresas e órgãos públicos do Piauí.',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80',
-    bgColor: '#1E0A35',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80',
+    bgColor: '#0D0520',
     accentColor: '#6A00FF',
     icon: '💻',
   },
@@ -29,8 +24,8 @@ const founders = [
     tag1: 'AUTOMAÇÃO & IA',
     tag2: 'INFRAESTRUTURA',
     description: 'Lidera a arquitetura técnica e integração de modelos de IA nos produtos da SETE TECH.',
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80',
-    bgColor: '#0A1A10',
+    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&q=80',
+    bgColor: '#041A0A',
     accentColor: '#00C853',
     icon: '🤖',
   },
@@ -39,8 +34,8 @@ const founders = [
     tag1: 'MARKETING DIGITAL',
     tag2: 'DESIGN & UX',
     description: 'Responsável pela identidade visual e estratégias de crescimento digital da SETE TECH.',
-    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80',
-    bgColor: '#1A1200',
+    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=600&q=80',
+    bgColor: '#1A0E00',
     accentColor: '#FFB300',
     icon: '🎨',
   },
@@ -49,8 +44,8 @@ const founders = [
     tag1: 'GESTÃO & NEGÓCIOS',
     tag2: 'ÓRGÃOS PÚBLICOS',
     description: 'Especialista em soluções para prefeituras, autarquias e secretarias do Piauí.',
-    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80',
-    bgColor: '#0A0F1E',
+    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600&q=80',
+    bgColor: '#030A1A',
     accentColor: '#2979FF',
     icon: '🏛️',
   },
@@ -58,246 +53,225 @@ const founders = [
 
 type Founder = (typeof founders)[0]
 
-/**
- * Gera o SVG path do card com notch côncavo no canto superior direito.
- *
- * Segmento crítico: `A N N 0 0 0 W N`
- *   De (W-N, 0) até (W, N), raio N, small-arc, sweep=0 (CCW na tela).
- *   O arco passa por ≈(W-N+14, N/2) — DENTRO do card = côncavo.
- */
-function buildNotchPath(w: number, h: number, r: number, n: number): string {
-  return [
-    `M ${r} 0`,
-    `L ${w - n} 0`,
-    `A ${n} ${n} 0 0 0 ${w} ${n}`,
-    `L ${w} ${h - r}`,
-    `Q ${w} ${h} ${w - r} ${h}`,
-    `L ${r} ${h}`,
-    `Q 0 ${h} 0 ${h - r}`,
-    `L 0 ${r}`,
-    `Q 0 0 ${r} 0`,
-    'Z',
-  ].join(' ')
-}
+function FounderCard({ f }: { f: Founder }) {
+  const id = useId().replace(/:/g, '')
+  const W = 280
+  const H = 480
+  const R = 24
+  const N = 44
 
-function FounderCard({ founder }: { founder: Founder }) {
-  const rawId  = useId()
-  const clipId = `clip${rawId.replace(/[^a-z0-9]/gi, '')}`
-  const path   = buildNotchPath(W, H, R, N)
-  const photoH = Math.round(H * 0.63)
+  const notchPath = `
+    M ${R} 0
+    L ${W - N - 8} 0
+    C ${W - N + 12} 0, ${W} ${N - 12}, ${W} ${N + 8}
+    L ${W} ${H - R}
+    Q ${W} ${H} ${W - R} ${H}
+    L ${R} ${H}
+    Q 0 ${H} 0 ${H - R}
+    L 0 ${R}
+    Q 0 0 ${R} 0
+    Z
+  `
 
   return (
-    /* Wrapper com dimensões fixas — o clipPath usa userSpaceOnUse absoluto */
-    <div className="relative flex-shrink-0" style={{ width: `${W}px`, height: `${H}px` }}>
+    <div className="relative mx-auto" style={{ width: `${W}px`, height: `${H}px` }}>
 
-      {/* SVG oculto que define o clip (zero espaço visual) */}
-      <svg
-        aria-hidden="true"
-        style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden' }}
-      >
+      {/* SVG clipPath — sem espaço visual */}
+      <svg width="0" height="0" style={{ position: 'absolute', overflow: 'hidden' }}>
         <defs>
-          <clipPath id={clipId} clipPathUnits="userSpaceOnUse">
-            <path d={path} />
+          <clipPath id={`clip-${id}`} clipPathUnits="userSpaceOnUse">
+            <path d={notchPath} />
           </clipPath>
         </defs>
       </svg>
 
-      {/* Card recortado pelo SVG clip */}
+      {/* Card recortado */}
       <div
-        className="group absolute inset-0 flex flex-col cursor-pointer
-          transition-transform duration-300 hover:-translate-y-2"
+        className="absolute inset-0 flex flex-col overflow-hidden"
         style={{
-          backgroundColor: founder.bgColor,
-          clipPath: `url(#${clipId})`,
+          backgroundColor: f.bgColor,
+          clipPath: `url(#clip-${id})`,
+          border: '1px solid rgba(255,255,255,0.06)',
         }}
       >
-        {/* FOTO ─────────────────────────────────────────────────── */}
-        <div className="relative flex-shrink-0 overflow-hidden" style={{ height: `${photoH}px` }}>
-
-          {/* Backlight radial atrás da foto */}
-          <div
-            className="absolute inset-0"
-            style={{
-              background: `radial-gradient(ellipse at 50% 45%, ${founder.accentColor}55 0%, ${founder.bgColor} 72%)`,
-              zIndex: 0,
-            }}
+        {/* Foto */}
+        <div className="relative flex-shrink-0" style={{ height: '300px' }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={f.image}
+            alt={f.name}
+            className="absolute inset-0 w-full h-full object-cover object-top"
           />
 
-          <Image
-            src={founder.image}
-            alt={founder.name}
-            fill
-            className="object-cover object-top group-hover:scale-105 transition-transform duration-700"
-            style={{ zIndex: 1, filter: 'brightness(0.82) contrast(1.05)' }}
-            unoptimized
-          />
-
-          {/* Glow colorido de baixo */}
+          {/* Glow colorido */}
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
-              background: `radial-gradient(ellipse at 50% 80%, ${founder.accentColor}55 0%, transparent 65%)`,
-              zIndex: 2,
+              background: `radial-gradient(ellipse at 50% 100%, ${f.accentColor}50 0%, transparent 65%)`,
+              mixBlendMode: 'color',
+            }}
+          />
+
+          {/* Gradiente base da foto */}
+          <div
+            className="absolute inset-x-0 bottom-0 pointer-events-none"
+            style={{
+              height: '130px',
+              background: `linear-gradient(to top, ${f.bgColor} 0%, transparent 100%)`,
             }}
           />
 
           {/* Logo SETE TECH */}
-          <div className="absolute top-0 left-0 p-3.5" style={{ zIndex: 10 }}>
-            <img
-              src="https://res.cloudinary.com/dnth1inmv/image/upload/v1781121651/logo_Sete_Tech_color_1_irsexx.png"
-              alt="SETE TECH"
-              className="h-5 w-auto object-contain drop-shadow-lg"
-            />
-          </div>
-
-          {/* Fade da base da foto para o fundo do card */}
-          <div
-            className="absolute inset-x-0 bottom-0 h-2/5 pointer-events-none"
-            style={{
-              background: `linear-gradient(to top, ${founder.bgColor} 5%, transparent 100%)`,
-              zIndex: 3,
-            }}
-          />
+          <p className="absolute top-4 left-4 z-10 text-white/70 font-bold text-[11px] tracking-[0.18em] drop-shadow-md">
+            SETE TECH
+          </p>
         </div>
 
-        {/* CONTEÚDO ──────────────────────────────────────────────── */}
-        <div className="flex flex-col flex-grow gap-2.5 px-5 pt-3 pb-6">
+        {/* Conteúdo */}
+        <div className="flex flex-col gap-2.5 px-5 pt-3 pb-5 flex-grow">
 
           <div className="flex items-center gap-2">
             <div
-              className="h-2 w-2 rounded-full flex-shrink-0"
-              style={{ backgroundColor: founder.accentColor }}
+              className="h-2.5 w-2.5 rounded-full flex-shrink-0"
+              style={{ backgroundColor: f.accentColor }}
             />
-            <h3
-              className="font-bold text-white tracking-tight"
-              style={{ fontSize: '18px', fontFamily: 'var(--font-dm-sans)' }}
-            >
-              {founder.name}
+            <h3 className="text-[17px] font-bold text-white tracking-tight">
+              {f.name}
             </h3>
           </div>
 
-          <div className="flex items-center gap-2 flex-wrap">
-            <span
-              className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 font-semibold uppercase text-white/60"
-              style={{ fontSize: '10px', letterSpacing: '0.08em', backgroundColor: 'rgba(255,255,255,0.08)' }}
-            >
-              <span style={{ color: founder.accentColor }}>✓</span>
-              {founder.tag1}
-            </span>
-            <span
-              className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 font-semibold uppercase text-white/60"
-              style={{ fontSize: '10px', letterSpacing: '0.08em', backgroundColor: 'rgba(255,255,255,0.08)' }}
-            >
-              <span style={{ color: founder.accentColor }}>✓</span>
-              {founder.tag2}
-            </span>
+          <div className="flex flex-wrap gap-1.5">
+            {[f.tag1, f.tag2].map((tag) => (
+              <span
+                key={tag}
+                className="inline-flex items-center gap-1 rounded-full text-[9px] font-bold uppercase tracking-[0.07em] text-white/55"
+                style={{
+                  padding: '3px 9px',
+                  backgroundColor: f.accentColor + '18',
+                  border: `1px solid ${f.accentColor}30`,
+                }}
+              >
+                <span style={{ color: f.accentColor }}>✓</span>
+                {tag}
+              </span>
+            ))}
           </div>
 
-          <p
-            className="mt-1 flex-grow text-white/45"
-            style={{ fontSize: '13px', lineHeight: 1.55, fontFamily: 'var(--font-dm-sans)' }}
-          >
-            {founder.description}
+          <p className="text-[12px] leading-[1.6] text-white/40">
+            {f.description}
           </p>
         </div>
       </div>
 
-      {/* ÍCONE — fora do clipPath, encaixado no espaço do notch */}
+      {/* Ícone posicionado no notch */}
       <div
-        className="absolute flex items-center justify-center rounded-full select-none"
+        className="absolute z-30 flex items-center justify-center rounded-full text-xl"
         style={{
-          top: '3px',
-          right: '3px',
-          width: `${N - 8}px`,
-          height: `${N - 8}px`,
-          backgroundColor: founder.accentColor,
-          border: '2px solid rgba(255,255,255,0.22)',
-          boxShadow: `0 4px 18px ${founder.accentColor}66`,
-          fontSize: '19px',
-          zIndex: 40,
+          top: '-18px',
+          right: '-18px',
+          width: '52px',
+          height: '52px',
+          backgroundColor: f.accentColor,
+          border: '3px solid rgba(255,255,255,0.2)',
+          boxShadow: `0 4px 20px ${f.accentColor}70`,
         }}
       >
-        {founder.icon}
+        {f.icon}
       </div>
     </div>
   )
 }
 
 export default function ProjectsSection() {
-  const sectionRef = useRef<HTMLElement>(null)
-  const gridRef    = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger)
-    const ctx = gsap.context(() => {
-      if (!gridRef.current) return
-      gsap.from(gridRef.current.children, {
-        opacity: 0,
-        y: 50,
-        stagger: 0.15,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: { trigger: gridRef.current, start: 'top 75%', once: true },
-      })
-    }, sectionRef)
-    return () => ctx.revert()
-  }, [])
-
   return (
     <section
-      ref={sectionRef}
       id="cases"
-      className="rounded-b-[40px] overflow-hidden pt-32 pb-24"
-      style={{
-        backgroundColor: SECTION_BG,
-        paddingLeft: 'clamp(32px, 8vw, 96px)',
-        paddingRight: 'clamp(32px, 8vw, 96px)',
-      }}
+      className="py-24 rounded-b-[40px] overflow-hidden"
+      style={{ backgroundColor: '#F0F0F0' }}
     >
-      <div style={{ maxWidth: '1152px', margin: '0 auto' }}>
-
-        {/* Header */}
-        <div style={{ marginBottom: '56px' }}>
-          <span
-            className="inline-block text-[11px] font-semibold tracking-[0.1em] uppercase text-[#6A00FF] mb-3"
-            style={{ fontFamily: 'var(--font-dm-sans)' }}
-          >
-            NOSSO PORTFÓLIO
-          </span>
-          <h2
+      {/* Título */}
+      <div className="px-6 md:px-16 max-w-7xl mx-auto mb-16">
+        <p
+          className="text-xs font-bold uppercase tracking-[0.2em] text-[#6A00FF] mb-3"
+          style={{ fontFamily: 'var(--font-dm-sans)' }}
+        >
+          NOSSO PORTFÓLIO
+        </p>
+        <h2
+          style={{
+            fontFamily: 'var(--font-serif)',
+            fontSize: 'clamp(32px, 4vw, 56px)',
+            fontWeight: 400,
+            color: '#0D0D0D',
+            lineHeight: 1.1,
+          }}
+        >
+          Cases &{' '}
+          <em
             style={{
-              fontFamily: 'var(--font-serif)',
-              fontSize: 'clamp(32px, 4vw, 56px)',
-              fontWeight: 400,
-              color: '#0D0D0D',
-              lineHeight: 1.1,
+              fontStyle: 'italic',
+              background: 'linear-gradient(90deg, #6A00FF, #D600FF)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
             }}
           >
-            Cases &{' '}
-            <em
-              style={{
-                fontStyle: 'italic',
-                background: 'linear-gradient(90deg, #6A00FF, #D600FF)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-              }}
-            >
-              Projetos
-            </em>
-          </h2>
-        </div>
-
-        {/* Cards — flex wrap com largura fixa por card */}
-        <div
-          ref={gridRef}
-          className="flex flex-wrap justify-center gap-6"
-        >
-          {founders.map((founder) => (
-            <FounderCard key={founder.name} founder={founder} />
-          ))}
-        </div>
+            Projetos
+          </em>
+        </h2>
       </div>
+
+      {/* Estilos dos bullets de paginação */}
+      <style>{`
+        .founders-swiper { padding-bottom: 50px !important; }
+        .founders-swiper .swiper-pagination-bullet {
+          background: #6A00FF;
+          opacity: 0.4;
+        }
+        .founders-swiper .swiper-pagination-bullet-active {
+          opacity: 1;
+          background: #A100FF;
+        }
+      `}</style>
+
+      {/* Swiper Coverflow */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+      >
+        <Swiper
+          effect="coverflow"
+          grabCursor
+          centeredSlides
+          loop
+          slidesPerView={2.4}
+          spaceBetween={40}
+          coverflowEffect={{
+            rotate: 0,
+            stretch: 0,
+            depth: 120,
+            modifier: 2.5,
+            slideShadows: false,
+          }}
+          pagination={{ clickable: true }}
+          modules={[EffectCoverflow, Pagination, Autoplay]}
+          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          className="founders-swiper"
+          breakpoints={{
+            0:    { slidesPerView: 1.2, spaceBetween: 20 },
+            640:  { slidesPerView: 1.8, spaceBetween: 30 },
+            1024: { slidesPerView: 2.4, spaceBetween: 40 },
+          }}
+        >
+          {founders.map((f) => (
+            <SwiperSlide key={f.name} className="!overflow-visible">
+              <FounderCard f={f} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </motion.div>
     </section>
   )
 }
