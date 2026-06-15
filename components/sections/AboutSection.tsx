@@ -30,6 +30,7 @@ export default function AboutSection() {
     <section
       ref={sectionRef}
       id="sobre"
+      className="rounded-t-[40px] overflow-hidden"
       style={{
         background: 'var(--color-surface)',
         paddingTop: '96px',
