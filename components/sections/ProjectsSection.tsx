@@ -1,73 +1,303 @@
-import React from 'react';
+'use client'
 
-const projects = [
-  { name: 'Fundador 1', tag1: 'DESENVOLVIMENTO WEB', tag2: 'FRONTEND', desc: 'Especialista em sistemas web de alta performance para empresas e órgãos públicos do Piauí.', color: '#8b5cf6', icon: '💻', bg: '#1E0A35' },
-  { name: 'Fundador 2', tag1: 'AUTOMAÇÃO & IA', tag2: 'INFRAESTRUTURA', desc: 'Lidera a arquitetura técnica e integração de modelos de IA nos produtos da SETE TECH.', color: '#10b981', icon: '🤖', bg: '#0A1A10' },
-  { name: 'Fundador 3', tag1: 'MARKETING DIGITAL', tag2: 'DESIGN & UX', desc: 'Responsável pela identidade visual e estratégias de crescimento digital da SETE TECH.', color: '#f59e0b', icon: '🎨', bg: '#1A1200' },
-  { name: 'Fundador 4', tag1: 'GESTÃO & NEGÓCIOS', tag2: 'ÓRGÃOS PÚBLICOS', desc: 'Especialista em soluções para prefeituras, autarquias e secretarias do Piauí.', color: '#3b82f6', icon: '🏢', bg: '#0A0F1E' }
-];
+import { useId, useEffect, useRef } from 'react'
+import Image from 'next/image'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-export default function ProjectsSection() {
+const SECTION_BG = '#EEEEEE'
+
+/* ── Dimensões do card ─────────────────────────────────────────── */
+const W = 260   // largura px
+const H = 480   // altura px
+const R = 24    // border-radius nos 3 cantos normais
+const N = 48    // raio do notch côncavo no canto superior direito
+
+const founders = [
+  {
+    name: 'Fundador 1',
+    tag1: 'DESENVOLVIMENTO WEB',
+    tag2: 'FRONTEND',
+    description: 'Especialista em sistemas web de alta performance para empresas e órgãos públicos do Piauí.',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80',
+    bgColor: '#1E0A35',
+    accentColor: '#6A00FF',
+    icon: '💻',
+  },
+  {
+    name: 'Fundador 2',
+    tag1: 'AUTOMAÇÃO & IA',
+    tag2: 'INFRAESTRUTURA',
+    description: 'Lidera a arquitetura técnica e integração de modelos de IA nos produtos da SETE TECH.',
+    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80',
+    bgColor: '#0A1A10',
+    accentColor: '#00C853',
+    icon: '🤖',
+  },
+  {
+    name: 'Fundador 3',
+    tag1: 'MARKETING DIGITAL',
+    tag2: 'DESIGN & UX',
+    description: 'Responsável pela identidade visual e estratégias de crescimento digital da SETE TECH.',
+    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80',
+    bgColor: '#1A1200',
+    accentColor: '#FFB300',
+    icon: '🎨',
+  },
+  {
+    name: 'Fundador 4',
+    tag1: 'GESTÃO & NEGÓCIOS',
+    tag2: 'ÓRGÃOS PÚBLICOS',
+    description: 'Especialista em soluções para prefeituras, autarquias e secretarias do Piauí.',
+    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&q=80',
+    bgColor: '#0A0F1E',
+    accentColor: '#2979FF',
+    icon: '🏛️',
+  },
+]
+
+type Founder = (typeof founders)[0]
+
+/**
+ * Gera o SVG path do card com notch côncavo no canto superior direito.
+ *
+ * Segmento crítico: `A N N 0 0 0 W N`
+ *   De (W-N, 0) até (W, N), raio N, small-arc, sweep=0 (CCW na tela).
+ *   O arco passa por ≈(W-N+14, N/2) — DENTRO do card = côncavo.
+ */
+function buildNotchPath(w: number, h: number, r: number, n: number): string {
+  return [
+    `M ${r} 0`,
+    `L ${w - n} 0`,
+    `A ${n} ${n} 0 0 0 ${w} ${n}`,
+    `L ${w} ${h - r}`,
+    `Q ${w} ${h} ${w - r} ${h}`,
+    `L ${r} ${h}`,
+    `Q 0 ${h} 0 ${h - r}`,
+    `L 0 ${r}`,
+    `Q 0 0 ${r} 0`,
+    'Z',
+  ].join(' ')
+}
+
+function FounderCard({ founder }: { founder: Founder }) {
+  const rawId  = useId()
+  const clipId = `clip${rawId.replace(/[^a-z0-9]/gi, '')}`
+  const path   = buildNotchPath(W, H, R, N)
+  const photoH = Math.round(H * 0.63)
+
   return (
-    <section className="py-16 px-4 bg-[#EEEEEE]">
-      <svg className="absolute w-0 h-0">
+    /* Wrapper com dimensões fixas — o clipPath usa userSpaceOnUse absoluto */
+    <div className="relative flex-shrink-0" style={{ width: `${W}px`, height: `${H}px` }}>
+
+      {/* SVG oculto que define o clip (zero espaço visual) */}
+      <svg
+        aria-hidden="true"
+        style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden' }}
+      >
         <defs>
-          <clipPath id="notch-clip">
-            {/* Caminho customizado com notch côncavo no canto superior direito */}
-            <path d="M 24,0 L 216,0 Q 232,0 238,6 Q 244,10 244,18 L 244,24 Q 244,32 236,36 Q 228,40 220,40 Q 212,38 208,32 Q 204,26 200,20 L 0,20 Q 0,12 0,24 L 0,396 Q 0,420 24,420 L 236,420 Q 260,420 260,396 L 260,24 Q 260,0 236,0 L 24,0 Z" />
+          <clipPath id={clipId} clipPathUnits="userSpaceOnUse">
+            <path d={path} />
           </clipPath>
         </defs>
       </svg>
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        {projects.map((p, i) => (
-          <div key={i} className="w-[260px] h-[420px] mx-auto relative hover:scale-105 transition-transform duration-300" style={{ perspective: '1000px' }}>
-            
-            {/* Container principal com rounded corners */}
-            <div className="w-full h-full bg-white rounded-[24px] shadow-lg overflow-hidden relative">
-              
-              {/* Seção de fundo/imagem com notch */}
-              <div
-                style={{
-                  backgroundColor: p.bg,
-                  backgroundImage: `radial-gradient(circle at calc(100% + 20px) calc(-20px), ${p.color}15 0%, transparent 40%)`,
-                  clipPath: 'polygon(0 0, calc(100% - 44px) 0, calc(100% - 28px) 8px, calc(100% - 12px) 16px, 100% 32px, 100% 100%, 0 100%, 0 24px)',
-                }}
-                className="h-[286px] relative p-4"
-              >
-                <div className="text-white font-bold text-sm relative z-10">SETE TECH</div>
-              </div>
+      {/* Card recortado pelo SVG clip */}
+      <div
+        className="group absolute inset-0 flex flex-col cursor-pointer
+          transition-transform duration-300 hover:-translate-y-2"
+        style={{
+          backgroundColor: founder.bgColor,
+          clipPath: `url(#${clipId})`,
+        }}
+      >
+        {/* FOTO ─────────────────────────────────────────────────── */}
+        <div className="relative flex-shrink-0 overflow-hidden" style={{ height: `${photoH}px` }}>
 
-              {/* Seção de conteúdo */}
-              <div className="h-[134px] p-4 flex flex-col gap-2 bg-white">
-                <div className="flex items-center gap-2">
-                  <div style={{ backgroundColor: p.color }} className="w-3 h-3 rounded-full flex-shrink-0" />
-                  <span className="font-bold text-gray-900 text-sm">{p.name}</span>
-                </div>
-                <div className="flex gap-1 flex-wrap">
-                  <span style={{ backgroundColor: p.color + '20', color: p.color }} className="text-[10px] font-bold px-2 py-1 rounded-full whitespace-nowrap">✓ {p.tag1}</span>
-                  <span style={{ backgroundColor: p.color + '20', color: p.color }} className="text-[10px] font-bold px-2 py-1 rounded-full whitespace-nowrap">✓ {p.tag2}</span>
-                </div>
-                <p className="text-[11px] text-gray-500 leading-tight flex-1">{p.desc}</p>
-              </div>
-            </div>
+          {/* Backlight radial atrás da foto */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: `radial-gradient(ellipse at 50% 45%, ${founder.accentColor}55 0%, ${founder.bgColor} 72%)`,
+              zIndex: 0,
+            }}
+          />
 
-            {/* Ícone circular - encaixado perfeitamente no notch */}
-            <div
-              style={{
-                backgroundColor: p.color,
-                opacity: 0.92,
-                boxShadow: `0 16px 40px ${p.color}45, inset 0 1px 0 rgba(255,255,255,0.3), inset 0 -1px 2px rgba(0,0,0,0.1)`,
-                top: '-18px',
-                right: '-18px',
-              }}
-              className="absolute w-14 h-14 rounded-full flex items-center justify-center text-2xl border-2 border-white/30 z-30 flex-shrink-0"
-            >
-              {p.icon}
-            </div>
+          <Image
+            src={founder.image}
+            alt={founder.name}
+            fill
+            className="object-cover object-top group-hover:scale-105 transition-transform duration-700"
+            style={{ zIndex: 1, filter: 'brightness(0.82) contrast(1.05)' }}
+            unoptimized
+          />
+
+          {/* Glow colorido de baixo */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background: `radial-gradient(ellipse at 50% 80%, ${founder.accentColor}55 0%, transparent 65%)`,
+              zIndex: 2,
+            }}
+          />
+
+          {/* Logo SETE TECH */}
+          <div className="absolute top-0 left-0 p-3.5" style={{ zIndex: 10 }}>
+            <img
+              src="https://res.cloudinary.com/dnth1inmv/image/upload/v1781121651/logo_Sete_Tech_color_1_irsexx.png"
+              alt="SETE TECH"
+              className="h-5 w-auto object-contain drop-shadow-lg"
+            />
           </div>
-        ))}
+
+          {/* Fade da base da foto para o fundo do card */}
+          <div
+            className="absolute inset-x-0 bottom-0 h-2/5 pointer-events-none"
+            style={{
+              background: `linear-gradient(to top, ${founder.bgColor} 5%, transparent 100%)`,
+              zIndex: 3,
+            }}
+          />
+        </div>
+
+        {/* CONTEÚDO ──────────────────────────────────────────────── */}
+        <div className="flex flex-col flex-grow gap-2.5 px-5 pt-3 pb-6">
+
+          <div className="flex items-center gap-2">
+            <div
+              className="h-2 w-2 rounded-full flex-shrink-0"
+              style={{ backgroundColor: founder.accentColor }}
+            />
+            <h3
+              className="font-bold text-white tracking-tight"
+              style={{ fontSize: '18px', fontFamily: 'var(--font-dm-sans)' }}
+            >
+              {founder.name}
+            </h3>
+          </div>
+
+          <div className="flex items-center gap-2 flex-wrap">
+            <span
+              className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 font-semibold uppercase text-white/60"
+              style={{ fontSize: '10px', letterSpacing: '0.08em', backgroundColor: 'rgba(255,255,255,0.08)' }}
+            >
+              <span style={{ color: founder.accentColor }}>✓</span>
+              {founder.tag1}
+            </span>
+            <span
+              className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 font-semibold uppercase text-white/60"
+              style={{ fontSize: '10px', letterSpacing: '0.08em', backgroundColor: 'rgba(255,255,255,0.08)' }}
+            >
+              <span style={{ color: founder.accentColor }}>✓</span>
+              {founder.tag2}
+            </span>
+          </div>
+
+          <p
+            className="mt-1 flex-grow text-white/45"
+            style={{ fontSize: '13px', lineHeight: 1.55, fontFamily: 'var(--font-dm-sans)' }}
+          >
+            {founder.description}
+          </p>
+        </div>
+      </div>
+
+      {/* ÍCONE — fora do clipPath, encaixado no espaço do notch */}
+      <div
+        className="absolute flex items-center justify-center rounded-full select-none"
+        style={{
+          top: '3px',
+          right: '3px',
+          width: `${N - 8}px`,
+          height: `${N - 8}px`,
+          backgroundColor: founder.accentColor,
+          border: '2px solid rgba(255,255,255,0.22)',
+          boxShadow: `0 4px 18px ${founder.accentColor}66`,
+          fontSize: '19px',
+          zIndex: 40,
+        }}
+      >
+        {founder.icon}
+      </div>
+    </div>
+  )
+}
+
+export default function ProjectsSection() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const gridRef    = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger)
+    const ctx = gsap.context(() => {
+      if (!gridRef.current) return
+      gsap.from(gridRef.current.children, {
+        opacity: 0,
+        y: 50,
+        stagger: 0.15,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: { trigger: gridRef.current, start: 'top 75%', once: true },
+      })
+    }, sectionRef)
+    return () => ctx.revert()
+  }, [])
+
+  return (
+    <section
+      ref={sectionRef}
+      id="cases"
+      className="rounded-b-[40px] overflow-hidden pt-32 pb-24"
+      style={{
+        backgroundColor: SECTION_BG,
+        paddingLeft: 'clamp(32px, 8vw, 96px)',
+        paddingRight: 'clamp(32px, 8vw, 96px)',
+      }}
+    >
+      <div style={{ maxWidth: '1152px', margin: '0 auto' }}>
+
+        {/* Header */}
+        <div style={{ marginBottom: '56px' }}>
+          <span
+            className="inline-block text-[11px] font-semibold tracking-[0.1em] uppercase text-[#6A00FF] mb-3"
+            style={{ fontFamily: 'var(--font-dm-sans)' }}
+          >
+            NOSSO PORTFÓLIO
+          </span>
+          <h2
+            style={{
+              fontFamily: 'var(--font-serif)',
+              fontSize: 'clamp(32px, 4vw, 56px)',
+              fontWeight: 400,
+              color: '#0D0D0D',
+              lineHeight: 1.1,
+            }}
+          >
+            Cases &{' '}
+            <em
+              style={{
+                fontStyle: 'italic',
+                background: 'linear-gradient(90deg, #6A00FF, #D600FF)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}
+            >
+              Projetos
+            </em>
+          </h2>
+        </div>
+
+        {/* Cards — flex wrap com largura fixa por card */}
+        <div
+          ref={gridRef}
+          className="flex flex-wrap justify-center gap-6"
+        >
+          {founders.map((founder) => (
+            <FounderCard key={founder.name} founder={founder} />
+          ))}
+        </div>
       </div>
     </section>
-  );
+  )
 }
