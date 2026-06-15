@@ -6,7 +6,7 @@ import HeroSection from '@/components/sections/HeroSection'
 import ServicesSection from '@/components/sections/ServicesSection'
 import AboutSection from '@/components/sections/AboutSection'
 import ScrollAnimationSection from '@/components/sections/ScrollAnimationSection'
-import ProjectsSection from '@/components/sections/ProjectsSection'
+import TeamSection from '@/components/sections/TeamSection'
 import TestimonialsSection from '@/components/sections/TestimonialsSection'
 import ContactSection from '@/components/sections/ContactSection'
 
@@ -30,7 +30,7 @@ export default function Home() {
         <ServicesSection />
         <ScrollAnimationSection />
         <AboutSection />
-        <ProjectsSection />
+        <TeamSection />
         <TestimonialsSection />
         <ContactSection />
       </div>
