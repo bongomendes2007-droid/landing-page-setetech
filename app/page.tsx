@@ -7,7 +7,6 @@ import ServicesSection from '@/components/sections/ServicesSection'
 import AboutSection from '@/components/sections/AboutSection'
 import ScrollAnimationSection from '@/components/sections/ScrollAnimationSection'
 import TeamSection from '@/components/sections/TeamSection'
-import TestimonialsSection from '@/components/sections/TestimonialsSection'
 import ContactSection from '@/components/sections/ContactSection'
 
 export default function Home() {
@@ -31,7 +30,6 @@ export default function Home() {
         <ScrollAnimationSection />
         <AboutSection />
         <TeamSection />
-        <TestimonialsSection />
         <ContactSection />
       </div>
     </>
