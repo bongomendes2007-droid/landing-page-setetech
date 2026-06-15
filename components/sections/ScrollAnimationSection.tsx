@@ -21,20 +21,18 @@ const CharacterV1 = ({ char, index, centerIndex, scrollYProgress }: {
 }
 
 const CharacterV2 = ({ char, index, centerIndex, scrollYProgress }: {
-  char: string; index: number; centerIndex: number; scrollYProgress: ReturnType<typeof useScroll>["scrollYProgress"]
+  char: { src: string; alt: string }; index: number; centerIndex: number; scrollYProgress: ReturnType<typeof useScroll>["scrollYProgress"]
 }) => {
   const distanceFromCenter = index - centerIndex
-  const x = useTransform(scrollYProgress, [0, 0.5], [distanceFromCenter * 50, 0])
+  const x = useTransform(scrollYProgress, [0, 0.5], [distanceFromCenter * 60, 0])
   const scale = useTransform(scrollYProgress, [0, 0.5], [0.75, 1])
   const y = useTransform(scrollYProgress, [0, 0.5], [Math.abs(distanceFromCenter) * 50, 0])
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <motion.img
-      src={char}
-      alt=""
-      width={60}
-      height={60}
-      className="inline-block mx-2"
+      src={char.src}
+      alt={char.alt}
+      className="inline-block mx-4 h-12 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity"
       style={{ x, scale, y, transformOrigin: "center" }}
     />
   )
@@ -61,6 +59,27 @@ const CharacterV3 = ({ char, index, centerIndex, scrollYProgress }: {
   )
 }
 
+const partnerLogos = [
+  {
+    src: "https://res.cloudinary.com/dnth1inmv/image/upload/v1779833548/setetvnews_color_branca_H_ggfybe.png",
+    alt: "SETE TV NEWS",
+  },
+  {
+    src: "https://res.cloudinary.com/dd5f5j2ni/image/upload/v1781121651/logo_Sete_Tech_color_1_irsexx.png",
+    alt: "SETE TECH",
+  },
+  {
+    // TODO: substituir pela URL real da logo AGROSETE
+    src: "https://res.cloudinary.com/dnth1inmv/image/upload/v1779833548/setetvnews_color_branca_H_ggfybe.png",
+    alt: "AGROSETE",
+  },
+  {
+    // TODO: substituir pela URL real da logo SETE Esportivo
+    src: "https://res.cloudinary.com/dnth1inmv/image/upload/v1779833548/setetvnews_color_branca_H_ggfybe.png",
+    alt: "SETE Esportivo",
+  },
+]
+
 const techIcons = [
   "https://cdn.simpleicons.org/react/white",
   "https://cdn.simpleicons.org/nextdotjs/white",
@@ -73,7 +92,7 @@ const techIcons = [
   "https://cdn.simpleicons.org/github/white",
 ]
 
-const text = "TECNOLOGIA QUE TRANSFORMA"
+const text = "FEITO NO PIAUÍ"
 const characters = text.split("")
 const centerIndex = Math.floor(characters.length / 2)
 const iconCenterIndex = Math.floor(techIcons.length / 2)
@@ -102,7 +121,7 @@ export default function ScrollAnimationSection() {
         className="relative flex h-[210vh] items-center justify-center overflow-hidden"
       >
         <div
-          className="w-full max-w-5xl text-center text-5xl md:text-7xl font-bold uppercase tracking-tighter"
+          className="w-full text-center text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter whitespace-nowrap overflow-visible"
           style={{ perspective: "500px" }}
         >
           {characters.map((char, i) => (
@@ -117,30 +136,30 @@ export default function ScrollAnimationSection() {
         </div>
       </div>
 
-      {/* V2 — Logos espalhando horizontalmente */}
+      {/* V2 — Logos de parceiros espalhando horizontalmente */}
       <div
         ref={ref2}
         className="relative -mt-[100vh] flex h-[210vh] flex-col items-center justify-center gap-8 overflow-hidden"
       >
         <p className="flex items-center justify-center gap-3 text-xl font-medium tracking-tight text-white/70">
           <Bracket className="h-10 text-white/40" />
-          <span>nosso stack tecnológico</span>
+          <span>nossos parceiros & clientes</span>
           <Bracket className="h-10 scale-x-[-1] text-white/40" />
         </p>
         <div className="w-full max-w-4xl text-center">
-          {techIcons.map((src, i) => (
+          {partnerLogos.map((logo, i) => (
             <CharacterV2
               key={i}
-              char={src}
+              char={logo}
               index={i}
-              centerIndex={iconCenterIndex}
+              centerIndex={Math.floor(partnerLogos.length / 2)}
               scrollYProgress={s2}
             />
           ))}
         </div>
       </div>
 
-      {/* V3 — Logos girando e se juntando */}
+      {/* V3 — Logos de tech girando e se juntando */}
       <div
         ref={ref3}
         className="relative -mt-[95vh] flex h-[210vh] flex-col items-center justify-center gap-8 overflow-hidden"
