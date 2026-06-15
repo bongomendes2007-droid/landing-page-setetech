@@ -69,9 +69,9 @@ export default function ContactSection() {
     width: '100%',
     padding: '12px 16px',
     borderRadius: '12px',
-    border: '1px solid var(--color-border)',
-    background: 'var(--color-card)',
-    color: 'var(--color-text)',
+    border: '1px solid rgba(255,255,255,0.15)',
+    background: 'rgba(255,255,255,0.08)',
+    color: 'white',
     fontFamily: 'var(--font-dm-sans)',
     fontSize: '14px',
     transition: 'border-color 0.2s',
@@ -82,7 +82,7 @@ export default function ContactSection() {
     fontWeight: 600,
     letterSpacing: '0.08em',
     textTransform: 'uppercase',
-    color: 'var(--color-subtle)',
+    color: 'rgba(255,255,255,0.6)',
     fontFamily: 'var(--font-dm-sans)',
     display: 'block',
     marginBottom: '6px',
@@ -103,7 +103,7 @@ export default function ContactSection() {
       id="contato"
       className="relative overflow-hidden"
       style={{
-        background: '#7A1CF8',
+        background: 'radial-gradient(125% 125% at 50% 20%, #0D0D0D 0%, #1A0033 40%, #6A00FF 70%, #A100FF 88%, #D600FF 100%)',
         paddingTop: '96px',
         paddingBottom: '96px',
         paddingLeft: 'clamp(32px, 8vw, 96px)',
@@ -124,7 +124,7 @@ export default function ContactSection() {
             fontWeight: 600,
             letterSpacing: '0.1em',
             textTransform: 'uppercase',
-            color: 'var(--color-accent)',
+            color: '#D600FF',
             fontFamily: 'var(--font-dm-sans)',
             marginBottom: '12px',
           }}
@@ -166,8 +166,8 @@ export default function ContactSection() {
             onSubmit={(e) => { e.preventDefault(); void handleSubmit() }}
             className="rounded-2xl flex flex-col gap-5"
             style={{
-              background: 'var(--color-surface)',
-              border: '1px solid var(--color-border)',
+              background: 'rgba(255,255,255,0.08)',
+              border: '1px solid rgba(255,255,255,0.15)',
               padding: '32px',
             }}
             noValidate
@@ -266,13 +266,11 @@ export default function ContactSection() {
             <button
               type="submit"
               disabled={status === 'loading'}
-              className="w-full rounded-full font-semibold text-sm hover:opacity-90 disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-[#A100FF] focus-visible:outline-offset-2 active:scale-[0.97]"
+              className="w-full rounded-full font-bold text-sm bg-white text-[#6A00FF] hover:bg-[#FFF7EA] disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2 active:scale-[0.97]"
               style={{
-                background: 'var(--gradient-accent)',
-                color: '#FFFFFF',
                 fontFamily: 'var(--font-dm-sans)',
                 padding: '14px',
-                transition: 'opacity 0.2s, transform 0.16s cubic-bezier(0.23,1,0.32,1)',
+                transition: 'background 0.2s, opacity 0.2s, transform 0.16s cubic-bezier(0.23,1,0.32,1)',
               }}
             >
               {status === 'loading' ? 'Enviando...' : 'Solicitar proposta gratuita'}
@@ -283,8 +281,8 @@ export default function ContactSection() {
           <aside
             className="rounded-2xl flex flex-col gap-4"
             style={{
-              background: 'var(--color-surface)',
-              border: '1px solid var(--color-border)',
+              background: 'rgba(255,255,255,0.08)',
+              border: '1px solid rgba(255,255,255,0.15)',
               padding: '28px',
             }}
           >

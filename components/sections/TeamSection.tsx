@@ -182,7 +182,7 @@ export default function TeamSection() {
     <section
       id="equipe"
       className="py-24 rounded-b-[40px] overflow-hidden"
-      style={{ backgroundColor: '#F0F0F0' }}
+      style={{ background: 'radial-gradient(125% 125% at 50% 20%, #0D0D0D 0%, #1A0033 40%, #6A00FF 70%, #A100FF 88%, #D600FF 100%)' }}
     >
       {/* FIX 5 — Título animado */}
       <motion.div
@@ -193,13 +193,13 @@ export default function TeamSection() {
         className="px-6 md:px-16 max-w-7xl mx-auto mb-16"
       >
         <p
-          className="text-xs font-bold uppercase tracking-[0.2em] text-[#6A00FF] mb-3"
+          className="text-xs font-bold uppercase tracking-[0.2em] text-[#D600FF] mb-3"
           style={{ fontFamily: 'var(--font-dm-sans)' }}
         >
           NOSSO TIME
         </p>
         <h2
-          className="text-4xl md:text-5xl font-bold text-[#0D0D0D]"
+          className="text-4xl md:text-5xl font-bold text-white"
           style={{ fontFamily: 'var(--font-syne)', lineHeight: 1.1 }}
         >
           As pessoas por trás da{' '}
@@ -214,7 +214,7 @@ export default function TeamSection() {
             SETE TECH
           </span>
         </h2>
-        <p className="mt-3 text-[15px] text-black/50 max-w-lg" style={{ fontFamily: 'var(--font-dm-sans)' }}>
+        <p className="mt-3 text-[15px] text-white/70 max-w-lg" style={{ fontFamily: 'var(--font-dm-sans)' }}>
           Fundadores apaixonados por tecnologia e comprometidos com o desenvolvimento digital do Piauí.
         </p>
       </motion.div>
@@ -280,12 +280,12 @@ export default function TeamSection() {
       >
         {STATS.map((stat, i) => (
           <div key={stat.label} className="contents">
-            {i > 0 && <div className="hidden md:block h-8 w-px bg-black/10" />}
+            {i > 0 && <div className="hidden md:block h-8 w-px bg-white/10" />}
             <div className="flex flex-col items-center gap-1">
-              <span className="text-3xl font-black text-[#0D0D0D]" style={{ fontFamily: 'var(--font-syne)' }}>
+              <span className="text-3xl font-black text-white" style={{ fontFamily: 'var(--font-syne)' }}>
                 {stat.number}
               </span>
-              <span className="text-xs font-medium text-black/40 uppercase tracking-wider" style={{ fontFamily: 'var(--font-dm-sans)' }}>
+              <span className="text-xs font-medium text-white/50 uppercase tracking-wider" style={{ fontFamily: 'var(--font-dm-sans)' }}>
                 {stat.label}
               </span>
             </div>

@@ -32,7 +32,7 @@ export default function AboutSection() {
       id="sobre"
       className="rounded-t-[40px] overflow-hidden"
       style={{
-        background: '#7A1CF8',
+        background: '#FFF7EA',
         paddingTop: '96px',
         paddingBottom: '96px',
         paddingLeft: 'clamp(32px, 8vw, 96px)',
@@ -52,7 +52,7 @@ export default function AboutSection() {
               fontWeight: 600,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
-              color: 'var(--color-accent)',
+              color: '#6A00FF',
               fontFamily: 'var(--font-dm-sans)',
               marginBottom: '12px',
             }}
@@ -64,7 +64,7 @@ export default function AboutSection() {
               fontFamily: 'var(--font-serif)',
               fontSize: 'clamp(28px, 3.5vw, 48px)',
               fontWeight: 400,
-              color: 'var(--color-text)',
+              color: '#0D0D0D',
               lineHeight: 1.1,
               marginBottom: '24px',
             }}
@@ -85,7 +85,7 @@ export default function AboutSection() {
               fontFamily: 'var(--font-dm-sans)',
               fontSize: '16px',
               lineHeight: 1.7,
-              color: 'var(--color-muted)',
+              color: '#444444',
               marginBottom: '16px',
             }}
           >
@@ -98,7 +98,7 @@ export default function AboutSection() {
               fontFamily: 'var(--font-dm-sans)',
               fontSize: '16px',
               lineHeight: 1.7,
-              color: 'var(--color-muted)',
+              color: '#444444',
             }}
           >
             Em 5 anos, transformamos negócios de 12 municípios piauienses — de PMEs locais a secretarias
@@ -107,7 +107,7 @@ export default function AboutSection() {
         </div>
 
         {/* Coluna órbitas de tecnologia */}
-        <div className="flex-1 flex items-center justify-center">
+        <div className="flex-1 flex items-center justify-center [&_img]:invert">
           <OrbitingTech />
         </div>
       </div>
