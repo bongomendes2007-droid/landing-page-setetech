@@ -65,7 +65,7 @@ const partnerLogos = [
     alt: "SETE TV NEWS",
   },
   {
-    src: "https://res.cloudinary.com/dd5f5j2ni/image/upload/v1781121651/logo_Sete_Tech_color_1_irsexx.png",
+    src: "https://res.cloudinary.com/dnth1inmv/image/upload/v1781123099/logo_Sete_Tech_branco_1_abpxap.png",
     alt: "SETE TECH",
   },
   {
