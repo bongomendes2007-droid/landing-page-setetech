@@ -69,13 +69,11 @@ const partnerLogos = [
     alt: "SETE TECH",
   },
   {
-    // TODO: substituir pela URL real da logo AGROSETE
-    src: "https://res.cloudinary.com/dnth1inmv/image/upload/v1779833548/setetvnews_color_branca_H_ggfybe.png",
+    src: "https://res.cloudinary.com/dnth1inmv/image/upload/v1780281871/AGROSETE_LOGO_BRANCO_wzv6bi.png",
     alt: "AGROSETE",
   },
   {
-    // TODO: substituir pela URL real da logo SETE Esportivo
-    src: "https://res.cloudinary.com/dnth1inmv/image/upload/v1779833548/setetvnews_color_branca_H_ggfybe.png",
+    src: "https://res.cloudinary.com/dnth1inmv/image/upload/v1779833556/LOGO_sete_esportivo_xdhrdx.png",
     alt: "SETE Esportivo",
   },
 ]
