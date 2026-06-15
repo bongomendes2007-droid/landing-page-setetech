@@ -90,7 +90,7 @@ const techIcons = [
   "https://cdn.simpleicons.org/github/white",
 ]
 
-const text = "FEITO NO PIAUÍ"
+const text = "PIAUÍ DIGITAL"
 const characters = text.split("")
 const centerIndex = Math.floor(characters.length / 2)
 const iconCenterIndex = Math.floor(techIcons.length / 2)
