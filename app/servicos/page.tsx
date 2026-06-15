@@ -47,7 +47,7 @@ export default function ServicosPage() {
       </section>
 
       {/* How we work */}
-      <section className="py-20 bg-white" aria-labelledby="process-heading">
+      <section className="py-20 bg-[#FFF7EA]" aria-labelledby="process-heading">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             tag="Nossa Metodologia"

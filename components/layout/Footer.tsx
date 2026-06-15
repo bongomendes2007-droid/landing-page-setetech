@@ -54,7 +54,7 @@ export default function Footer() {
   return (
     <footer
       className="pt-16 pb-8 px-6 md:px-12 lg:px-20"
-      style={{ background: 'var(--color-surface)', borderTop: '1px solid var(--color-border)' }}
+      style={{ background: '#7A1CF8', borderTop: '1px solid var(--color-border)' }}
     >
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">

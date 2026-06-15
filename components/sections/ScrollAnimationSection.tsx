@@ -111,7 +111,7 @@ export default function ScrollAnimationSection() {
   const { scrollYProgress: s3 } = useScroll({ target: ref3 })
 
   return (
-    <div className="bg-[#0D0D0D]">
+    <div className="bg-[#7A1CF8]">
 
       {/* V1 — Texto se juntando */}
       <div

@@ -45,7 +45,7 @@ export default function EquipePage() {
       </section>
 
       {/* Values */}
-      <section className="py-20 bg-white" aria-labelledby="values-heading">
+      <section className="py-20 bg-[#FFF7EA]" aria-labelledby="values-heading">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeading
             tag="Nosso Jeito"

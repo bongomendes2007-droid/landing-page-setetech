@@ -7,7 +7,7 @@ import SectionHeading from '@/components/shared/SectionHeading'
 
 export default function Testimonials() {
   return (
-    <section className="py-24 bg-white" aria-labelledby="testimonials-heading">
+    <section className="py-24 bg-[#7A1CF8]" aria-labelledby="testimonials-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           tag="Depoimentos"

@@ -3,6 +3,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import { Palette } from 'lucide-react'
 
 const SERVICES = [
   {
@@ -50,18 +51,11 @@ const SERVICES = [
     ),
   },
   {
-    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80',
-    title: 'Infraestrutura & Cloud',
-    description: 'Cloud computing, servidores, segurança, monitoramento e arquitetura escalável para suportar o crescimento do seu negócio.',
+    image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80',
+    title: 'Identidade Visual & Design',
+    description: 'Criação de marcas, logos, materiais gráficos e interfaces digitais que comunicam profissionalismo e geram reconhecimento para o seu negócio.',
     href: '#contato',
-    icon: (
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="2" width="20" height="8" rx="2" />
-        <rect x="2" y="14" width="20" height="8" rx="2" />
-        <line x1="6" y1="6" x2="6.01" y2="6" />
-        <line x1="6" y1="18" x2="6.01" y2="18" />
-      </svg>
-    ),
+    icon: <Palette className="h-4 w-4" />,
   },
   {
     image: 'https://images.unsplash.com/photo-1577962917302-cd874c4e31d2?w=800&q=80',
@@ -123,7 +117,7 @@ export default function ServicesSection() {
       id="servicos"
       className="relative overflow-hidden rounded-b-[40px]"
       style={{
-        background: '#F8F8F8',
+        background: '#FFF7EA',
         paddingTop: '96px',
         paddingBottom: '96px',
         paddingLeft: 'clamp(32px, 8vw, 96px)',

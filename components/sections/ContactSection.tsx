@@ -103,7 +103,7 @@ export default function ContactSection() {
       id="contato"
       className="relative overflow-hidden"
       style={{
-        background: 'var(--color-bg)',
+        background: '#7A1CF8',
         paddingTop: '96px',
         paddingBottom: '96px',
         paddingLeft: 'clamp(32px, 8vw, 96px)',

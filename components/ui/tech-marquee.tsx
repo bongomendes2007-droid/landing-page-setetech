@@ -24,7 +24,7 @@ const LogoRow = () => (
 
 export function TechMarquee() {
   return (
-    <div className="w-full overflow-hidden bg-[#0D0D0D] py-12 border-y border-white/5">
+    <div className="w-full overflow-hidden bg-[#7A1CF8] py-12 border-y border-white/5">
       <div className="w-full space-y-10">
         <Marquee gap="80px" fade pauseOnHover className="[--duration:35s]">
           <LogoRow />

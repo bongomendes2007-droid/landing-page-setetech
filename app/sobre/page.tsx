@@ -60,7 +60,7 @@ export default function SobrePage() {
       </section>
 
       {/* Story */}
-      <section className="py-20 bg-white" aria-labelledby="story-heading">
+      <section className="py-20 bg-[#FFF7EA]" aria-labelledby="story-heading">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="prose prose-slate max-w-none">
             <h2 id="story-heading" className="text-3xl font-bold text-slate-900 mb-8">

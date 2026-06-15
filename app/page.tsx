@@ -19,7 +19,7 @@ export default function Home() {
 
       {/* bg-[#F8F8F8] no pai do Hero: preenche os cantos arredondados */}
       <div
-        className="bg-[#F8F8F8]"
+        className="bg-[#FFF7EA]"
         style={{
           opacity: loading ? 0 : 1,
           transition: 'opacity 0.6s ease',

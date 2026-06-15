@@ -32,7 +32,7 @@ export default function AboutSection() {
       id="sobre"
       className="rounded-t-[40px] overflow-hidden"
       style={{
-        background: 'var(--color-surface)',
+        background: '#7A1CF8',
         paddingTop: '96px',
         paddingBottom: '96px',
         paddingLeft: 'clamp(32px, 8vw, 96px)',
