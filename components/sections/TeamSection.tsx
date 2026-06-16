@@ -181,7 +181,7 @@ export default function TeamSection() {
   return (
     <section
       id="equipe"
-      className="py-24 rounded-b-[40px] overflow-hidden"
+      className="py-24 rounded-t-[40px] rounded-b-[40px] overflow-hidden"
       style={{ backgroundColor: '#7A1CF8' }}
     >
       {/* FIX 5 — Título animado */}
