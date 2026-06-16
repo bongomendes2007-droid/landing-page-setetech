@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import AuroraBackground from '@/components/ui/AuroraBackground'
 
 interface FormData {
   name: string
@@ -69,9 +68,9 @@ export default function ContactSection() {
     width: '100%',
     padding: '12px 16px',
     borderRadius: '12px',
-    border: '1px solid rgba(255,255,255,0.15)',
-    background: 'rgba(255,255,255,0.08)',
-    color: 'white',
+    border: '1px solid rgba(0,0,0,0.10)',
+    background: 'rgba(0,0,0,0.05)',
+    color: '#0D0D0D',
     fontFamily: 'var(--font-dm-sans)',
     fontSize: '14px',
     transition: 'border-color 0.2s',
@@ -82,7 +81,7 @@ export default function ContactSection() {
     fontWeight: 600,
     letterSpacing: '0.08em',
     textTransform: 'uppercase',
-    color: 'rgba(255,255,255,0.6)',
+    color: 'rgba(0,0,0,0.60)',
     fontFamily: 'var(--font-dm-sans)',
     display: 'block',
     marginBottom: '6px',
@@ -94,7 +93,7 @@ export default function ContactSection() {
     e.target.style.outlineOffset = '2px'
   }
   function onInputBlur(e: { target: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement }, field: string) {
-    e.target.style.borderColor = errors[field] ? '#ff6b6b' : 'var(--color-border)'
+    e.target.style.borderColor = errors[field] ? '#ff6b6b' : 'rgba(0,0,0,0.10)'
     e.target.style.outline = 'none'
   }
 
@@ -103,15 +102,13 @@ export default function ContactSection() {
       id="contato"
       className="relative overflow-hidden"
       style={{
-        background: 'radial-gradient(125% 125% at 50% 20%, #0D0D0D 0%, #1A0033 40%, #6A00FF 70%, #A100FF 88%, #D600FF 100%)',
+        background: '#FFF7EA',
         paddingTop: '96px',
         paddingBottom: '96px',
         paddingLeft: 'clamp(32px, 8vw, 96px)',
         paddingRight: 'clamp(32px, 8vw, 96px)',
       }}
     >
-      <AuroraBackground />
-
       {/* Header */}
       <div
         className="relative z-10 text-center"
@@ -136,7 +133,7 @@ export default function ContactSection() {
             fontFamily: 'var(--font-serif)',
             fontSize: 'clamp(28px, 3.5vw, 48px)',
             fontWeight: 400,
-            color: 'var(--color-text)',
+            color: '#0D0D0D',
             lineHeight: 1.1,
             marginBottom: '16px',
           }}
@@ -152,7 +149,7 @@ export default function ContactSection() {
             seu negócio?
           </em>
         </h2>
-        <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '16px', color: 'var(--color-muted)' }}>
+        <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '16px', color: 'rgba(0,0,0,0.60)' }}>
           Fale com nossos especialistas em Teresina, PI. Resposta em até 24 horas.
         </p>
       </div>
@@ -166,8 +163,8 @@ export default function ContactSection() {
             onSubmit={(e) => { e.preventDefault(); void handleSubmit() }}
             className="rounded-2xl flex flex-col gap-5"
             style={{
-              background: 'rgba(255,255,255,0.08)',
-              border: '1px solid rgba(255,255,255,0.15)',
+              background: 'rgba(0,0,0,0.05)',
+              border: '1px solid rgba(0,0,0,0.10)',
               padding: '32px',
             }}
             noValidate
@@ -214,7 +211,7 @@ export default function ContactSection() {
                 onBlur={(e) => onInputBlur(e, 'serviceInterest')}
               >
                 {SERVICES.map((s) => (
-                  <option key={s.value} value={s.value} style={{ background: 'var(--color-card)' }}>
+                  <option key={s.value} value={s.value} style={{ background: '#FFF7EA', color: '#0D0D0D' }}>
                     {s.label}
                   </option>
                 ))}
@@ -240,8 +237,8 @@ export default function ContactSection() {
               <p
                 className="text-sm font-medium text-center rounded-xl"
                 style={{
-                  background: 'rgba(161,0,255,0.12)',
-                  color: 'var(--color-accent)',
+                  background: 'rgba(161,0,255,0.08)',
+                  color: '#6A00FF',
                   border: '1px solid rgba(161,0,255,0.2)',
                   padding: '12px',
                 }}
@@ -266,7 +263,7 @@ export default function ContactSection() {
             <button
               type="submit"
               disabled={status === 'loading'}
-              className="w-full rounded-full font-bold text-sm bg-white text-[#6A00FF] hover:bg-[#FFF7EA] disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2 active:scale-[0.97]"
+              className="w-full rounded-full font-bold text-sm bg-[#6A00FF] text-white hover:bg-[#A100FF] disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-[#6A00FF] focus-visible:outline-offset-2 active:scale-[0.97]"
               style={{
                 fontFamily: 'var(--font-dm-sans)',
                 padding: '14px',
@@ -281,16 +278,16 @@ export default function ContactSection() {
           <aside
             className="rounded-2xl flex flex-col gap-4"
             style={{
-              background: 'rgba(255,255,255,0.08)',
-              border: '1px solid rgba(255,255,255,0.15)',
+              background: 'rgba(0,0,0,0.05)',
+              border: '1px solid rgba(0,0,0,0.10)',
               padding: '28px',
             }}
           >
             <div style={{ marginBottom: '4px' }}>
-              <h3 style={{ fontFamily: 'var(--font-syne)', fontSize: '14px', fontWeight: 700, color: 'var(--color-text)', marginBottom: '6px' }}>
+              <h3 style={{ fontFamily: 'var(--font-syne)', fontSize: '14px', fontWeight: 700, color: '#0D0D0D', marginBottom: '6px' }}>
                 Fale diretamente conosco
               </h3>
-              <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '12px', color: 'var(--color-subtle)' }}>
+              <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '12px', color: 'rgba(0,0,0,0.60)' }}>
                 Prefere um canal direto? Escolha abaixo.
               </p>
             </div>
@@ -310,7 +307,7 @@ export default function ContactSection() {
               </div>
               <div>
                 <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '10px', color: 'rgba(37,211,102,0.8)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em' }}>WhatsApp</p>
-                <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '13px', fontWeight: 600, color: 'var(--color-text)' }}>(86) 9 9999-9999</p>
+                <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '13px', fontWeight: 600, color: '#0D0D0D' }}>(86) 9 9999-9999</p>
               </div>
             </a>
 
@@ -318,42 +315,42 @@ export default function ContactSection() {
             <a
               href={`mailto:${EMAIL}`}
               className="flex items-center gap-3 rounded-xl p-3 transition-opacity hover:opacity-80 focus-visible:outline-2 focus-visible:outline-[#A100FF] focus-visible:outline-offset-2"
-              style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}
+              style={{ background: 'rgba(0,0,0,0.03)', border: '1px solid rgba(0,0,0,0.10)' }}
             >
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(255,255,255,0.06)' }}>
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(0,0,0,0.04)' }}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#A100FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                   <rect x="2" y="4" width="20" height="16" rx="2" />
                   <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                 </svg>
               </div>
               <div className="min-w-0">
-                <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '10px', color: 'var(--color-accent)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em' }}>E-mail</p>
-                <p className="truncate" style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '13px', fontWeight: 600, color: 'var(--color-text)' }}>{EMAIL}</p>
+                <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '10px', color: '#A100FF', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em' }}>E-mail</p>
+                <p className="truncate" style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '13px', fontWeight: 600, color: '#0D0D0D' }}>{EMAIL}</p>
               </div>
             </a>
 
             {/* Localização */}
             <div
               className="flex items-center gap-3 rounded-xl p-3"
-              style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid var(--color-border)' }}
+              style={{ background: 'rgba(0,0,0,0.03)', border: '1px solid rgba(0,0,0,0.10)' }}
             >
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(255,255,255,0.05)' }}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-muted)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(0,0,0,0.04)' }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(0,0,0,0.40)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
                   <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
                   <circle cx="12" cy="10" r="3" />
                 </svg>
               </div>
               <div>
-                <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '10px', color: 'var(--color-subtle)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Localização</p>
-                <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '13px', fontWeight: 600, color: 'var(--color-text)' }}>Teresina, Piauí — Brasil</p>
+                <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '10px', color: 'rgba(0,0,0,0.60)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em' }}>Localização</p>
+                <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '13px', fontWeight: 600, color: '#0D0D0D' }}>Teresina, Piauí — Brasil</p>
               </div>
             </div>
 
             {/* Tempo de resposta */}
-            <div className="rounded-xl p-4 text-center" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}>
-              <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '12px', color: 'var(--color-muted)' }}>
+            <div className="rounded-xl p-4 text-center" style={{ background: 'rgba(0,0,0,0.03)', border: '1px solid rgba(0,0,0,0.10)' }}>
+              <p style={{ fontFamily: 'var(--font-dm-sans)', fontSize: '12px', color: 'rgba(0,0,0,0.60)' }}>
                 Resposta em até{' '}
-                <span style={{ color: 'var(--color-accent)', fontWeight: 700 }}>24 horas</span>
+                <span style={{ color: '#6A00FF', fontWeight: 700 }}>24 horas</span>
               </p>
             </div>
           </aside>

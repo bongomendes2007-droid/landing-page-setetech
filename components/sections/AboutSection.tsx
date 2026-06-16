@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { OrbitingTech } from '@/components/ui/orbiting-tech'
+import { AnimatedTerminal } from '@/components/ui/animated-terminal'
 
 export default function AboutSection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -106,9 +106,9 @@ export default function AboutSection() {
           </p>
         </div>
 
-        {/* Coluna órbitas de tecnologia */}
-        <div className="flex-1 flex items-center justify-center [&_img]:invert">
-          <OrbitingTech />
+        {/* Coluna terminal animado */}
+        <div className="flex-1 flex items-center justify-center">
+          <AnimatedTerminal />
         </div>
       </div>
     </section>
