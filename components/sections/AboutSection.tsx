@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { AnimatedTerminal } from '@/components/ui/animated-terminal'
+import Terminal from '@/registry/eldoraui/terminal'
 
 export default function AboutSection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -35,16 +35,11 @@ export default function AboutSection() {
         background: '#FFF7EA',
         paddingTop: '96px',
         paddingBottom: '96px',
-        paddingLeft: 'clamp(32px, 8vw, 96px)',
-        paddingRight: 'clamp(32px, 8vw, 96px)',
       }}
     >
-      <div
-        className="grid md:grid-cols-2 gap-16 items-center"
-        style={{ maxWidth: '1152px', margin: '0 auto' }}
-      >
+      <div className="flex flex-col lg:flex-row items-center gap-16 max-w-7xl mx-auto px-6 md:px-16">
         {/* Coluna texto */}
-        <div ref={textRef}>
+        <div ref={textRef} className="flex-1">
           <span
             style={{
               display: 'inline-block',
@@ -107,8 +102,29 @@ export default function AboutSection() {
         </div>
 
         {/* Coluna terminal animado */}
-        <div className="flex-1 flex items-center justify-center">
-          <AnimatedTerminal />
+        <div className="flex-1 flex items-center justify-center w-full">
+          <div className="w-full max-w-lg">
+            <Terminal
+              command="npx setetech --init"
+              steps={[
+                { text: "~ Configurando projeto", bold: true },
+                { text: " | ✓ Ambiente pronto" },
+                { text: "~ Conectando IA", bold: true },
+                { text: " | ✓ Automação ativada" },
+                { text: "~ Deploy em produção", bold: true },
+                { text: " | ✓ Build em 2.3s" },
+                { text: " | ✓ 847 usuários ativos" },
+                { text: "~ Status da SETE TECH", bold: true },
+                { text: " | ✓ 47 projetos entregues" },
+                { text: " | ✓ 12 municípios atendidos" },
+                { text: " | ✓ Piauí mais digital 🚀" },
+              ]}
+              pulseInterval={100}
+              showLocalhost={true}
+              hostBarTitle="setetech.com.br"
+              hostMessage="Tecnologia que move negócios"
+            />
+          </div>
         </div>
       </div>
     </section>
