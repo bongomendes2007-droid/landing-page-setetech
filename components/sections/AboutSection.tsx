@@ -30,16 +30,12 @@ export default function AboutSection() {
     <section
       ref={sectionRef}
       id="sobre"
-      className="rounded-t-[40px] rounded-b-[40px] overflow-hidden"
-      style={{
-        background: '#FFF7EA',
-        paddingTop: '96px',
-        paddingBottom: '96px',
-      }}
+      className="rounded-t-[40px] rounded-b-[40px] overflow-hidden py-24 px-6 md:px-16"
+      style={{ background: '#FFF7EA' }}
     >
-      <div className="flex flex-col lg:flex-row items-center gap-16 max-w-7xl mx-auto px-6 md:px-16">
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
         {/* Coluna texto */}
-        <div ref={textRef} className="flex-1">
+        <div ref={textRef} className="flex-[1.2] max-w-[520px] flex flex-col justify-center">
           <span
             style={{
               display: 'inline-block',
@@ -102,8 +98,8 @@ export default function AboutSection() {
         </div>
 
         {/* Coluna terminal animado */}
-        <div className="flex-1 flex items-center justify-center w-full">
-          <div className="w-full max-w-lg">
+        <div className="flex-1 max-w-[480px] flex items-center justify-center w-full">
+          <div className="w-full max-w-[460px]">
             <Terminal
               command="npx setetech --init"
               steps={[

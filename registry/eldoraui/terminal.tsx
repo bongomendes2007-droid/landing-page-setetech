@@ -21,7 +21,7 @@ type TerminalProps = {
 function MacControls() {
   return (
     <>
-      <GoTerminal className="text-muted-foreground mr-1 size-4" />
+      <GoTerminal className="mr-1 size-4" style={{ color: 'rgba(255,255,255,0.4)' }} />
       <div className="h-2 w-2 rounded-full bg-red-500" />
       <div className="h-2 w-2 rounded-full bg-yellow-500" />
       <div className="h-2 w-2 rounded-full bg-green-500" />
@@ -31,12 +31,18 @@ function MacControls() {
 
 function LocalHost({ title, message }: { title: string; message: string }) {
   return (
-    <div className="bg-card animate-in fade-in slide-in-from-top-10 absolute right-4 bottom-5 z-10 overflow-hidden rounded-md border shadow-xl">
-      <div className="bg-muted text-muted-foreground relative flex h-6 flex-row items-center border-b px-4 text-xs">
+    <div
+      className="animate-in fade-in slide-in-from-top-10 absolute right-4 bottom-5 z-10 overflow-hidden rounded-md shadow-xl"
+      style={{ background: '#1A1A1A', border: '1px solid rgba(255,255,255,0.12)' }}
+    >
+      <div
+        className="relative flex h-6 flex-row items-center border-b px-4 text-xs"
+        style={{ background: '#252525', borderColor: 'rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.5)' }}
+      >
         <TerminalIcon className="absolute inset-2 size-3" />
         <p className="absolute inset-x-0 text-center">{title}</p>
       </div>
-      <div className="text-card-foreground p-4 text-sm">{message}</div>
+      <div className="p-4 text-sm text-white">{message}</div>
     </div>
   )
 }
@@ -68,10 +74,10 @@ const Terminal = ({
   const isTyping = counter < typingLen
 
   elements.push(
-    <span key="command" className="text-foreground">
+    <span key="command" className="text-white">
       {command.substring(0, typedChars)}
       {isTyping && (
-        <div className="bg-foreground inline-block h-3 w-1 animate-pulse" />
+        <div className="bg-white inline-block h-3 w-1 animate-pulse" />
       )}
     </span>
   )
@@ -111,11 +117,17 @@ const Terminal = ({
         <LocalHost title={hostBarTitle} message={hostMessage} />
       )}
 
-      <pre className="bg-card w-full min-w-[320px] overflow-hidden rounded-xl border text-[11px] shadow-lg sm:min-w-[480px] sm:text-[12px] md:min-w-[600px] md:text-[13px]">
-        <div className="bg-muted flex flex-row items-center gap-2 border-b px-3 py-2 sm:px-4">
+      <pre
+        className="w-full overflow-hidden rounded-xl text-[11px] shadow-lg sm:text-[12px] md:text-[13px]"
+        style={{ background: '#0D0D0D', border: '1px solid rgba(255,255,255,0.08)' }}
+      >
+        <div
+          className="flex flex-row items-center gap-2 border-b px-3 py-2 sm:px-4"
+          style={{ background: '#1A1A1A', borderColor: 'rgba(255,255,255,0.08)' }}
+        >
           <MacControls />
         </div>
-        <div className="from-background to-muted min-h-[150px] bg-gradient-to-b sm:min-h-[180px] md:min-h-[200px]">
+        <div className="min-h-[200px]" style={{ background: '#0D0D0D' }}>
           <div className="grid p-3 whitespace-pre-wrap sm:p-4">{elements}</div>
         </div>
       </pre>
