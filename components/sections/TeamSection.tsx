@@ -182,7 +182,7 @@ export default function TeamSection() {
     <section
       id="equipe"
       className="py-24 rounded-b-[40px] overflow-hidden"
-      style={{ background: 'radial-gradient(125% 125% at 50% 20%, #0D0D0D 0%, #1A0033 40%, #6A00FF 70%, #A100FF 88%, #D600FF 100%)' }}
+      style={{ backgroundColor: '#7A1CF8' }}
     >
       {/* FIX 5 — Título animado */}
       <motion.div
@@ -193,7 +193,7 @@ export default function TeamSection() {
         className="px-6 md:px-16 max-w-7xl mx-auto mb-16"
       >
         <p
-          className="text-xs font-bold uppercase tracking-[0.2em] text-[#D600FF] mb-3"
+          className="text-xs font-bold uppercase tracking-[0.2em] text-white/70 mb-3"
           style={{ fontFamily: 'var(--font-dm-sans)' }}
         >
           NOSSO TIME
@@ -214,7 +214,7 @@ export default function TeamSection() {
             SETE TECH
           </span>
         </h2>
-        <p className="mt-3 text-[15px] text-white/70 max-w-lg" style={{ fontFamily: 'var(--font-dm-sans)' }}>
+        <p className="mt-3 text-[15px] text-white/60 max-w-lg" style={{ fontFamily: 'var(--font-dm-sans)' }}>
           Fundadores apaixonados por tecnologia e comprometidos com o desenvolvimento digital do Piauí.
         </p>
       </motion.div>
