@@ -1,6 +1,5 @@
 'use client'
 
-import { useId } from 'react'
 import { motion } from 'framer-motion'
 import { Autoplay, EffectCoverflow, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -17,7 +16,6 @@ const founders = [
     image: 'https://res.cloudinary.com/dnth1inmv/image/upload/v1781641243/Gerorge_Mendes_udtlds.png',
     bgColor: '#0D0520',
     accentColor: '#6A00FF',
-    icon: '💻',
   },
   {
     name: 'Rafael Lages',
@@ -27,7 +25,6 @@ const founders = [
     image: 'https://res.cloudinary.com/dnth1inmv/image/upload/v1781641243/Rafael_Lages_xfft0x.png',
     bgColor: '#041A0A',
     accentColor: '#00C853',
-    icon: '🤖',
   },
   {
     name: 'Amadeu Bruno',
@@ -37,7 +34,6 @@ const founders = [
     image: 'https://res.cloudinary.com/dnth1inmv/image/upload/v1781641243/Amadeu_Bruno_1_mqpbym.png',
     bgColor: '#1A0E00',
     accentColor: '#FFB300',
-    icon: '🎨',
   },
   {
     name: 'Leonardo CBV',
@@ -47,7 +43,6 @@ const founders = [
     image: 'https://res.cloudinary.com/dnth1inmv/image/upload/v1781641244/Leonardo_Cbv_uua4hh.png',
     bgColor: '#030A1A',
     accentColor: '#2979FF',
-    icon: '🏛️',
   },
 ]
 
@@ -61,117 +56,44 @@ const STATS = [
 type Founder = (typeof founders)[0]
 
 function FounderCard({ f }: { f: Founder }) {
-  const id = useId().replace(/:/g, '')
-  const W = 280
-  const H = 500
-  const R = 24
-  const N = 44
-
-  const notchPath = `
-    M ${R} 0
-    L ${W - N - 8} 0
-    C ${W - N + 12} 0, ${W} ${N - 12}, ${W} ${N + 8}
-    L ${W} ${H - R}
-    Q ${W} ${H} ${W - R} ${H}
-    L ${R} ${H}
-    Q 0 ${H} 0 ${H - R}
-    L 0 ${R}
-    Q 0 0 ${R} 0
-    Z
-  `
-
   return (
-    <div className="relative mx-auto" style={{ width: `${W}px`, height: `${H}px` }}>
-
-      <svg width="0" height="0" style={{ position: 'absolute', overflow: 'hidden' }}>
-        <defs>
-          <clipPath id={`clip-${id}`} clipPathUnits="userSpaceOnUse">
-            <path d={notchPath} />
-          </clipPath>
-        </defs>
-      </svg>
-
-      <div
-        className="absolute inset-0 flex flex-col overflow-hidden"
-        style={{
-          backgroundColor: f.bgColor,
-          clipPath: `url(#clip-${id})`,
-          border: '1px solid rgba(255,255,255,0.06)',
-        }}
-      >
-        <div className="relative flex-shrink-0" style={{ height: '300px' }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={f.image}
-            alt={f.name}
-            className="absolute inset-0 w-full h-full object-cover object-top"
-          />
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background: `radial-gradient(ellipse at 50% 100%, ${f.accentColor}50 0%, transparent 65%)`,
-              mixBlendMode: 'color',
-            }}
-          />
-          <div
-            className="absolute inset-x-0 bottom-0 pointer-events-none"
-            style={{
-              height: '130px',
-              background: `linear-gradient(to top, ${f.bgColor} 0%, transparent 100%)`,
-            }}
-          />
-          <p className="absolute top-4 left-4 z-10 text-white/70 font-bold text-[11px] tracking-[0.18em] drop-shadow-md">
-            SETE TECH
-          </p>
-        </div>
-
-        <div className="flex flex-col gap-2.5 px-5 pt-3 pb-5 flex-grow">
-          <div className="flex items-center gap-2">
-            <div
-              className="h-2.5 w-2.5 rounded-full flex-shrink-0"
-              style={{ backgroundColor: f.accentColor }}
-            />
-            <h3 className="text-[17px] font-bold text-white tracking-tight">
-              {f.name}
-            </h3>
-          </div>
-
-          <div className="flex flex-wrap gap-1.5">
-            {[f.tag1, f.tag2].map((tag) => (
-              <span
-                key={tag}
-                className="inline-flex items-center gap-1 rounded-full text-[9px] font-bold uppercase tracking-[0.07em] text-white/55"
-                style={{
-                  padding: '3px 9px',
-                  backgroundColor: f.accentColor + '18',
-                  border: `1px solid ${f.accentColor}30`,
-                }}
-              >
-                <span style={{ color: f.accentColor }}>✓</span>
-                {tag}
-              </span>
-            ))}
-          </div>
-
-          <p className="text-[12px] leading-[1.6] text-white/40">
-            {f.description}
-          </p>
-        </div>
+    <div
+      className="mx-auto flex flex-col overflow-hidden"
+      style={{ backgroundColor: f.bgColor, borderRadius: '24px', height: '500px', width: '280px' }}
+    >
+      {/* Foto limpa */}
+      <div className="relative flex-shrink-0" style={{ height: '310px' }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={f.image}
+          alt={f.name}
+          className="absolute inset-0 w-full h-full object-cover object-top"
+        />
+        <div
+          className="absolute inset-x-0 bottom-0 pointer-events-none"
+          style={{ height: '80px', background: `linear-gradient(to top, ${f.bgColor}, transparent)` }}
+        />
       </div>
 
-      <div
-        className="absolute z-30 flex items-center justify-center rounded-full text-xl"
-        style={{
-          top: '-18px',
-          right: '-18px',
-          width: '52px',
-          height: '52px',
-          backgroundColor: f.accentColor,
-          border: '3px solid rgba(255,255,255,0.2)',
-          boxShadow: `0 4px 20px ${f.accentColor}70`,
-        }}
-      >
-        {f.icon}
+      {/* Conteúdo abaixo */}
+      <div className="flex flex-col gap-3 px-5 pt-3 pb-6 flex-grow">
+        <div className="flex items-center gap-2">
+          <div className="h-2.5 w-2.5 rounded-full flex-shrink-0" style={{ backgroundColor: f.accentColor }} />
+          <h3 className="text-[17px] font-bold text-white tracking-tight">{f.name}</h3>
+        </div>
+        <div className="flex flex-wrap gap-1.5">
+          {[f.tag1, f.tag2].map((tag) => (
+            <span
+              key={tag}
+              className="inline-flex items-center gap-1 rounded-full text-[9px] font-bold uppercase tracking-[0.07em] text-white/55"
+              style={{ padding: '3px 9px', backgroundColor: f.accentColor + '18', border: `1px solid ${f.accentColor}30` }}
+            >
+              <span style={{ color: f.accentColor }}>✓</span>
+              {tag}
+            </span>
+          ))}
+        </div>
+        <p className="text-[12px] leading-[1.6] text-white/40">{f.description}</p>
       </div>
     </div>
   )
