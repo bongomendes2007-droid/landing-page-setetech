@@ -7,7 +7,7 @@ import { Palette } from 'lucide-react'
 
 const SERVICES = [
   {
-    image: 'https://res.cloudinary.com/dnth1inmv/image/upload/v1781278734/2026-06-12T15-37-06-312Z_Enhance_and_upscale_this_image_to_4K_Full_HD_resol_m3tw6v.png',
+    image: 'https://res.cloudinary.com/dnth1inmv/image/upload/v1781641242/a_ttmcel.png',
     title: 'Desenvolvimento Web',
     description: 'Sites institucionais, e-commerces, sistemas e aplicações web de alta performance com as tecnologias mais modernas do mercado.',
     href: '#contato',
@@ -19,7 +19,7 @@ const SERVICES = [
     ),
   },
   {
-    image: 'https://res.cloudinary.com/dnth1inmv/image/upload/v1781279171/92945cc36b11481785be0b1bb1cbf2b8_vjizti.jpg',
+    image: 'https://res.cloudinary.com/dnth1inmv/image/upload/v1781641243/d_uotp4b.png',
     title: 'Automação & IA',
     description: 'Fluxos inteligentes, chatbots, processamento de dados e integração de modelos de IA para otimizar seus processos operacionais.',
     href: '#contato',
@@ -39,7 +39,7 @@ const SERVICES = [
     ),
   },
   {
-    image: 'https://res.cloudinary.com/dnth1inmv/image/upload/v1781279099/9bd5346590dceb45f48ae51e04133733_joo3pb.jpg',
+    image: 'https://res.cloudinary.com/dnth1inmv/image/upload/v1781641243/b_gtvw5j.png',
     title: 'Marketing Digital',
     description: 'SEO, tráfego pago, social media e estratégias de crescimento digital focadas em geração de leads e conversão.',
     href: '#contato',
@@ -51,14 +51,14 @@ const SERVICES = [
     ),
   },
   {
-    image: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&q=80',
+    image: 'https://res.cloudinary.com/dnth1inmv/image/upload/v1781641243/c_garuyh.png',
     title: 'Identidade Visual & Design',
     description: 'Criação de marcas, logos, materiais gráficos e interfaces digitais que comunicam profissionalismo e geram reconhecimento para o seu negócio.',
     href: '#contato',
     icon: <Palette className="h-4 w-4" />,
   },
   {
-    image: 'https://images.unsplash.com/photo-1577962917302-cd874c4e31d2?w=800&q=80',
+    image: 'https://res.cloudinary.com/dnth1inmv/image/upload/v1781641243/e_aldwv5.png',
     title: 'Soluções para Órgãos Públicos',
     description: 'Sistemas de gestão, portais de transparência, automação de serviços públicos e conformidade com LGPD para municípios e órgãos estaduais.',
     href: '#contato',
