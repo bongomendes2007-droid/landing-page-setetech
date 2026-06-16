@@ -8,19 +8,51 @@ import 'swiper/css/effect-coverflow'
 import 'swiper/css/pagination'
 
 const founders = [
-  { image: 'https://res.cloudinary.com/dnth1inmv/image/upload/v1781641243/Gerorge_Mendes_udtlds.png', name: 'George Mendes' },
-  { image: 'https://res.cloudinary.com/dnth1inmv/image/upload/v1781641243/Rafael_Lages_xfft0x.png', name: 'Rafael Lages' },
-  { image: 'https://res.cloudinary.com/dnth1inmv/image/upload/v1781641244/Leonardo_Cbv_uua4hh.png', name: 'Leonardo CBV' },
-  { image: 'https://res.cloudinary.com/dnth1inmv/image/upload/v1781641243/Amadeu_Bruno_1_mqpbym.png', name: 'Amadeu Bruno' },
+  {
+    image: 'https://res.cloudinary.com/dnth1inmv/image/upload/v1781641243/Gerorge_Mendes_udtlds.png',
+    name: 'George Mendes',
+  },
+  {
+    image: 'https://res.cloudinary.com/dnth1inmv/image/upload/v1781641243/Rafael_Lages_xfft0x.png',
+    name: 'Rafael Lages',
+  },
+  {
+    image: 'https://res.cloudinary.com/dnth1inmv/image/upload/v1781641244/Leonardo_Cbv_uua4hh.png',
+    name: 'Leonardo CBV',
+  },
+  {
+    image: 'https://res.cloudinary.com/dnth1inmv/image/upload/v1781641243/Amadeu_Bruno_1_mqpbym.png',
+    name: 'Amadeu Bruno',
+  },
 ]
 
 export default function TeamSection() {
   return (
     <section
       id="equipe"
-      className="py-24 rounded-t-[40px] rounded-b-[40px] overflow-x-clip"
-      style={{ backgroundColor: '#7A1CF8' }}
+      className="py-24 rounded-t-[40px] rounded-b-[40px]"
+      style={{ backgroundColor: '#7A1CF8', overflowX: 'clip' }}
     >
+      <style>{`
+        .founders-swiper {
+          padding-top: 16px !important;
+          padding-bottom: 64px !important;
+        }
+        .founders-swiper .swiper-slide {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: auto !important;
+        }
+        .founders-swiper .swiper-pagination-bullet {
+          background: rgba(255,255,255,0.4);
+          opacity: 1;
+        }
+        .founders-swiper .swiper-pagination-bullet-active {
+          background: #ffffff;
+        }
+      `}</style>
+
       {/* Título */}
       <motion.div
         initial={{ opacity: 0, y: 24 }}
@@ -51,13 +83,7 @@ export default function TeamSection() {
         </p>
       </motion.div>
 
-      {/* Swiper — padrão Carousel_001 */}
-      <style>{`
-        .founders-swiper { padding-bottom: 64px !important; }
-        .founders-swiper .swiper-pagination-bullet { background: rgba(255,255,255,0.4); opacity: 1; }
-        .founders-swiper .swiper-pagination-bullet-active { background: #ffffff; }
-      `}</style>
-
+      {/* Carrossel */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -70,34 +96,43 @@ export default function TeamSection() {
           centeredSlides
           loop
           slidesPerView={2.43}
-          spaceBetween={40}
-          coverflowEffect={{ rotate: 0, stretch: 0, depth: 100, modifier: 2.5, slideShadows: false }}
+          spaceBetween={24}
+          coverflowEffect={{
+            rotate: 0,
+            stretch: 0,
+            depth: 100,
+            modifier: 2.5,
+            slideShadows: false,
+          }}
           pagination={{ clickable: true }}
-          modules={[EffectCoverflow, Pagination, Autoplay]}
           autoplay={{ delay: 3000, disableOnInteraction: false }}
+          modules={[EffectCoverflow, Pagination, Autoplay]}
           className="founders-swiper"
           breakpoints={{
-            0:    { slidesPerView: 1.2,  spaceBetween: 20 },
-            640:  { slidesPerView: 1.8,  spaceBetween: 30 },
-            1024: { slidesPerView: 2.43, spaceBetween: 40 },
+            0:    { slidesPerView: 1.2, spaceBetween: 16 },
+            640:  { slidesPerView: 1.8, spaceBetween: 20 },
+            1024: { slidesPerView: 2.43, spaceBetween: 24 },
           }}
         >
           {founders.map((f) => (
-            <SwiperSlide
-              key={f.name}
-              style={{
-                height: '500px',
+            <SwiperSlide key={f.name}>
+              <div style={{
                 width: '280px',
                 borderRadius: '24px',
                 overflow: 'hidden',
-              }}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={f.image}
-                alt={f.name}
-                className="w-full h-full object-cover"
-              />
+                margin: '0 auto',
+              }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={f.image}
+                  alt={f.name}
+                  style={{
+                    width: '100%',
+                    height: 'auto',
+                    display: 'block',
+                  }}
+                />
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>
