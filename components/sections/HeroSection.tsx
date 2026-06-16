@@ -50,7 +50,7 @@ export default function HeroSection() {
       />
 
       {/* Layout principal */}
-      <div className="relative w-full flex flex-col md:flex-row items-center min-h-screen">
+      <div className="relative w-full overflow-x-clip flex flex-col md:flex-row items-center min-h-screen">
 
         {/* CAMADA 4 — conteúdo texto e CTAs (z-30) */}
         <div
