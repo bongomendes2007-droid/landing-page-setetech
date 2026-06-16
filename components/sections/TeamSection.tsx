@@ -63,7 +63,7 @@ type Founder = (typeof founders)[0]
 function FounderCard({ f }: { f: Founder }) {
   const id = useId().replace(/:/g, '')
   const W = 280
-  const H = 480
+  const H = 500
   const R = 24
   const N = 44
 
@@ -280,12 +280,12 @@ export default function TeamSection() {
       >
         {STATS.map((stat, i) => (
           <div key={stat.label} className="contents">
-            {i > 0 && <div className="hidden md:block h-8 w-px bg-white/10" />}
+            {i > 0 && <div className="hidden md:block h-8 w-px bg-white/20" />}
             <div className="flex flex-col items-center gap-1">
               <span className="text-3xl font-black text-white" style={{ fontFamily: 'var(--font-syne)' }}>
                 {stat.number}
               </span>
-              <span className="text-xs font-medium text-white/50 uppercase tracking-wider" style={{ fontFamily: 'var(--font-dm-sans)' }}>
+              <span className="text-xs font-medium text-white/60 uppercase tracking-wider" style={{ fontFamily: 'var(--font-dm-sans)' }}>
                 {stat.label}
               </span>
             </div>
