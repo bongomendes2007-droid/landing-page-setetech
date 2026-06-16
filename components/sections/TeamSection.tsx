@@ -62,16 +62,12 @@ function FounderCard({ f }: { f: Founder }) {
       style={{ backgroundColor: f.bgColor, borderRadius: '24px', height: '500px', width: '280px' }}
     >
       {/* Foto limpa */}
-      <div className="relative flex-shrink-0" style={{ height: '310px' }}>
+      <div className="relative flex-shrink-0 overflow-hidden" style={{ height: '310px' }}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={f.image}
           alt={f.name}
           className="absolute inset-0 w-full h-full object-cover object-top"
-        />
-        <div
-          className="absolute inset-x-0 bottom-0 pointer-events-none"
-          style={{ height: '80px', background: `linear-gradient(to top, ${f.bgColor}, transparent)` }}
         />
       </div>
 
