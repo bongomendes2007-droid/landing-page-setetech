@@ -20,7 +20,9 @@ function FounderCard({ f }: { f: typeof founders[0] }) {
       <img
         src={f.image}
         alt={f.name}
-        className="w-full h-full object-cover object-top"
+        // object-contain garante a imagem 100% inteira (sem corte); como o
+        // container tem exatamente a proporção 280×500 das artes, não há barras.
+        className="w-full h-full object-contain"
       />
     </div>
   )
@@ -30,7 +32,7 @@ export default function TeamSection() {
   return (
     <section
       id="equipe"
-      className="py-24 rounded-t-[40px] rounded-b-[40px] overflow-hidden"
+      className="py-24 rounded-t-[40px] rounded-b-[40px] overflow-x-clip"
       style={{ backgroundColor: '#7A1CF8' }}
     >
       {/* Título */}
@@ -65,7 +67,16 @@ export default function TeamSection() {
 
       {/* Swiper */}
       <style>{`
-        .founders-swiper { padding-bottom: 50px !important; }
+        /* padding vertical para caber o card de 500px + paginação sem clipar */
+        .founders-swiper { padding-top: 16px !important; padding-bottom: 64px !important; }
+        /* slides com altura automática e card sempre centralizado/inteiro */
+        .founders-swiper .swiper-slide {
+          height: auto;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 500px;
+        }
         .founders-swiper .swiper-pagination-bullet { background: rgba(255,255,255,0.4); opacity: 1; }
         .founders-swiper .swiper-pagination-bullet-active { background: #ffffff; }
       `}</style>
@@ -81,17 +92,17 @@ export default function TeamSection() {
           grabCursor
           centeredSlides
           loop
-          slidesPerView={2.4}
+          slidesPerView={2.2}
           spaceBetween={40}
-          coverflowEffect={{ rotate: 0, stretch: 0, depth: 120, modifier: 2.5, slideShadows: false }}
+          coverflowEffect={{ rotate: 0, stretch: 0, depth: 100, modifier: 2, slideShadows: false }}
           pagination={{ clickable: true }}
           modules={[EffectCoverflow, Pagination, Autoplay]}
           autoplay={{ delay: 3000, disableOnInteraction: false }}
           className="founders-swiper"
           breakpoints={{
-            0:    { slidesPerView: 1.2, spaceBetween: 20 },
-            640:  { slidesPerView: 1.8, spaceBetween: 30 },
-            1024: { slidesPerView: 2.4, spaceBetween: 40 },
+            0:    { slidesPerView: 1.15, spaceBetween: 16 },
+            640:  { slidesPerView: 1.8,  spaceBetween: 30 },
+            1024: { slidesPerView: 2.2,  spaceBetween: 40 },
           }}
         >
           {founders.map((f) => (

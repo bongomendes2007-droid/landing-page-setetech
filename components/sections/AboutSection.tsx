@@ -16,6 +16,10 @@ export default function AboutSection() {
       if (prefersReducedMotion) return
       gsap.from(textRef.current, {
         opacity: 0, x: -60, duration: 0.9, ease: 'power3.out',
+        // Sem immediateRender, o estado renderizado padrão é x:0 (texto no lugar).
+        // O deslocamento -60 só é aplicado quando o trigger entra na viewport,
+        // garantindo que o elemento nunca fique "preso" cortado à esquerda.
+        immediateRender: false,
         scrollTrigger: { trigger: textRef.current, start: 'top 80%', once: true },
       })
     }, sectionRef)
