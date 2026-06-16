@@ -30,7 +30,7 @@ export default function AboutSection() {
     <section
       ref={sectionRef}
       id="sobre"
-      className="rounded-t-[40px] rounded-b-[40px] overflow-hidden py-24 px-6 md:px-16"
+      className="rounded-t-[40px] rounded-b-[40px] overflow-hidden pt-32 pb-24 px-8 md:px-16 lg:px-24"
       style={{ background: '#FFF7EA' }}
     >
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
