@@ -10,23 +10,9 @@ import 'swiper/css/pagination'
 const founders = [
   { image: 'https://res.cloudinary.com/dnth1inmv/image/upload/v1781641243/Gerorge_Mendes_udtlds.png', name: 'George Mendes' },
   { image: 'https://res.cloudinary.com/dnth1inmv/image/upload/v1781641243/Rafael_Lages_xfft0x.png', name: 'Rafael Lages' },
-  { image: 'https://res.cloudinary.com/dnth1inmv/image/upload/v1781641243/Amadeu_Bruno_1_mqpbym.png', name: 'Amadeu Bruno' },
   { image: 'https://res.cloudinary.com/dnth1inmv/image/upload/v1781641244/Leonardo_Cbv_uua4hh.png', name: 'Leonardo CBV' },
+  { image: 'https://res.cloudinary.com/dnth1inmv/image/upload/v1781641243/Amadeu_Bruno_1_mqpbym.png', name: 'Amadeu Bruno' },
 ]
-
-function FounderCard({ f }: { f: typeof founders[0] }) {
-  return (
-    <div className="mx-auto overflow-hidden" style={{ borderRadius: '24px', width: '280px', height: '500px' }}>
-      <img
-        src={f.image}
-        alt={f.name}
-        // object-contain garante a imagem 100% inteira (sem corte); como o
-        // container tem exatamente a proporção 280×500 das artes, não há barras.
-        className="w-full h-full object-contain"
-      />
-    </div>
-  )
-}
 
 export default function TeamSection() {
   return (
@@ -65,18 +51,9 @@ export default function TeamSection() {
         </p>
       </motion.div>
 
-      {/* Swiper */}
+      {/* Swiper — padrão Carousel_001 */}
       <style>{`
-        /* padding vertical para caber o card de 500px + paginação sem clipar */
-        .founders-swiper { padding-top: 16px !important; padding-bottom: 64px !important; }
-        /* slides com altura automática e card sempre centralizado/inteiro */
-        .founders-swiper .swiper-slide {
-          height: auto;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          min-height: 500px;
-        }
+        .founders-swiper { padding-bottom: 64px !important; }
         .founders-swiper .swiper-pagination-bullet { background: rgba(255,255,255,0.4); opacity: 1; }
         .founders-swiper .swiper-pagination-bullet-active { background: #ffffff; }
       `}</style>
@@ -92,22 +69,35 @@ export default function TeamSection() {
           grabCursor
           centeredSlides
           loop
-          slidesPerView={2.2}
+          slidesPerView={2.43}
           spaceBetween={40}
-          coverflowEffect={{ rotate: 0, stretch: 0, depth: 100, modifier: 2, slideShadows: false }}
+          coverflowEffect={{ rotate: 0, stretch: 0, depth: 100, modifier: 2.5, slideShadows: false }}
           pagination={{ clickable: true }}
           modules={[EffectCoverflow, Pagination, Autoplay]}
           autoplay={{ delay: 3000, disableOnInteraction: false }}
           className="founders-swiper"
           breakpoints={{
-            0:    { slidesPerView: 1.15, spaceBetween: 16 },
+            0:    { slidesPerView: 1.2,  spaceBetween: 20 },
             640:  { slidesPerView: 1.8,  spaceBetween: 30 },
-            1024: { slidesPerView: 2.2,  spaceBetween: 40 },
+            1024: { slidesPerView: 2.43, spaceBetween: 40 },
           }}
         >
           {founders.map((f) => (
-            <SwiperSlide key={f.name} className="!overflow-visible">
-              <FounderCard f={f} />
+            <SwiperSlide
+              key={f.name}
+              style={{
+                height: '500px',
+                width: '280px',
+                borderRadius: '24px',
+                overflow: 'hidden',
+              }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={f.image}
+                alt={f.name}
+                className="w-full h-full object-cover"
+              />
             </SwiperSlide>
           ))}
         </Swiper>
