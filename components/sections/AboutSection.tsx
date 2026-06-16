@@ -1,72 +1,9 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import { motion } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-const tools = [
-  { name: "OpenAI",      src: "https://cdn.simpleicons.org/openai/black" },
-  { name: "Anthropic",   src: "https://cdn.simpleicons.org/anthropic/black" },
-  { name: "Google",      src: "https://cdn.simpleicons.org/google/black" },
-  { name: "GitHub",      src: "https://cdn.simpleicons.org/github/black" },
-  { name: "Vercel",      src: "https://cdn.simpleicons.org/vercel/black" },
-  { name: "Figma",       src: "https://cdn.simpleicons.org/figma/black" },
-  { name: "React",       src: "https://cdn.simpleicons.org/react/black" },
-  { name: "Next.js",     src: "https://cdn.simpleicons.org/nextdotjs/black" },
-  { name: "TypeScript",  src: "https://cdn.simpleicons.org/typescript/black" },
-  { name: "Node.js",     src: "https://cdn.simpleicons.org/nodedotjs/black" },
-  { name: "Python",      src: "https://cdn.simpleicons.org/python/black" },
-  { name: "Docker",      src: "https://cdn.simpleicons.org/docker/black" },
-  { name: "PostgreSQL",  src: "https://cdn.simpleicons.org/postgresql/black" },
-  { name: "Firebase",    src: "https://cdn.simpleicons.org/firebase/black" },
-  { name: "Stripe",      src: "https://cdn.simpleicons.org/stripe/black" },
-  { name: "Notion",      src: "https://cdn.simpleicons.org/notion/black" },
-]
-
-const col1 = [tools[0], tools[4], tools[8],  tools[12]]
-const col2 = [tools[1], tools[5], tools[9],  tools[13]]
-const col3 = [tools[2], tools[6], tools[10], tools[14]]
-const col4 = [tools[3], tools[7], tools[11], tools[15]]
-
-function ToolCard({ tool, delay = 0 }: { tool: typeof tools[0]; delay?: number }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.45, delay, ease: [0.25, 0.1, 0.25, 1] }}
-      viewport={{ once: true }}
-      className="group flex items-center justify-center rounded-xl p-4
-        transition-all duration-300 hover:scale-105 cursor-pointer"
-      style={{
-        background: 'rgba(0,0,0,0.04)',
-        border: '1px solid rgba(0,0,0,0.08)',
-      }}
-    >
-      <img
-        src={tool.src}
-        alt={tool.name}
-        width={36}
-        height={36}
-        className="w-9 h-9 object-contain opacity-50
-          group-hover:opacity-90 transition-opacity duration-300"
-        onError={(e) => { (e.target as HTMLImageElement).style.display = 'none' }}
-      />
-    </motion.div>
-  )
-}
-
-function MasonryColumn({ tools, offset = false, delayBase = 0 }: {
-  tools: typeof col1; offset?: boolean; delayBase?: number
-}) {
-  return (
-    <div className={`flex flex-col gap-3 ${offset ? 'mt-6' : ''}`}>
-      {tools.map((tool, i) => (
-        <ToolCard key={tool.name} tool={tool} delay={delayBase + i * 0.07} />
-      ))}
-    </div>
-  )
-}
+import Terminal from '@/registry/eldoraui/terminal'
 
 export default function AboutSection() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -92,6 +29,7 @@ export default function AboutSection() {
       className="rounded-t-[40px] rounded-b-[40px] overflow-hidden"
       style={{ background: '#FFF7EA' }}
     >
+      {/* Todo o padding aqui dentro — resolve o texto colado na borda */}
       <div className="max-w-7xl mx-auto pt-32 pb-24 px-8 md:px-16 lg:px-24">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
 
@@ -147,46 +85,36 @@ export default function AboutSection() {
               fontSize: '16px',
               lineHeight: 1.7,
               color: '#444444',
-              marginBottom: '32px',
             }}>
               Em 5 anos, transformamos negócios de 12 municípios piauienses — de PMEs locais a secretarias
               e autarquias — com sistemas modernos, rápidos e fáceis de usar.
             </p>
-
-            {/* Stats */}
-            <div className="flex items-center gap-8 pt-6 border-t border-black/10">
-              {[
-                { n: "47+", label: "Projetos entregues" },
-                { n: "12",  label: "Municípios atendidos" },
-                { n: "5",   label: "Anos de atuação" },
-              ].map((s) => (
-                <div key={s.label} className="flex flex-col">
-                  <span style={{ fontSize: '24px', fontWeight: 900, color: '#0D0D0D' }}>
-                    {s.n}
-                  </span>
-                  <span style={{ fontSize: '11px', color: 'rgba(0,0,0,0.4)', marginTop: '2px' }}>
-                    {s.label}
-                  </span>
-                </div>
-              ))}
-            </div>
           </div>
 
-          {/* Grid masonry — desktop */}
-          <div className="flex-1 hidden lg:flex items-center justify-center">
-            <div className="grid grid-cols-4 gap-3 max-w-xs w-full">
-              <MasonryColumn tools={col1} delayBase={0} />
-              <MasonryColumn tools={col2} offset delayBase={0.1} />
-              <MasonryColumn tools={col3} delayBase={0.2} />
-              <MasonryColumn tools={col4} offset delayBase={0.3} />
+          {/* Coluna terminal — MANTIDO EXATAMENTE COMO ESTAVA */}
+          <div className="flex-1 max-w-[480px] flex items-center justify-center w-full">
+            <div className="w-full max-w-[460px]">
+              <Terminal
+                command="npx setetech --init"
+                steps={[
+                  { text: "~ Configurando projeto", bold: true },
+                  { text: " | ✓ Ambiente pronto" },
+                  { text: "~ Conectando IA", bold: true },
+                  { text: " | ✓ Automação ativada" },
+                  { text: "~ Deploy em produção", bold: true },
+                  { text: " | ✓ Build em 2.3s" },
+                  { text: " | ✓ 847 usuários ativos" },
+                  { text: "~ Status da SETE TECH", bold: true },
+                  { text: " | ✓ 47 projetos entregues" },
+                  { text: " | ✓ 12 municípios atendidos" },
+                  { text: " | ✓ Piauí mais digital 🚀" },
+                ]}
+                pulseInterval={100}
+                showLocalhost={true}
+                hostBarTitle="setetech.com.br"
+                hostMessage="Tecnologia que move negócios"
+              />
             </div>
-          </div>
-
-          {/* Mobile — grid simples */}
-          <div className="lg:hidden grid grid-cols-4 gap-3 w-full">
-            {tools.slice(0, 8).map((tool, i) => (
-              <ToolCard key={tool.name} tool={tool} delay={i * 0.05} />
-            ))}
           </div>
 
         </div>
