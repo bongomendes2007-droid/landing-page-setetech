@@ -59,28 +59,60 @@ export default function TeamSection() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className="px-8 md:px-16 mb-16"
-        style={{ maxWidth: '1280px', margin: '0 auto 64px' }}
+        className="px-6 md:px-16 max-w-7xl mx-auto mb-16"
       >
-        <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/70 mb-3">
+        <p style={{
+          fontSize: '11px',
+          fontWeight: 600,
+          letterSpacing: '0.2em',
+          textTransform: 'uppercase',
+          color: 'rgba(255,255,255,0.5)',
+          fontFamily: 'var(--font-dm-sans)',
+          marginBottom: '14px',
+        }}>
           NOSSO TIME
         </p>
-        <h2 className="text-2xl md:text-5xl font-bold text-white" style={{ lineHeight: 1.1 }}>
-          As pessoas por trás da{' '}
-          <span style={{
-            background: 'linear-gradient(90deg, #ffffff, #D9B8FF)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-            fontStyle: 'italic',
-            fontFamily: 'var(--font-serif)',
-          }}>
-            SETE TECH
-          </span>
-        </h2>
-        <p className="mt-3 text-[15px] text-white/60 max-w-lg">
-          Fundadores apaixonados por tecnologia e comprometidos com o
-          desenvolvimento digital do Piauí.
+
+        <p style={{
+          fontFamily: 'var(--font-dm-sans)',
+          fontSize: 'clamp(18px, 2.5vw, 28px)',
+          fontWeight: 400,
+          color: 'rgba(255,255,255,0.7)',
+          lineHeight: 1.3,
+          margin: '0 0 4px',
+          letterSpacing: '0.01em',
+        }}>
+          As pessoas por trás da
+        </p>
+
+        <p style={{
+          fontFamily: 'var(--font-serif)',
+          fontSize: 'clamp(48px, 6vw, 72px)',
+          fontWeight: 700,
+          fontStyle: 'italic',
+          lineHeight: 1.05,
+          margin: '0 0 20px',
+          letterSpacing: '-0.03em',
+          background: 'linear-gradient(90deg, #ffffff, #D9B8FF)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text',
+        }}>
+          SETE TECH
+        </p>
+
+        <p style={{
+          fontFamily: 'var(--font-dm-sans)',
+          fontSize: '13px',
+          fontWeight: 400,
+          color: 'rgba(255,255,255,0.5)',
+          letterSpacing: '0.12em',
+          textTransform: 'uppercase',
+          margin: 0,
+          borderTop: '1px solid rgba(255,255,255,0.15)',
+          paddingTop: '14px',
+        }}>
+          Fundadores apaixonados por tecnologia · Piauí, Brasil
         </p>
       </motion.div>
 
