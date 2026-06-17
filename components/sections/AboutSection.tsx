@@ -69,8 +69,7 @@ export default function AboutSection() {
               lineHeight: 1.7,
               color: '#444444',
             }}>
-              Em 5 anos, transformamos negócios de 12 municípios piauienses — de PMEs locais a secretarias
-              e autarquias — com sistemas modernos, rápidos e fáceis de usar.
+              Transformamos negócios, secretarias e autarquias com sistemas modernos, rápidos e fáceis de usar.
             </p>
           </div>
 
