@@ -14,10 +14,10 @@ export default function AboutSection() {
       }}
     >
       <div className="px-8 md:px-16 lg:px-24" style={{ maxWidth: '1280px', margin: '0 auto' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <div className="flex flex-col md:flex-row items-center justify-start">
 
-          {/* Bloco de texto */}
-          <div style={{ maxWidth: '640px', width: '100%' }}>
+          {/* Bloco de texto — metade esquerda no desktop, largura total no mobile */}
+          <div className="w-full md:max-w-[45%] md:pr-10">
             <span style={{
               display: 'inline-block',
               fontSize: '11px',
