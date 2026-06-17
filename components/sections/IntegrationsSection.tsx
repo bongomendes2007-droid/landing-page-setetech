@@ -2,7 +2,7 @@
 import { motion } from "framer-motion"
 
 const tools = [
-  { name: "OpenAI",      src: "https://cdn.simpleicons.org/openai/000000" },
+  { name: "JavaScript",  src: "https://res.cloudinary.com/dnth1inmv/image/upload/v1781205721/11da94f1-cc3d-43d1-98f4-28c85324c221_tdu9fi.png" },
   { name: "Anthropic",   src: "https://cdn.simpleicons.org/anthropic" },
   { name: "Google",      src: "https://cdn.simpleicons.org/google" },
   { name: "GitHub",      src: "https://cdn.simpleicons.org/github" },
@@ -118,34 +118,24 @@ export default function IntegrationsSection() {
                 href="#contato"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="inline-flex items-center gap-2 px-6 py-3 text-sm font-bold transition-all"
-                style={{ backgroundColor: '#0D0D0D', color: '#ffffff', borderRadius: '8px' }}
+                className="transition-all"
+                style={{
+                  backgroundColor: '#0D0D0D',
+                  color: '#ffffff',
+                  borderRadius: '10px',
+                  padding: '14px 28px',
+                  fontSize: '16px',
+                  fontWeight: 700,
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                }}
               >
                 Conectar agora
                 <span>→</span>
               </motion.a>
             </motion.div>
 
-            {/* Stats */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              viewport={{ once: true }}
-              className="flex items-center gap-8 mt-12 pt-8"
-              style={{ borderTop: '1px solid #E5E7EB' }}
-            >
-              {[
-                { n: "16+",  label: "Ferramentas integradas" },
-                { n: "47+",  label: "Projetos entregues" },
-                { n: "100%", label: "Sob medida" },
-              ].map((s) => (
-                <div key={s.label} className="flex flex-col">
-                  <span className="text-2xl font-black" style={{ color: '#0D0D0D' }}>{s.n}</span>
-                  <span className="text-xs mt-0.5" style={{ color: '#9CA3AF' }}>{s.label}</span>
-                </div>
-              ))}
-            </motion.div>
           </div>
 
           {/* Lado direito — masonry desktop */}
