@@ -30,7 +30,7 @@ export default function TeamSection() {
   return (
     <section
       id="equipe"
-      className="py-20 md:py-28 lg:py-32 min-h-screen flex flex-col justify-center"
+      className="py-24 rounded-t-[40px] rounded-b-[40px] min-h-screen flex flex-col justify-center"
       style={{ backgroundColor: '#7A1CF8', overflowX: 'clip' }}
     >
       <style>{`
@@ -59,7 +59,7 @@ export default function TeamSection() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className="px-6 md:px-16 max-w-7xl mx-auto mb-16"
+        className="px-6 md:px-16 max-w-7xl mx-auto mb-16 text-center"
       >
         <p style={{
           fontSize: '11px',
@@ -108,7 +108,8 @@ export default function TeamSection() {
           color: 'rgba(255,255,255,0.5)',
           letterSpacing: '0.12em',
           textTransform: 'uppercase',
-          margin: 0,
+          margin: '0 auto',
+          textAlign: 'center',
           borderTop: '1px solid rgba(255,255,255,0.15)',
           paddingTop: '14px',
         }}>
