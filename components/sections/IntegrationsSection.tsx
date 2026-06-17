@@ -81,7 +81,7 @@ export default function IntegrationsSection() {
       className="relative overflow-x-clip"
       style={{ backgroundColor: '#FFFFFF' }}
     >
-      <div className="relative max-w-7xl mx-auto px-6 md:px-16 py-24">
+      <div className="relative px-6 md:px-16 py-24" style={{ maxWidth: '1280px', margin: '0 auto' }}>
         <div className="flex flex-col lg:flex-row items-start lg:items-center gap-16">
 
           {/* Lado esquerdo — texto */}

@@ -59,7 +59,8 @@ export default function TeamSection() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className="px-8 md:px-16 max-w-7xl mx-auto mb-16"
+        className="px-8 md:px-16 mb-16"
+        style={{ maxWidth: '1280px', margin: '0 auto 64px' }}
       >
         <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/70 mb-3">
           NOSSO TIME
@@ -85,6 +86,7 @@ export default function TeamSection() {
 
       {/* Carrossel */}
       <motion.div
+        className="w-full"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -111,7 +113,7 @@ export default function TeamSection() {
           breakpoints={{
             0:    { slidesPerView: 1.2, spaceBetween: 16 },
             640:  { slidesPerView: 1.8, spaceBetween: 20 },
-            1024: { slidesPerView: 2.43, spaceBetween: 24 },
+            1024: { slidesPerView: 2.2, spaceBetween: 24 },
           }}
         >
           {founders.map((f) => (
