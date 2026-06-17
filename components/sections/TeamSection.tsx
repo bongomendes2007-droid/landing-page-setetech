@@ -31,7 +31,7 @@ export default function TeamSection() {
     <section
       id="equipe"
       className="py-24 rounded-t-[40px] rounded-b-[40px] min-h-screen flex flex-col justify-center"
-      style={{ backgroundColor: '#7A1CF8', overflowX: 'clip' }}
+      style={{ backgroundColor: '#7A1CF8' }}
     >
       <style>{`
         .founders-swiper {
@@ -124,6 +124,7 @@ export default function TeamSection() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
+        style={{ overflowX: 'clip' }}
       >
         <Swiper
           effect="coverflow"
@@ -135,8 +136,8 @@ export default function TeamSection() {
           coverflowEffect={{
             rotate: 0,
             stretch: 0,
-            depth: 100,
-            modifier: 2.5,
+            depth: 80,
+            modifier: 2,
             slideShadows: false,
           }}
           pagination={{ clickable: true }}
