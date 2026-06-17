@@ -15,11 +15,9 @@ export default function ServicesSection() {
   return (
     <section
       id="servicos"
-      className="relative overflow-hidden rounded-b-[40px]"
+      className="relative overflow-hidden rounded-b-[40px] py-24 md:py-32"
       style={{
         background: '#FFF7EA',
-        paddingTop: '96px',
-        paddingBottom: '96px',
         paddingLeft: 'clamp(32px, 8vw, 96px)',
         paddingRight: 'clamp(32px, 8vw, 96px)',
       }}

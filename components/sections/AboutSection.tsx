@@ -32,7 +32,7 @@ export default function AboutSection() {
       style={{ background: '#FFF7EA' }}
     >
       {/* Todo o padding aqui dentro — resolve o texto colado na borda */}
-      <div className="pt-32 pb-24 px-8 md:px-16 lg:px-24" style={{ maxWidth: '1280px', margin: '0 auto' }}>
+      <div className="py-24 md:py-32 px-8 md:px-16 lg:px-24" style={{ maxWidth: '1280px', margin: '0 auto' }}>
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
 
           {/* Coluna texto */}
