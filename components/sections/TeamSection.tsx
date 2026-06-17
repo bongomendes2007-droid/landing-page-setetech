@@ -147,7 +147,7 @@ export default function TeamSection() {
           grabCursor
           centeredSlides
           loop
-          slidesPerView={2.43}
+          slidesPerView={3}
           spaceBetween={24}
           coverflowEffect={{
             rotate: 0,
@@ -162,9 +162,9 @@ export default function TeamSection() {
           modules={[EffectCoverflow, Pagination, Autoplay]}
           className="founders-swiper"
           breakpoints={{
-            0:    { slidesPerView: 1.2, spaceBetween: 16 },
-            640:  { slidesPerView: 1.8, spaceBetween: 20 },
-            1024: { slidesPerView: 2.2, spaceBetween: 24 },
+            0:    { slidesPerView: 1, spaceBetween: 16 },
+            640:  { slidesPerView: 2, spaceBetween: 20 },
+            1024: { slidesPerView: 3, spaceBetween: 24 },
           }}
         >
           {founders.map((f) => (
