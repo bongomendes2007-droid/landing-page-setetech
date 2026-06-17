@@ -157,7 +157,7 @@ export default function TeamSection() {
             slideShadows: false,
           }}
           pagination={{ clickable: true }}
-          loopAdditionalSlides={4}
+          loopAdditionalSlides={8}
           autoplay={{ delay: 3000, disableOnInteraction: false }}
           modules={[EffectCoverflow, Pagination, Autoplay]}
           className="founders-swiper"
@@ -168,7 +168,7 @@ export default function TeamSection() {
           }}
         >
           {founders.map((f) => (
-            <SwiperSlide key={f.name}>
+            <SwiperSlide key={f.name} style={{ width: '280px' }}>
               <div style={{
                 width: '280px',
                 borderRadius: '24px',
