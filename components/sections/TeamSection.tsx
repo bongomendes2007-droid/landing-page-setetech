@@ -24,6 +24,22 @@ const founders = [
     image: 'https://res.cloudinary.com/dnth1inmv/image/upload/v1781641243/Amadeu_Bruno_1_mqpbym.png',
     name: 'Amadeu Bruno',
   },
+  {
+    image: 'https://res.cloudinary.com/dnth1inmv/image/upload/v1781641243/Gerorge_Mendes_udtlds.png',
+    name: 'George Mendes 2',
+  },
+  {
+    image: 'https://res.cloudinary.com/dnth1inmv/image/upload/v1781641243/Rafael_Lages_xfft0x.png',
+    name: 'Rafael Lages 2',
+  },
+  {
+    image: 'https://res.cloudinary.com/dnth1inmv/image/upload/v1781641244/Leonardo_Cbv_uua4hh.png',
+    name: 'Leonardo CBV 2',
+  },
+  {
+    image: 'https://res.cloudinary.com/dnth1inmv/image/upload/v1781641243/Amadeu_Bruno_1_mqpbym.png',
+    name: 'Amadeu Bruno 2',
+  },
 ]
 
 export default function TeamSection() {
@@ -141,6 +157,7 @@ export default function TeamSection() {
             slideShadows: false,
           }}
           pagination={{ clickable: true }}
+          loopAdditionalSlides={4}
           autoplay={{ delay: 3000, disableOnInteraction: false }}
           modules={[EffectCoverflow, Pagination, Autoplay]}
           className="founders-swiper"
