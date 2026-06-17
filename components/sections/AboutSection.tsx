@@ -36,7 +36,7 @@ export default function AboutSection() {
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
 
           {/* Coluna texto */}
-          <div ref={textRef} className="flex-[1.2] max-w-[520px] flex flex-col justify-center">
+          <div ref={textRef} className="w-full flex-[1.2] max-w-[520px] flex flex-col justify-center">
             <span style={{
               display: 'inline-block',
               fontSize: '11px',

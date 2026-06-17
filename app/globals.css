@@ -43,6 +43,7 @@ html {
   scroll-behavior: smooth;
   overflow-x: hidden;
   overscroll-behavior-x: none;
+  scroll-padding-top: 3.5rem; /* 56px — altura da barra fixa mobile */
 }
 
 body {

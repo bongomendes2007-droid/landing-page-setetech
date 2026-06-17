@@ -65,7 +65,7 @@ export default function TeamSection() {
         <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/70 mb-3">
           NOSSO TIME
         </p>
-        <h2 className="text-4xl md:text-5xl font-bold text-white" style={{ lineHeight: 1.1 }}>
+        <h2 className="text-2xl md:text-5xl font-bold text-white" style={{ lineHeight: 1.1 }}>
           As pessoas por trás da{' '}
           <span style={{
             background: 'linear-gradient(90deg, #ffffff, #D9B8FF)',

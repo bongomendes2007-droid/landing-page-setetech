@@ -95,15 +95,33 @@ export default function Navbar() {
         </Link>
       </nav>
 
-      {/* Mobile — botão hamburguer flutuante */}
-      <div className="fixed top-4 right-4 z-50 md:hidden">
+      {/* Mobile — barra fixa no topo */}
+      <nav
+        className="fixed top-0 left-0 right-0 z-50 md:hidden flex items-center justify-between px-5 h-14"
+        style={{
+          background: 'rgba(10,10,10,0.92)',
+          backdropFilter: 'blur(14px)',
+          WebkitBackdropFilter: 'blur(14px)',
+          borderBottom: '1px solid rgba(255,255,255,0.08)',
+        }}
+      >
+        {/* Logo */}
+        <Link href="/" className="flex items-center select-none focus-visible:outline-2 focus-visible:outline-[#A100FF] focus-visible:outline-offset-2 rounded-sm">
+          <Image
+            src="https://res.cloudinary.com/dnth1inmv/image/upload/v1781123099/logo_Sete_Tech_branco_1_abpxap.png"
+            alt="SETE TECH"
+            width={72}
+            height={22}
+            style={{ objectFit: 'contain' }}
+          />
+        </Link>
+
+        {/* Hambúrguer */}
         <button
-          className="w-11 h-11 rounded-full flex flex-col justify-center items-center gap-1.5 focus-visible:outline-2 focus-visible:outline-[#A100FF] focus-visible:outline-offset-2"
+          className="w-9 h-9 rounded-full flex flex-col justify-center items-center gap-1.5 focus-visible:outline-2 focus-visible:outline-[#A100FF] focus-visible:outline-offset-2"
           style={{
-            background: 'rgba(10,10,10,0.85)',
-            border: '1px solid rgba(255,255,255,0.08)',
-            backdropFilter: 'blur(12px)',
-            WebkitBackdropFilter: 'blur(12px)',
+            background: 'rgba(255,255,255,0.06)',
+            border: '1px solid rgba(255,255,255,0.10)',
           }}
           onClick={() => setOpen(!open)}
           aria-label={open ? 'Fechar menu' : 'Abrir menu'}
@@ -122,7 +140,7 @@ export default function Navbar() {
             style={{ background: '#FFFFFF', transform: open ? 'rotate(-45deg) translateY(-4px)' : 'none' }}
           />
         </button>
-      </div>
+      </nav>
 
       {/* Mobile drawer */}
       <AnimatePresence>

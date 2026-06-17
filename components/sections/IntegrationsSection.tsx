@@ -2,7 +2,7 @@
 import { motion } from "framer-motion"
 
 const tools = [
-  { name: "OpenAI",      src: "https://cdn.simpleicons.org/openai" },
+  { name: "OpenAI",      src: "https://cdn.simpleicons.org/openai/000000" },
   { name: "Anthropic",   src: "https://cdn.simpleicons.org/anthropic" },
   { name: "Google",      src: "https://cdn.simpleicons.org/google" },
   { name: "GitHub",      src: "https://cdn.simpleicons.org/github" },
@@ -99,7 +99,7 @@ export default function IntegrationsSection() {
 
               <h2 style={{
                 fontWeight: 800,
-                fontSize: 'clamp(36px, 4.5vw, 56px)',
+                fontSize: 'clamp(22px, 5.5vw, 56px)',
                 color: '#0D0D0D',
                 letterSpacing: '-0.03em',
                 lineHeight: 1.02,
