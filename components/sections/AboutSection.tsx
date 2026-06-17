@@ -28,7 +28,7 @@ export default function AboutSection() {
     <section
       ref={sectionRef}
       id="sobre"
-      className="overflow-x-clip py-20 md:py-28 lg:py-32"
+      className="overflow-x-clip min-h-screen flex flex-col justify-center py-20 md:py-28 lg:py-32"
       style={{ background: '#FFF7EA' }}
     >
       {/* Todo o padding aqui dentro — resolve o texto colado na borda */}
