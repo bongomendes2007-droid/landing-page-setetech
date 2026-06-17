@@ -14,11 +14,9 @@ export default function AboutSection() {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const ctx = gsap.context(() => {
       if (prefersReducedMotion) return
+      const isMobile = window.innerWidth < 768
       gsap.from(textRef.current, {
-        opacity: 0, x: -60, duration: 0.9, ease: 'power3.out',
-        // Sem immediateRender, o estado renderizado padrão é x:0 (texto no lugar).
-        // O deslocamento -60 só é aplicado quando o trigger entra na viewport,
-        // garantindo que o elemento nunca fique "preso" cortado à esquerda.
+        opacity: 0, x: isMobile ? 0 : -40, duration: 0.9, ease: 'power3.out',
         immediateRender: false,
         scrollTrigger: { trigger: textRef.current, start: 'top 80%', once: true },
       })

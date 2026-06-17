@@ -59,7 +59,7 @@ export default function TeamSection() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className="px-6 md:px-16 max-w-7xl mx-auto mb-16"
+        className="px-8 md:px-16 max-w-7xl mx-auto mb-16"
       >
         <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/70 mb-3">
           NOSSO TIME

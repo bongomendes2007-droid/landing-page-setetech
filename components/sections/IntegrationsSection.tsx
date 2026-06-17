@@ -82,10 +82,10 @@ export default function IntegrationsSection() {
       style={{ backgroundColor: '#FFFFFF' }}
     >
       <div className="relative max-w-7xl mx-auto px-6 md:px-16 py-24">
-        <div className="flex flex-col lg:flex-row items-center gap-16">
+        <div className="flex flex-col lg:flex-row items-start lg:items-center gap-16">
 
           {/* Lado esquerdo — texto */}
-          <div className="flex-1 max-w-lg">
+          <div className="w-full lg:flex-1 max-w-lg">
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
