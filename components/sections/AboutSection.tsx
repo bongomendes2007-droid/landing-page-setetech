@@ -28,11 +28,11 @@ export default function AboutSection() {
     <section
       ref={sectionRef}
       id="sobre"
-      className="overflow-x-clip"
+      className="overflow-x-clip py-20 md:py-28 lg:py-32"
       style={{ background: '#FFF7EA' }}
     >
       {/* Todo o padding aqui dentro — resolve o texto colado na borda */}
-      <div className="py-24 md:py-32 px-8 md:px-16 lg:px-24" style={{ maxWidth: '1280px', margin: '0 auto' }}>
+      <div className="px-8 md:px-16 lg:px-24" style={{ maxWidth: '1280px', margin: '0 auto' }}>
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
 
           {/* Coluna texto */}

@@ -78,10 +78,10 @@ function MasonryColumn({
 export default function IntegrationsSection() {
   return (
     <section
-      className="relative overflow-x-clip"
+      className="relative overflow-x-clip py-20 md:py-28 lg:py-32"
       style={{ backgroundColor: '#FFFFFF' }}
     >
-      <div className="relative px-6 md:px-16 py-24 md:py-32" style={{ maxWidth: '1280px', margin: '0 auto' }}>
+      <div className="relative px-6 md:px-16" style={{ maxWidth: '1280px', margin: '0 auto' }}>
         <div className="flex flex-col lg:flex-row items-start lg:items-center gap-16">
 
           {/* Lado esquerdo — texto */}
@@ -92,7 +92,7 @@ export default function IntegrationsSection() {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-4"
+              <p className="text-xs font-bold uppercase tracking-[0.2em] mb-3"
                  style={{ color: '#6A00FF' }}>
                 INTEGRAÇÕES
               </p>
