@@ -169,7 +169,7 @@ export default function HeroSection() {
       {/* Scroll indicator (z-30) */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-30">
         <span style={{ fontSize: '10px', letterSpacing: '0.12em', color: 'rgba(161,0,255,0.7)', textTransform: 'uppercase' }}>
-          Role para baixo
+          
         </span>
         <div style={{
           width: '1px', height: '48px',
