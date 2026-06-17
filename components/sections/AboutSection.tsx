@@ -28,7 +28,7 @@ export default function AboutSection() {
     <section
       ref={sectionRef}
       id="sobre"
-      className="rounded-t-[40px] rounded-b-[40px] overflow-hidden"
+      className="overflow-x-clip"
       style={{ background: '#FFF7EA' }}
     >
       {/* Todo o padding aqui dentro — resolve o texto colado na borda */}

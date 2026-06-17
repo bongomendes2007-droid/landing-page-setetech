@@ -78,7 +78,7 @@ function MasonryColumn({
 export default function IntegrationsSection() {
   return (
     <section
-      className="relative overflow-hidden rounded-t-[40px] rounded-b-[40px]"
+      className="relative overflow-x-clip"
       style={{ backgroundColor: '#FFFFFF' }}
     >
       <div className="relative max-w-7xl mx-auto px-6 md:px-16 py-24">

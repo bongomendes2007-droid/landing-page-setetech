@@ -30,7 +30,7 @@ export default function TeamSection() {
   return (
     <section
       id="equipe"
-      className="py-24 rounded-t-[40px] rounded-b-[40px]"
+      className="py-24"
       style={{ backgroundColor: '#7A1CF8', overflowX: 'clip' }}
     >
       <style>{`
