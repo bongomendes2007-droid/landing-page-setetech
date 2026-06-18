@@ -11,13 +11,15 @@ export default function AboutSection() {
         #sobre {
           background-image: url('https://res.cloudinary.com/dnth1inmv/image/upload/v1781817939/Design_sem_nome_7_pi4x0q.png');
           background-size: cover;
-          background-position: center;
+          background-position: top center;
           background-repeat: no-repeat;
+          min-height: 100vh;
         }
 
         @media (min-width: 768px) {
           #sobre {
             background-image: url('https://res.cloudinary.com/dnth1inmv/image/upload/v1781729975/Design_sem_nome_6_xvkbwl.png');
+            background-position: center;
           }
         }
       `}</style>
@@ -25,8 +27,8 @@ export default function AboutSection() {
       <div className="px-8 md:px-16 lg:px-24" style={{ maxWidth: '1280px', margin: '0 auto' }}>
         <div className="flex flex-col md:flex-row items-center justify-start">
 
-          {/* Bloco de texto — metade esquerda no desktop, largura total no mobile */}
-          <div className="w-full md:max-w-[45%] md:pr-10">
+          {/* Bloco de texto — oculto no mobile (texto já vem na imagem), metade esquerda no desktop */}
+          <div className="hidden md:block w-full md:max-w-[45%] md:pr-10">
             <span style={{
               display: 'inline-block',
               fontSize: '11px',
