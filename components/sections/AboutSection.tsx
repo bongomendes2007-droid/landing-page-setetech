@@ -5,14 +5,23 @@ export default function AboutSection() {
     <section
       id="sobre"
       className="overflow-x-clip min-h-screen flex flex-col justify-center py-20 md:py-28 lg:py-32"
-      style={{
-        backgroundImage: 'url(https://res.cloudinary.com/dnth1inmv/image/upload/v1781729975/Design_sem_nome_6_xvkbwl.png)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-        backgroundColor: '#FFF7EA',
-      }}
+      style={{ backgroundColor: '#FFF7EA' }}
     >
+      <style>{`
+        #sobre {
+          background-image: url('https://res.cloudinary.com/dnth1inmv/image/upload/v1781817939/Design_sem_nome_7_pi4x0q.png');
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+        }
+
+        @media (min-width: 768px) {
+          #sobre {
+            background-image: url('https://res.cloudinary.com/dnth1inmv/image/upload/v1781729975/Design_sem_nome_6_xvkbwl.png');
+          }
+        }
+      `}</style>
+
       <div className="px-8 md:px-16 lg:px-24" style={{ maxWidth: '1280px', margin: '0 auto' }}>
         <div className="flex flex-col md:flex-row items-center justify-start">
 
