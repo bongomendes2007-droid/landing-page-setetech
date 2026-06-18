@@ -36,32 +36,35 @@ export default function ContactSection() {
     if (errors[name]) setErrors(prev => ({ ...prev, [name]: '' }))
   }
 
-  async function handleSubmit() {
-    setStatus('loading')
-    setErrors({})
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      })
-      const data = await res.json()
-      if (res.ok) {
-        setStatus('success')
-        setForm(EMPTY_FORM)
-      } else {
-        if (data.details) {
-          setErrors(
-            Object.fromEntries(
-              Object.entries(data.details).map(([k, v]) => [k, (v as string[])[0]])
-            )
-          )
-        }
-        setStatus('error')
-      }
-    } catch {
+  function handleSubmit() {
+    const newErrors: Record<string, string> = {}
+    if (!form.name.trim())    newErrors.name = 'Informe seu nome'
+    if (!form.message.trim()) newErrors.message = 'Escreva uma mensagem'
+    if (Object.keys(newErrors).length) {
+      setErrors(newErrors)
       setStatus('error')
+      return
     }
+    setErrors({})
+    setStatus('idle')
+
+    const servico = form.serviceInterest
+      ? (SERVICES.find(s => s.value === form.serviceInterest)?.label ?? form.serviceInterest)
+      : 'Não informado'
+
+    const texto = `Olá, SETE TECH! 👋
+
+*Novo contato pelo site:*
+
+*Nome:* ${form.name}
+*E-mail:* ${form.email || 'Não informado'}
+*Serviço de interesse:* ${servico}
+*Mensagem:* ${form.message}
+
+Aguardo o retorno. Obrigado!`
+
+    const url = `https://wa.me/5586994088440?text=${encodeURIComponent(texto)}`
+    window.open(url, '_blank')
   }
 
   const baseInput: React.CSSProperties = {
@@ -158,7 +161,7 @@ export default function ContactSection() {
 
           {/* Form */}
           <form
-            onSubmit={(e) => { e.preventDefault(); void handleSubmit() }}
+            onSubmit={(e) => { e.preventDefault(); handleSubmit() }}
             className="rounded-2xl flex flex-col gap-5"
             style={{
               background: 'rgba(0,0,0,0.05)',
@@ -176,7 +179,7 @@ export default function ContactSection() {
                   placeholder="Seu nome completo"
                   value={form.name}
                   onChange={handleChange}
-                  style={baseInput}
+                  style={errors.name ? { ...baseInput, borderColor: '#ff6b6b' } : baseInput}
                   onFocus={onInputFocus}
                   onBlur={(e) => onInputBlur(e, 'name')}
                 />
@@ -224,7 +227,7 @@ export default function ContactSection() {
                 placeholder="Descreva seu projeto ou necessidade em detalhes..."
                 value={form.message}
                 onChange={handleChange}
-                style={{ ...baseInput, resize: 'vertical', lineHeight: 1.6 }}
+                style={{ ...baseInput, resize: 'vertical', lineHeight: 1.6, ...(errors.message ? { borderColor: '#ff6b6b' } : {}) }}
                 onFocus={onInputFocus}
                 onBlur={(e) => onInputBlur(e, 'message')}
               />
@@ -259,16 +262,16 @@ export default function ContactSection() {
             )}
 
             <button
-              type="submit"
-              disabled={status === 'loading'}
-              className="w-full rounded-full font-bold text-sm bg-[#6A00FF] text-white hover:bg-[#A100FF] disabled:opacity-50 focus-visible:outline-2 focus-visible:outline-[#6A00FF] focus-visible:outline-offset-2 active:scale-[0.97]"
+              type="button"
+              onClick={handleSubmit}
+              className="w-full rounded-full font-bold text-sm bg-[#6A00FF] text-white hover:bg-[#A100FF] focus-visible:outline-2 focus-visible:outline-[#6A00FF] focus-visible:outline-offset-2 active:scale-[0.97]"
               style={{
                 fontFamily: 'var(--font-dm-sans)',
                 padding: '14px',
                 transition: 'background 0.2s, opacity 0.2s, transform 0.16s cubic-bezier(0.23,1,0.32,1)',
               }}
             >
-              {status === 'loading' ? 'Enviando...' : 'Solicitar proposta gratuita'}
+              Solicitar proposta gratuita
             </button>
           </form>
 
