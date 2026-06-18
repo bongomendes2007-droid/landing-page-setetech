@@ -100,7 +100,7 @@ export default function ContactSection() {
   return (
     <section
       id="contato"
-      className="relative overflow-hidden py-20 md:py-28 lg:py-32"
+      className="relative overflow-hidden py-20 md:py-28 lg:py-32 pb-32 md:pb-40"
       style={{
         background: '#FFF7EA',
         paddingLeft: 'clamp(32px, 8vw, 96px)',
