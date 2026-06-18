@@ -45,7 +45,7 @@ export default function Footer() {
   return (
     <footer style={{ backgroundColor: '#0D0D0D' }}>
       <div
-        className="py-16 px-8 md:px-16 lg:px-24"
+        className="pt-20 pb-16 px-8 md:px-16 lg:px-24"
         style={{ maxWidth: '1280px', margin: '0 auto' }}
       >
         {/* 3-column grid */}
